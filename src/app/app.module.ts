@@ -9,6 +9,10 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { ProductItemComponent } from './products/product-list/product-item/product-item.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductService } from './products/product.service';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +26,12 @@ import { ProductsComponent } from './products/products.component';
     ProductsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ProductService, ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
