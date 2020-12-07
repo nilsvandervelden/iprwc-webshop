@@ -2,12 +2,25 @@
 //   background-color: #b40019 !important;
 // }
 nav {
-  margin-bottom: 30px;
   background-color: black !important;
   padding: 10px;
 }
 
 .navbar-light .navbar-brand {
   color: white !important;
+}
+
+.shipping-info {
+  color: black;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.shipping-info p {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 90%;
+  letter-spacing: 110%;
 }
 
