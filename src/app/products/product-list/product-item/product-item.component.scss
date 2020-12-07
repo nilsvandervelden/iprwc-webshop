@@ -4,11 +4,17 @@ a {
   text-decoration: none; /* no underline */
 }
 
-.row {
-  max-width: 10px;
-  width: 10px;
+img {
+  max-height: 250px;
+  margin: 0 auto;
+}
+
+a.list-group-item.clearfix {
+  width: 288px;
+  height: 412px;
 }
 
 h4.list-group-item-heading {
   margin-top: 5px;
 }
+
