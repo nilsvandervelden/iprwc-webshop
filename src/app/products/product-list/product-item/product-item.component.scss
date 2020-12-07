@@ -4,8 +4,16 @@ a {
   text-decoration: none; /* no underline */
 }
 
-img {
+img.img {
+  height: 35px;
+  width: 35px;
+  background-color: gray;
+  border-radius: 50%;
+}
+
+img.img-responsive {
   max-height: 250px;
+  display: block;
   margin: 0 auto;
 }
 
@@ -15,6 +23,18 @@ a.list-group-item.clearfix {
 }
 
 h4.list-group-item-heading {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+h5.list-group-item-text {
   margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+p.list-group-item-text {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-size: 80%;
 }
 

@@ -32,6 +32,30 @@ export class ProductService {
       '13.99',
       'Potter, Funko Pop!',
       'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw83acc54f/images/4/8/2/3/482343a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      'Sybil Trelawney Vinylfiguur 86',
+      '13.99',
+      'Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw4c5d0b2a/images/4/5/4/2/454277a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      'Sybil Trelawney Vinylfiguur 86',
+      '13.99',
+      'Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwfc2865ba/images/4/5/6/3/456324a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      'Sybil Trelawney Vinylfiguur 86',
+      '13.99',
+      'Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwd84cefe3/images/4/5/6/3/456313a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      'Sybil Trelawney Vinylfiguur 86',
+      '13.99',
+      'Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw83acc54f/images/4/8/2/3/482343a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
     )
   ];
 
