@@ -2,10 +2,29 @@
   <div class="col-md-7">
     <img 
       [src]="product.imagePath" 
-      alt="">
+      alt="{{product.name}}"
+      class="img-responsive">
   </div>
-  <div class="col-md-5">
-    <p> test2 </p>
+  <div class="col-md-4">
+    <div class="container">
+      <span> {{ product.name }}</span>
+      <p class="inline-price"> €{{product.price}} </p>
+      <div class="price-info">
+        <i> Prijzen incl. BTW exclusief verpakkings- en verzendkosten</i>
+      </div>
+      <div class="shipping_info">
+        <span class="dot"></span>
+        <p class="inline">Uit voorraad leverbaar</p>
+        <div class="time-frame">
+          <p>Bezorging pakket circa 12 december 2020 - 14 december 2020</p>
+        </div>
+        <button 
+          type="button" 
+          class="btn btn-success"
+          >In mijn winkelmandje
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 

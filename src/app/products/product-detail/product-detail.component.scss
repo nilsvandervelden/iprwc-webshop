@@ -1,0 +1,53 @@
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color:green;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.inline {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.inline-price {
+  margin-left: 5px;
+  float: right;
+}
+
+.time-frame {
+  color: green
+}
+
+.price-info {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 80%;
+  color: gray;
+  text-decoration: underline;
+}
+
+.col-md-7,
+.col-md-4 {
+  background-color: white;
+}
+
+.col-md-4 {
+  margin-left: 20px;
+  position: relative;
+  height: 80%;
+}
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.info {
+  margin-top: 10px;
+}
+
+button.btn.btn-success {
+  width: 100%;
+}
