@@ -15,6 +15,18 @@ export class ShoppingListService {
       13.99,
       'Potter, Funko Pop!',
       'https://www.large.nl/p/sybil-trelawney-vinylfiguur-86/439813.html'
+    ),
+    new Product(
+      'das',
+      13.99,
+      'Potter, Funko Pop!',
+      'https://www.large.nl/p/sybil-trelawney-vinylfiguur-86/439813.html'
+    ),
+    new Product(
+      'fdsad',
+      13.99,
+      'Potter, Funko Pop!',
+      'https://www.large.nl/p/sybil-trelawney-vinylfiguur-86/439813.html'
     )
   ];
 
