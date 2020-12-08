@@ -6,6 +6,12 @@
   display: inline-block;
 }
 
+img.img-responsive {
+  max-height: 600px;
+  display: block;
+  margin: 0 auto;
+}
+
 .inline {
   display: inline-block;
   margin-left: 5px;

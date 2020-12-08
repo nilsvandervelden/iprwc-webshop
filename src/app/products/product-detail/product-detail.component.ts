@@ -27,8 +27,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
 
-  onAddT0GoShoppingList() {
+  onAddToGoShoppingList() {
     this.productService.addProductToShoppingList(this.product);
+    console.log(this.product.name)
   }
-
 }
