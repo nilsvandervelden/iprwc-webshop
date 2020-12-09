@@ -29,6 +29,6 @@ export class ProductDetailComponent implements OnInit {
 
   onAddToGoShoppingList() {
     this.productService.addProductToShoppingList(this.product);
-    console.log(this.product.name)
+    this.router.navigate(['/shopping-list']);
   }
 }

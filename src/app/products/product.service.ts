@@ -10,53 +10,68 @@ export class ProductService {
 
   private products: Product[] = [
     new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
+      1,
+      'Aang On Airscooter Vinylfiguur 541',
+      '17.99',
+      'Avatar - The Last Airbender, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw2fcb9bda/images/4/7/5/7/475778a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      2,
+      'Hermione Vinylfiguur 113',
+      '15.99',
+      'Harry Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwedb0daed/images/4/6/0/7/460778a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      3,
+      'Draco Malfoy Vinylfiguur 117',
+      '15.99',
+      'Harry Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwa9b934f3/images/4/6/0/7/460783a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      4,
+      'Black Light - Iron Man',
+      '17.99',
+      'Marvel, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw02776f8b/images/4/7/4/4/474416a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+    ),
+    new Product(
+      5,
+      'Empire Strikes Back 40th Anniversary - Luke Skywalker & Yoda Vinylfiguur 363',
+      '15.99',
+      'Star Wars, Funko Pop!',
       'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw4c5d0b2a/images/4/5/4/2/454277a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
     ),
     new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwfc2865ba/images/4/5/6/3/456324a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+      2,
+      'Hermione Vinylfiguur 113',
+      '15.99',
+      'Harry Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwedb0daed/images/4/6/0/7/460778a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
     ),
     new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwd84cefe3/images/4/5/6/3/456313a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+      3,
+      'Draco Malfoy Vinylfiguur 117',
+      '15.99',
+      'Harry Potter, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwa9b934f3/images/4/6/0/7/460783a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
     ),
     new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw83acc54f/images/4/8/2/3/482343a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
+      4,
+      'Black Light - Iron Man',
+      '17.99',
+      'Marvel, Funko Pop!',
+      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw02776f8b/images/4/7/4/4/474416a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
     ),
     new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
+      5,
+      'Empire Strikes Back 40th Anniversary - Luke Skywalker & Yoda Vinylfiguur 363',
+      '15.99',
+      'Star Wars, Funko Pop!',
       'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw4c5d0b2a/images/4/5/4/2/454277a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
     ),
-    new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwfc2865ba/images/4/5/6/3/456324a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwd84cefe3/images/4/5/6/3/456313a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      'Sybil Trelawney Vinylfiguur 86',
-      '13.99',
-      'Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw83acc54f/images/4/8/2/3/482343a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    )
   ];
 
   constructor(private shoppingListService: ShoppingListService) {
