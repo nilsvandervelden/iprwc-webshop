@@ -29,7 +29,10 @@ export class ShoppingCartService {
   }
 
   public delete(index: number){
-    this.productsInCartChanged.next(this.productInCart.slice());
+    if (index > -1) {
+      this.productInCart.splice(index, 1);
+      this.productsInCartChanged.next(this.productInCart.slice());
+    }
   }
 
   public getAll(): Product[]{

@@ -12,9 +12,8 @@ import { ProductService } from './products/product.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
-import { ShoppingCartListItemComponent } from './shopping-cart/shopping-cart-list-item/shopping-cart-list-item.component'
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { ShoppingCartListComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list.component';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,15 +23,13 @@ import { ShoppingCartListComponent } from './shopping-cart/shopping-cart-list/sh
     ProductListComponent,
     ProductItemComponent,
     ProductsComponent,
-    ShoppingCartComponent,
-    ShoppingCartListComponent,
-    ShoppingCartListItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShoppingCartModule
   ],
   providers: [ProductService, ShoppingCartService],
   bootstrap: [AppComponent]

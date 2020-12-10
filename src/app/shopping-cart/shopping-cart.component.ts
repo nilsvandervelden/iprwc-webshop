@@ -24,7 +24,8 @@ export class ShoppingCartComponent implements OnInit {
     });
   }
 
-  onDeleteItem(index: number) {
-    console.log('test');
+  public removeProductFromCart(index: number) {
+    this.shoppingcardService.delete(index);
   }
 }
+
