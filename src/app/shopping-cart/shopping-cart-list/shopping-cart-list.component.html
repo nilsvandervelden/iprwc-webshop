@@ -4,9 +4,19 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="products.length > 0; else noProductsInCart">
   <div class="col-xl">
     <app-shopping-cart-list-item *ngFor="let product of products; let i = index"
                                   [product]="product"[index]="i"></app-shopping-cart-list-item>
   </div>
 </div>
+
+<ng-template #noProductsInCart>
+  <div class="row">
+    <div class="col-xl">
+      <strong>
+        No products in cart
+      </strong>
+    </div>
+  </div>
+</ng-template>

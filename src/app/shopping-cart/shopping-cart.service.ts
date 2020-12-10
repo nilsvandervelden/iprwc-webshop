@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { Product } from '../products/product-model';
 
 export class ShoppingCartService {
-  private productsInCartChanged: Subject<Product[]> = new Subject<Product[]>();
+  public productsInCartChanged: Subject<Product[]> = new Subject<Product[]>();
   private productInCart: Product[] = [
     new Product(
       1,
