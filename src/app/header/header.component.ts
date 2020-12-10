@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Product } from '../products/product-model';
+import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public amountOfProductsInCart: number = 0;
+  private subscription: Subscription;
+
+
+  constructor(private shoppingCartService: ShoppingCartService) { }
+
 
   ngOnInit(): void {
+    this.amountOfProductsInCart = this.shoppingCartService.getAll().length;
+    
+    this.subscription = this.shoppingCartService.productsInCartChanged
+    .subscribe((products: Product[]) => {
+      this.amountOfProductsInCart = products.length;
+    });
   }
-
 }
