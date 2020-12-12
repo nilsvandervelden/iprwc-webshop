@@ -1,6 +1,19 @@
 .cart-item-row {
-  border: solid 1px black;
+  border-top: solid 1px black;
   padding: 10px;
   min-height: 50px;
   margin-top: 10px;
+}
+
+img {
+  max-height: 160px;
+}
+
+h3 {
+  vertical-align: top;
+  text-align: left ;
+}
+
+.row.cart-item-row.align-items-center {
+  background-color: white;
 }
