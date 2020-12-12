@@ -1,12 +1,12 @@
 export class Product {
-  public id: number;
+  public vinylFigureId: number;
   public name: string;
   public price: number;
   public description: string;
   public imagePath: string;
 
-  constructor(id: number, name: string, price: number, description: string, imagePath: string) {
-    this.id = id;
+  constructor(vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
+    this.vinylFigureId = vinylFigureId;
     this.name = name;
     this.price = price;
     this.description = description;
