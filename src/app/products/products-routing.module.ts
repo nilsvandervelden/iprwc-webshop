@@ -8,6 +8,7 @@ import { ProductsComponent } from './products.component';
 const routes: Routes = [
   {path: 'products', component: ProductsComponent, children: [
     {path: '', component: ProductListComponent},
+    {path: 'new', component: ProductEditComponent},
     {path: ':id', component: ProductDetailComponent},
     {path: ':id/edit', component: ProductEditComponent},
   ]},

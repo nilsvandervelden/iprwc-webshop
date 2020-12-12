@@ -31,6 +31,10 @@ export class ProductDetailComponent implements OnInit {
 
   onAddToCart() {
     this.shoppingCartService.add(this.product)
-    // this.router.navigate(['/shopping-list']);
+  }
+
+  onDeleteProduct() {
+    this.productService.deleteProduct(this.id);
+    this.router.navigate(['/products'])
   }
 }

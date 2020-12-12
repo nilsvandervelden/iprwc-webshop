@@ -101,7 +101,7 @@ export class ProductService {
   }
   
   deleteProduct(index: number) {
-    this.products.slice(index, 1);
+    this.products.splice(index, 1);
     this.productChanged.next(this.products.slice());
   }
 }

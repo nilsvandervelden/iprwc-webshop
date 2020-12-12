@@ -57,7 +57,6 @@ export class ProductEditComponent implements OnInit {
         'name': new FormControl(null, Validators.required),
         'price': new FormControl(null, [
           Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/)
         ]),
         'description': new FormControl(null, Validators.required),
         'imagePath': new FormControl(null, Validators.required),
@@ -86,7 +85,6 @@ export class ProductEditComponent implements OnInit {
       'name': new FormControl(productName, Validators.required),
       'price': new FormControl(productPrice, [
         Validators.required,
-        Validators.pattern(/^[1-9]+[0-9]*$/)
       ]),
       'description': new FormControl(productDescription, Validators.required),
       'imagePath': new FormControl(productImagePath, Validators.required),
