@@ -18,7 +18,19 @@ h3 {
   background-color: white;
 }
 
+svg {
+  transition: transform .2s;
+}
+
+svg:hover {
+  transform: scale(1.3);
+}
+
 .increment-product {
+  color: green;
+}
+
+.increment-product:hover {
   color: green;
 }
 
