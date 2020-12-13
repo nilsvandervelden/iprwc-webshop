@@ -28,5 +28,13 @@ export class ShoppingCartComponent implements OnInit {
   public removeProductFromCart(index: number) {
     this.shoppingcardService.delete(index);
   }
+
+  public incrementProductCount(index: number) {
+    this.shoppingcardService.incrementProductCount(index);
+  }
+
+  public decrementProductCount(index: number) {
+    this.shoppingcardService.decrementProductCount(index);
+  }
 }
 

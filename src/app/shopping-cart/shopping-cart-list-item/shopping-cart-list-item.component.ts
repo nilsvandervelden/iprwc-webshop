@@ -12,11 +12,21 @@ export class ShoppingCartListItemComponent implements OnInit {
   @Input() public shoppingCartItem: ShoppingCartItem;
   @Input() public index: number;
   @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public increment: EventEmitter<number> = new EventEmitter<number>();
 
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public incrementProductCount() {
+    this.increment.emit(this.index)
+  }
+
+  public decrementProductCount() {
+    
+    // this.decrementProductCount(this.index);
   }
 
   public removeFromCart() {
