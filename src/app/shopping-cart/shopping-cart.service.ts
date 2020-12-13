@@ -1,6 +1,8 @@
 import { Subject } from 'rxjs';
 import { Product } from '../products/product-model';
 import { ShoppingCartItem } from './shopping-cart-product.model';
+import Swal from 'sweetalert2'
+
 
 export class ShoppingCartService {
   public productsInCartChanged: Subject<ShoppingCartItem[]> = new Subject<ShoppingCartItem[]>();
@@ -50,9 +52,33 @@ export class ShoppingCartService {
     this.productsInCartChanged.next(this.productInCart.slice());
   }
 
+  public removeProductPopup(index: number) {
+    Swal.fire({
+      title: 'Product uit winkelwagen verwijderen?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Verwijder'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.delete(index)
+        Swal.fire(
+          'Verwijderd!',
+          'Het product is uit de winkelwagen verwijderd!',
+          'success'
+        )
+      }
+    })
+  }
+
   public decrementProductCount(index: number) {
-    this.productInCart[index].quantity -= 1;
-    this.productsInCartChanged.next(this.productInCart.slice());
+    if(this.productInCart[index].quantity <= 1) {
+      this.removeProductPopup(index);
+    } else {
+      this.productInCart[index].quantity -= 1;
+      this.productsInCartChanged.next(this.productInCart.slice());
+    }
   }
 
   private add(shoppingCartItem: ShoppingCartItem) {
