@@ -39,9 +39,9 @@ export class ShoppingCartService {
   private checkIfProductInShoppingList(shoppingCartItem: ShoppingCartItem) {
     for(let i in this.productInCart) {
       if(this.productInCart[i].name == shoppingCartItem.name) {
-        console.log('dit product zit al in de cart')
+        shoppingCartItem.quantity += 1;
       } else {
-        console.log('dit product zit nog niet in de cart')
+        this.add(shoppingCartItem);
       }
     }
   }
