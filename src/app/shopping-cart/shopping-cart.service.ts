@@ -30,27 +30,35 @@ export class ShoppingCartService {
 
   constructor() {}
 
-  public createShoppingCartItem(product: Product) {
+  public onAddItemToShoppingList(product: Product) {
     const shoppingCartItem = new ShoppingCartItem (113, product);
-    this.checkIfProductInShoppingList(shoppingCartItem);
+    this.addOrIncrementProductToShoppingList(shoppingCartItem);
+  }
+
+  private addOrIncrementProductToShoppingList(shoppingCartItem: ShoppingCartItem) {
+    for(let i in this.productInCart) {
+      if(this.productInCart[i].name == shoppingCartItem.name) {
+        this.incrementProductCount(+i);
+        return
+      }
+    }
     this.add(shoppingCartItem);
   }
 
-  private checkIfProductInShoppingList(shoppingCartItem: ShoppingCartItem) {
-    for(let i in this.productInCart) {
-      if(this.productInCart[i].name == shoppingCartItem.name) {
-        shoppingCartItem.quantity += 1;
-      } else {
-        this.add(shoppingCartItem);
-      }
-    }
+  public incrementProductCount(index: number) {
+    this.productInCart[index].quantity += 1;
+    this.productsInCartChanged.next(this.productInCart.slice());
+  }
+
+  public decrementProductCount(index: number) {
+    this.productInCart[index].quantity -= 1;
+    this.productsInCartChanged.next(this.productInCart.slice());
   }
 
   private add(shoppingCartItem: ShoppingCartItem) {
     this.productInCart.push(shoppingCartItem);
     this.productsInCartChanged.next(this.productInCart.slice());
   }
-
 
   public delete(index: number){
     if (index > -1) {
