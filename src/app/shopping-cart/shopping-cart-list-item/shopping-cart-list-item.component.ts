@@ -13,6 +13,7 @@ export class ShoppingCartListItemComponent implements OnInit {
   @Input() public index: number;
   @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
   @Output() public increment: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public decrement: EventEmitter<number> = new EventEmitter<number>();
 
 
   constructor() { }
@@ -21,12 +22,11 @@ export class ShoppingCartListItemComponent implements OnInit {
   }
 
   public incrementProductCount() {
-    this.increment.emit(this.index)
+    this.increment.emit(this.index);
   }
 
   public decrementProductCount() {
-    
-    // this.decrementProductCount(this.index);
+    this.decrement.emit(this.index);
   }
 
   public removeFromCart() {
