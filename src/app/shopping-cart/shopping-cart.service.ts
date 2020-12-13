@@ -7,9 +7,9 @@ export class ShoppingCartService {
   private productInCart: ShoppingCartItem[] = [
     
     new ShoppingCartItem(
-      1,
+      541,
       new Product(
-        1,
+        541,
         'Aang On Airscooter Vinylfiguur 541',
         17.99,
         'Avatar - The Last Airbender, Funko Pop!',
@@ -17,9 +17,9 @@ export class ShoppingCartService {
       )
     ),
     new ShoppingCartItem(
-      2,
+      113,
       new Product(
-        2,
+        113,
         'Hermione Vinylfiguur 113',
         15.99,
         'Harry Potter, Funko Pop!',
@@ -30,12 +30,27 @@ export class ShoppingCartService {
 
   constructor() {}
 
-  public add(product: Product) {
-    const shoppingCartItem = new ShoppingCartItem (1, product);
-                
+  public createShoppingCartItem(product: Product) {
+    const shoppingCartItem = new ShoppingCartItem (113, product);
+    this.checkIfProductInShoppingList(shoppingCartItem);
+    this.add(shoppingCartItem);
+  }
+
+  private checkIfProductInShoppingList(shoppingCartItem: ShoppingCartItem) {
+    for(let i in this.productInCart) {
+      if(this.productInCart[i].name == shoppingCartItem.name) {
+        console.log('dit product zit al in de cart')
+      } else {
+        console.log('dit product zit nog niet in de cart')
+      }
+    }
+  }
+
+  private add(shoppingCartItem: ShoppingCartItem) {
     this.productInCart.push(shoppingCartItem);
     this.productsInCartChanged.next(this.productInCart.slice());
   }
+
 
   public delete(index: number){
     if (index > -1) {

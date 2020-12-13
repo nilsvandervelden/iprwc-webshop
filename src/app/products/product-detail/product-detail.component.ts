@@ -30,7 +30,7 @@ export class ProductDetailComponent implements OnInit {
 
 
   onAddToCart() {
-    this.shoppingCartService.add(this.product)
+    this.shoppingCartService.createShoppingCartItem(this.product)
   }
 
   onDeleteProduct() {
