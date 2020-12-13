@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from '../products/product-model';
+import { ShoppingCartItem } from './shopping-cart-product.model';
 import { ShoppingCartService } from './shopping-cart.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ShoppingCartService } from './shopping-cart.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  public products: Product[] = [];
+  public products: ShoppingCartItem[] = [];
 
   private subscription: Subscription;
   
@@ -19,7 +20,7 @@ export class ShoppingCartComponent implements OnInit {
     this.products = this.shoppingcardService.getAll();
     
     this.subscription = this.shoppingcardService.productsInCartChanged
-    .subscribe((products: Product[]) => {
+    .subscribe((products: ShoppingCartItem[]) => {
       this.products = products;
     });
   }
