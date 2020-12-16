@@ -50,20 +50,6 @@ export class ProductEditComponent implements OnInit {
     return (<FormArray>this.productForm.get('products')).controls;
   }
 
-  onAddIngredient() {
-    (<FormArray>this.productForm.get('products')).push(
-      new FormGroup({
-        'vinylFigureId': new FormControl(null, Validators.required),
-        'name': new FormControl(null, Validators.required),
-        'price': new FormControl(null, [
-          Validators.required,
-        ]),
-        'description': new FormControl(null, Validators.required),
-        'imagePath': new FormControl(null, Validators.required),
-      })
-    );
-  }
-
   private initForm() {
     let productvinylFigureId = '';
     let productName = '';

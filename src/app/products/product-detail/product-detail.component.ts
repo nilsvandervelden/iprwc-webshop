@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
         this.product = this.productService.getProduct(this.id);
       }
     );
-  }
+  }0
 
 
   onAddToCart() {

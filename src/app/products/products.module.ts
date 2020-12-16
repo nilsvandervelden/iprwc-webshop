@@ -7,6 +7,7 @@ import { ProductItemComponent } from './product-list/product-item/product-item.c
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductsComponent } from './products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductsRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
   ],
 })
 export class ProductsModule { }

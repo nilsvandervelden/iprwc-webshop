@@ -18,11 +18,11 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.amountOfProductsInCart = this.shoppingCartService.getAll().length;
+    // this.amountOfProductsInCart = this.shoppingCartService.getAll().length;
     
-    this.subscription = this.shoppingCartService.productsInCartChanged
-    .subscribe((products: Product[]) => {
-      this.amountOfProductsInCart = products.length;
-    });
+    // this.subscription = this.shoppingCartService.productsInCartChanged
+    // .subscribe((products: Product[]) => {
+    //   this.amountOfProductsInCart = products.length;
+    // });
   }
 }

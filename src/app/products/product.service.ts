@@ -2,84 +2,42 @@ import { Injectable } from "@angular/core";
 import { Subject } from 'rxjs';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 import { Product } from './product-model';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators'; 
 
 
 @Injectable()
 export class ProductService {
   productChanged = new Subject<Product[]>();
 
-  private products: Product[] = [
-    new Product(
-      1,
-      'Aang On Airscooter Vinylfiguur 541',
-      17.99,
-      'Avatar - The Last Airbender, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw2fcb9bda/images/4/7/5/7/475778a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      2,
-      'Hermione Vinylfiguur 113',
-      15.99,
-      'Harry Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwedb0daed/images/4/6/0/7/460778a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      3,
-      'Draco Malfoy Vinylfiguur 117',
-      15.99,
-      'Harry Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwa9b934f3/images/4/6/0/7/460783a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      4,
-      'Black Light - Iron Man',
-      17.99,
-      'Marvel, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw02776f8b/images/4/7/4/4/474416a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      5,
-      'Empire Strikes Back 40th Anniversary - Luke Skywalker & Yoda Vinylfiguur 363',
-      15.99,
-      'Star Wars, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw4c5d0b2a/images/4/5/4/2/454277a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      2,
-      'Hermione Vinylfiguur 113',
-      15.99,
-      'Harry Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwedb0daed/images/4/6/0/7/460778a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      3,
-      'Draco Malfoy Vinylfiguur 117',
-      15.99,
-      'Harry Potter, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dwa9b934f3/images/4/6/0/7/460783a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      4,
-      'Black Light - Iron Man',
-      17.99,
-      'Marvel, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw02776f8b/images/4/7/4/4/474416a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-    new Product(
-      5,
-      'Empire Strikes Back 40th Anniversary - Luke Skywalker & Yoda Vinylfiguur 363',
-      15.99,
-      'Star Wars, Funko Pop!',
-      'https://www.large.nl/dw/image/v2/BBQV_PRD/on/demandware.static/-/Sites-master-emp/default/dw4c5d0b2a/images/4/5/4/2/454277a.jpg?sw=1000&sh=800&sm=fit&sfrm=png'
-    ),
-  ];
+  private products: Product[] = [];
 
-  constructor(private shoppingListService: ShoppingCartService) {
+  constructor(private shoppingListService: ShoppingCartService,
+              private httpClient: HttpClient) {
 
   }
 
   getProducts() {
-    return this.products.slice();
+    this.httpClient
+      .get<{message: string, products: any }>(
+        'http://localhost:3000/api/products'
+      )
+      .pipe(map((productData) => {
+        return productData.products.map(product => {
+          return {
+            id: product._id,
+            vinylFigureId: product.vinylFigureId,
+            name: product.name,
+            price: product.price,
+            description: product.description,
+            imagePath: product.imagePath
+          }
+        });
+      }))
+      .subscribe((transformedProduct) => {
+        this.products = transformedProduct;
+        this.productChanged.next([...this.products])
+      });
   }
 
   getProduct(index: number) {
@@ -91,8 +49,13 @@ export class ProductService {
   // }
 
   addProduct(product: Product) {
-    this.products.push(product);
-    this.productChanged.next(this.products.slice());
+    this.httpClient
+      .post<{message:string}>('http://localhost:3000/api/products', product)
+      .subscribe((responseData) => {
+        console.log(responseData.message);
+        this.products.push(product);
+        this.productChanged.next(this.products.slice());
+      });
   }
 
   updateProduct(index: number, newProduct: Product) {
@@ -100,8 +63,10 @@ export class ProductService {
     this.productChanged.next(this.products.slice());
   }
   
-  deleteProduct(index: number) {
-    this.products.splice(index, 1);
-    this.productChanged.next(this.products.slice());
+  deleteProduct(productId: string) {
+    this.httpClient.delete("http://localhost:3000/api/products/" + productId)
+      .subscribe(() => {
+        console.log("deleted");
+      });
   }
 }
