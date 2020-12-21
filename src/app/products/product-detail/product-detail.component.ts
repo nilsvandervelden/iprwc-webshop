@@ -26,15 +26,16 @@ export class ProductDetailComponent implements OnInit {
         this.product = this.productService.getProduct(this.id);
       }
     );
-  }0
+  }
 
 
   onAddToCart() {
     this.shoppingCartService.onAddItemToShoppingList(this.product)
   }
 
-  onDeleteProduct() {
-    this.productService.deleteProduct(this.id);
+  onDeleteProduct(productId: string) {
+    console.log(productId);
+    this.productService.deleteProduct(productId);
     this.router.navigate(['/products'])
   }
 }
