@@ -11,7 +11,6 @@ import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 export class HeaderComponent implements OnInit {
 
   public amountOfProductsInCart: number = 0;
-  private productInCart: ShoppingCartItem[];
   private subscription: Subscription;
 
 
