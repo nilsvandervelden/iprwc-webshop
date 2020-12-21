@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Product } from '../products/product-model';
 import { ShoppingCartItem } from '../shopping-cart/shopping-cart-product.model';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 
