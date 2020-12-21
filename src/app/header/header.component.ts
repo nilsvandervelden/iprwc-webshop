@@ -12,6 +12,7 @@ import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 export class HeaderComponent implements OnInit {
 
   public amountOfProductsInCart: number = 0;
+  private productInCart: ShoppingCartItem[];
   private subscription: Subscription;
 
 
@@ -19,11 +20,12 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.amountOfProductsInCart = this.shoppingCartService.getAll().length;
-    
     this.subscription = this.shoppingCartService.productsInCartChanged
-    .subscribe((productInCart: ShoppingCartItem[]) => {
-      this.amountOfProductsInCart = productInCart.length;
+    .subscribe((productsInCart: ShoppingCartItem[]) => {
+      this.amountOfProductsInCart = 0;
+      for(let i of productsInCart) {
+        this.amountOfProductsInCart += i.quantity;
+      }
     });
   }
 }
