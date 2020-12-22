@@ -60,7 +60,6 @@ export class ProductEditComponent implements OnInit {
 
     if(this.editMode) {
       const product = this.productService.getProduct(this.id);
-      console.log(product.id);
       productvinylFigureId = String(product.vinylFigureId);
       productName = product.name;
       productPrice = String(product.price);

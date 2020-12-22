@@ -58,14 +58,12 @@ export class ProductService {
       });
   }
 
-  updateProduct(productIndex: string, newProduct: Product) {
+  updateProduct(productIndex: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
     const productId = this.getProduct(+productIndex).id;
-    const product: Product = newProduct;
+    const product: Product = {id: productId, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath};
+    console.log(product.id);
     this.httpClient.put("http://localhost:3000/api/products/" + productId, product)
       .subscribe(response => console.log(response));
-    // this.products[index] = newProduct;
-    // console.log(newProduct.id);
-    // this.productChanged.next(this.products.slice());
   }
   
   deleteProduct(productId: string) {
