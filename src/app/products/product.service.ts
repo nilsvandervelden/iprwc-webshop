@@ -58,9 +58,11 @@ export class ProductService {
       });
   }
 
-  updateProduct(index: number, newProduct: Product) {
+  updateProduct(productIndex: string, newProduct: Product) {
+    const productId = this.getProduct(+productIndex).id;
     const product: Product = newProduct;
-    console.log(product.id);
+    this.httpClient.put("http://localhost:3000/api/products/" + productId, product)
+      .subscribe(response => console.log(response));
     // this.products[index] = newProduct;
     // console.log(newProduct.id);
     // this.productChanged.next(this.products.slice());
