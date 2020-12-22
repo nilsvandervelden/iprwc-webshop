@@ -59,8 +59,11 @@ export class ProductService {
   }
 
   updateProduct(index: number, newProduct: Product) {
-    this.products[index] = newProduct;
-    this.productChanged.next(this.products.slice());
+    const product: Product = newProduct;
+    console.log(product.id);
+    // this.products[index] = newProduct;
+    // console.log(newProduct.id);
+    // this.productChanged.next(this.products.slice());
   }
   
   deleteProduct(productId: string) {

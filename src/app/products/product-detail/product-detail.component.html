@@ -26,12 +26,20 @@
           >In mijn winkelmandje
         </button>
         <button 
-        (click)="onDeleteProduct( product.id )"
-        style="cursor: pointer;"
-        type="button" 
-        class="btn btn-danger"
-        >Delete
-      </button>
+          (click)="onDeleteProduct( product.id )"
+          style="cursor: pointer;"
+          type="button" 
+          class="btn btn-danger"
+          >Delete
+        </button>
+        <button
+          (click)="onEditProduct()"
+          class="btn btn-primary"
+          style="cursor: pointer;"
+          type="button" 
+          class="btn btn-primary"
+          >Edit
+        </button>
       </div>
     </div>
   </div>

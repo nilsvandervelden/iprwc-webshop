@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 import { Product } from '../product-model';
@@ -37,5 +37,9 @@ export class ProductDetailComponent implements OnInit {
     console.log(productId);
     this.productService.deleteProduct(productId);
     this.router.navigate(['/products'])
+  }
+
+  onEditProduct() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 }
