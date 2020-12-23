@@ -45,7 +45,8 @@ export class ProductEditComponent implements OnInit {
         this.editMode = true
         this.productId = paramMap.get("productId");
         this.productService.getProductById(this.productId).subscribe(productData => {
-          this.product = {
+          this.product = 
+                        {
                           id: productData._id,
                           vinylFigureId: productData.vinylFigureId,
                           name: productData.name,
@@ -55,7 +56,6 @@ export class ProductEditComponent implements OnInit {
                         };
         });
       } else {
-        console.log('hier')
         this.editMode = false;
         this.productId = null;
       }
