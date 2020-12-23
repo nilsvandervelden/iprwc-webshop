@@ -32,14 +32,11 @@
           class="btn btn-danger"
           >Delete
         </button>
-        <button
-          (click)="onEditProduct( product.id )"
+        <a
           class="btn btn-primary"
-          style="cursor: pointer;"
-          type="button" 
-          class="btn btn-primary"
+          [routerLink]="['/edit', product.id]"
           >Edit
-        </button>
+        </a>
       </div>
     </div>
   </div>

@@ -26,40 +26,41 @@ export class ProductEditComponent implements OnInit {
               private productService: ProductService,
               private router: Router) { }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      if (paramMap.has("productId")) {
-        this.editMode = true
-        this.productId = paramMap.get("productId");
-        this.product = this.productService.getProductByIndex(this.index);
-      } else {
-        this.editMode = false;
-        this.productId = null;
-      }
-    });
-  }
-
   // ngOnInit() {
   //   this.route.paramMap.subscribe((paramMap: ParamMap) => {
   //     if (paramMap.has("productId")) {
   //       this.editMode = true
   //       this.productId = paramMap.get("productId");
-  //       this.productService.getProductById(this.productId).subscribe(productData => {
-  //         this.product = {
-  //                         id: productData._id,
-  //                         vinylFigureId: productData.vinylFigureId,
-  //                         name: productData.name,
-  //                         price: productData.price,
-  //                         description: productData.description,
-  //                         imagePath: productData.imagePath
-  //                       };
-  //       });
+  //       this.product = this.productService.getProductByIndex(this.index);
   //     } else {
   //       this.editMode = false;
   //       this.productId = null;
   //     }
   //   });
   // }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has("productId")) {
+        this.editMode = true
+        this.productId = paramMap.get("productId");
+        this.productService.getProductById(this.productId).subscribe(productData => {
+          this.product = {
+                          id: productData._id,
+                          vinylFigureId: productData.vinylFigureId,
+                          name: productData.name,
+                          price: productData.price,
+                          description: productData.description,
+                          imagePath: productData.imagePath
+                        };
+        });
+      } else {
+        console.log('hier')
+        this.editMode = false;
+        this.productId = null;
+      }
+    });
+  }
 
 
   onCancel() {

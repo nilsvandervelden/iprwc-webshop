@@ -38,10 +38,6 @@ export class ProductDetailComponent implements OnInit {
     this.productService.deleteProduct(productId);
     this.router.navigate(['/products'])
   }
-
-  onEditProduct(productId: string) {
-    this.router.navigate(['edit'], {relativeTo: this.route});
-  }
 }
 
 
