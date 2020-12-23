@@ -4,6 +4,7 @@ import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 import { Product } from './product-model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'; 
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 
 @Injectable()
@@ -58,12 +59,19 @@ export class ProductService {
       });
   }
 
-  updateProduct(productIndex: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
+  // updateProduct(productIndex: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
+    updateProduct(productIndex: string, newProduct: Product) {
     const productId = this.getProduct(+productIndex).id;
-    const product: Product = {id: productId, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath};
+    const product: Product = {id: productId, vinylFigureId: newProduct.vinylFigureId, name: newProduct.name, price: newProduct.price, description: newProduct.description, imagePath: newProduct.imagePath};
     console.log(product.id);
     this.httpClient.put("http://localhost:3000/api/products/" + productId, product)
-      .subscribe(response => console.log(response));
+      .subscribe(response => {
+        const updatedProducts = [...this.products];
+        const oldProductIndex = updatedProducts.findIndex(p => p.id === product.id);
+        updatedProducts[oldProductIndex] = product;
+        this.products = updatedProducts;
+        this.productChanged.next([...this.products]);
+      });
   }
   
   deleteProduct(productId: string) {

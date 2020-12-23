@@ -65,6 +65,10 @@ app.get("/api/products", (req, res, next) => {
     });
 });
 
+app.get("/api/products/:id"), (req, res, next) => {
+  Product.findById(req.params.id).then()
+}
+
 app.delete("/api/products/:id", (req, res, next) => {
   Product.deleteOne({_id: req.params.id}).then(result => {
     console.log(result);
