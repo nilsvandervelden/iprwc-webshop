@@ -1,14 +1,17 @@
 <div class="row">
   <div class="col-xl">
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <form (submit)="onSaveProduct(productForm)" #productForm="ngForm">
       <div class="row">
         <div class="col-xl">
           <div class="form-group">
             <label for="vinylFigureId">Vinylfiguur Nummer</label>
             <input
               type="text"
-              id="vinylFigureId"
-              formControlName="vinylFigureId"
+              name="vinylFigureId"
+              [ngModel]="product?.vinylFigureId"
+              required
+              placeholder="Product vinyFigureId"
+              #vinylFigureId="ngModel"
               class="form-control">
           </div>
         </div>
@@ -19,8 +22,11 @@
             <label for="name">Naam</label>
             <input
               type="text"
-              id="name"
-              formControlName="name"
+              name="name"
+              [ngModel]="product?.name"
+              required
+              placeholder="Product name"
+              #name="ngModel"
               class="form-control">
           </div>
         </div>
@@ -31,8 +37,11 @@
             <label for="price">Prijs</label>
             <input
               type="text"
-              id="price"
-              formControlName="price"
+              name="price"
+              [ngModel]="product?.price"
+              required
+              placeholder="Product price"
+              #price="ngModel"
               class="form-control">
           </div>
         </div>
@@ -43,8 +52,11 @@
             <label for="description">Beschrijving</label>
             <input
               type="text"
-              id="description"
-              formControlName="description"
+              name="description"
+              [ngModel]="product?.description"
+              required
+              placeholder="Product description"
+              #description="ngModel"
               class="form-control">
           </div>
         </div>
@@ -56,9 +68,12 @@
             <input
               type="text"
               id="imagePath"
-              formControlName="imagePath"
-              class="form-control"
-              #imagePath>
+              name="imagePath"
+              [ngModel]="product?.imagePath"
+              required
+              placeholder="Product imagePath"
+              #imagePath="ngModel"
+              class="form-control">
           </div>
         </div>
       </div>
