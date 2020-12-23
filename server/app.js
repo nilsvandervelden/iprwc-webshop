@@ -34,9 +34,11 @@ app.post("/api/products", (req, res, next ) => {
     description: req.body.description,
     imagePath: req.body.imagePath
   });
-  product.save();
-  res.status(201).json({
-    message: 'Post added successfully'
+  product.save().then(createdProduct => {
+    res.status(201).json({
+      message: 'Product added successfully',
+      productId: createdProduct._id
+    });
   });
 });
 
