@@ -41,15 +41,15 @@ export class ProductService {
       });
   }
 
-  getProduct(index: number) {
+  getProductByIndex(index: number) {
     return this.products[index];
   }
 
-  // getProduct(id: string) {
-  //   return this.httpClient.get<{ _id: string; vinylFigureId: number, name: string, price: number, description: string, imagePath: string }>(
-  //     "http://localhost:3000/api/products/" + id
-  //   );
-  // }
+  getProductById(id: string) {
+    return this.httpClient.get<{ _id: string; vinylFigureId: number, name: string, price: number, description: string, imagePath: string }>(
+      "http://localhost:3000/api/products/" + id
+    );
+  }
 
   addProduct(vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
     const product: Product = {id: null, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath}

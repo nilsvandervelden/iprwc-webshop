@@ -11,7 +11,7 @@ import { ProductService } from '../product.service';
 export class ProductEditComponent implements OnInit {
 
   private productId: string;
-  id: number;
+  index: number;
   editMode = false;
   productForm: FormGroup;
 
@@ -23,11 +23,11 @@ export class ProductEditComponent implements OnInit {
     this.route.params
     .subscribe(
       (params: Params) => {
-        this.id = params['id'];
+        this.index = params['id'];
         this.editMode = params['id'] != null;
         this.initForm();
-        this.productId = this.productService.getProduct(this.id).id;
-        console.log('id: ' + this.id)
+        this.productId = this.productService.getProductByIndex(this.index).id;
+        console.log('id: ' + this.index)
         console.log('product id' + this.productId)
       }
     );
@@ -77,7 +77,7 @@ export class ProductEditComponent implements OnInit {
     let productImagePath = '';
 
     if(this.editMode) {
-      const product = this.productService.getProduct(this.id);
+      const product = this.productService.getProductByIndex(this.index);
       productvinylFigureId = String(product.vinylFigureId);
       productName = product.name;
       productPrice = String(product.price);
