@@ -43,7 +43,14 @@ export class ProductEditComponent implements OnInit {
   
   onSubmit() {
     if (this.editMode) {
-      // this.productService.updateProduct(String(this.id), this.productForm.value);
+      this.productService.updateProduct(
+        this.productId,
+        this.productForm.controls['vinylFigureId'].value,
+        this.productForm.controls['name'].value,
+        this.productForm.controls['price'].value,
+        this.productForm.controls['description'].value,
+        this.productForm.controls['imagePath'].value,
+      );
       // this.productService.updateProduct(this.productForm.get('title'))
     } else {
       const formValue = this.productForm.controls;

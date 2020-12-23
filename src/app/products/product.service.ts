@@ -45,8 +45,8 @@ export class ProductService {
     return this.products[index];
   }
 
-  // getPost(id: string) {
-  //   return this.httpClient.get<{ _id: string; title: string; content: string }>(
+  // getProduct(id: string) {
+  //   return this.httpClient.get<{ _id: string; vinylFigureId: number, name: string, price: number, description: string, imagePath: string }>(
   //     "http://localhost:3000/api/products/" + id
   //   );
   // }
@@ -66,18 +66,18 @@ export class ProductService {
       });
   }
 
-  updateProduct(productIndex: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
-    const productId = this.getProduct(+productIndex).id;
-    const product: Product = {id: productId, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath};
-    console.log(product.id);
-    this.httpClient.put("http://localhost:3000/api/products/" + productId, product)
+  updateProduct(id: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
+    const product: Product = {id: id, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath};
+    console.log(id);
+    this.httpClient
+      .put("http://localhost:3000/api/products/" + id, product)
       .subscribe(response => {
         const updatedProducts = [...this.products];
         const oldProductIndex = updatedProducts.findIndex(p => p.id === product.id);
         updatedProducts[oldProductIndex] = product;
         this.products = updatedProducts;
         this.productChanged.next([...this.products]);
-      });
+      }); 
   }
   
   deleteProduct(productId: string) {
