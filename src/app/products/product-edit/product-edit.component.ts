@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
+import { Product } from '../product-model';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -13,25 +14,49 @@ export class ProductEditComponent implements OnInit {
   private productId: string;
   index: number;
   editMode = false;
+  product: Product;
   productForm: FormGroup;
 
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
               private router: Router) { }
 
-  ngOnInit(): void {
-    this.route.params
-    .subscribe(
-      (params: Params) => {
-        this.index = params['id'];
-        this.editMode = params['id'] != null;
-        this.initForm();
-        this.productId = this.productService.getProductByIndex(this.index).id;
-        console.log('id: ' + this.index)
-        console.log('product id' + this.productId)
+  // ngOnInit(): void {
+  //   this.route.params
+  //   .subscribe(
+  //     (params: Params) => {
+  //       this.index = params['id'];
+  //       this.editMode = params['id'] != null;
+  //       this.initForm();
+  //       this.productId = this.productService.getProductByIndex(this.index).id;
+  //       console.log('id: ' + this.index)
+  //       console.log('product id' + this.productId)
+  //     }
+  //   );
+  // }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has("productId")) {
+        this.editMode = true
+        this.productId = paramMap.get("productId");
+        this.productService.getProductById(this.productId).subscribe(productData => {
+          this.product = {
+                          id: productData._id,
+                          vinylFigureId: productData.vinylFigureId,
+                          name: productData.name,
+                          price: productData.price,
+                          description: productData.description,
+                          imagePath: productData.imagePath
+                        };
+        });
+      } else {
+        this.editMode = false;
+        this.productId = null;
       }
-    );
+    });
   }
+
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route})
