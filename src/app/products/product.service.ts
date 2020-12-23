@@ -1,22 +1,19 @@
 import { Injectable } from "@angular/core";
 import { Subject } from 'rxjs';
-import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
-import { Product } from './product-model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'; 
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { Router } from "@angular/router";
+
+import { Product } from './product-model';
 
 
 @Injectable()
 export class ProductService {
+  private products: Product[] = [];
   productChanged = new Subject<Product[]>();
 
-  private products: Product[] = [];
-
-  constructor(private shoppingListService: ShoppingCartService,
-              private httpClient: HttpClient) {
-
-  }
+  constructor(private httpClient: HttpClient,
+              private router: Router) {}
 
   getProducts() {
     this.httpClient
@@ -41,8 +38,8 @@ export class ProductService {
       });
   }
 
-  getProductByIndex(index: number) {
-    return this.products[index];
+  getProductUpdateListener() {
+    return this.productChanged.asObservable();
   }
 
   getProductById(id: string) {
@@ -62,13 +59,13 @@ export class ProductService {
         const id = responseData.productId;
         product.id = id;
         this.products.push(product);
-        this.productChanged.next(this.products.slice());
+        this.productChanged.next([...this.products]);
+        this.router.navigate(["/"]);
       });
   }
 
   updateProduct(id: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
     const product: Product = {id: id, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath};
-    console.log(id);
     this.httpClient
       .put("http://localhost:3000/api/products/" + id, product)
       .subscribe(response => {
@@ -77,11 +74,11 @@ export class ProductService {
         updatedProducts[oldProductIndex] = product;
         this.products = updatedProducts;
         this.productChanged.next([...this.products]);
+        this.router.navigate(["/"]);
       }); 
   }
   
   deleteProduct(productId: string) {
-    console.log('dit werkt')
     this.httpClient.delete("http://localhost:3000/api/products/" + productId)
       .subscribe(() => {
         const updatedProducts = this.products.filter(product => product.id != productId);

@@ -1,4 +1,4 @@
-const exporess = require("express");
+const express = require("express");
 
 const Product = require("../models/product");
 
