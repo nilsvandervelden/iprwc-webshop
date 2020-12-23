@@ -10,6 +10,7 @@ import { ProductService } from '../product.service';
 })
 export class ProductEditComponent implements OnInit {
 
+  private productId: string;
   id: number;
   editMode = false;
   productForm: FormGroup;
@@ -22,9 +23,12 @@ export class ProductEditComponent implements OnInit {
     this.route.params
     .subscribe(
       (params: Params) => {
-        this.id = +params['id'];
+        this.id = params['id'];
         this.editMode = params['id'] != null;
         this.initForm();
+        this.productId = this.productService.getProduct(this.id).id;
+        console.log('id: ' + this.id)
+        console.log('product id' + this.productId)
       }
     );
   }
@@ -39,16 +43,23 @@ export class ProductEditComponent implements OnInit {
   
   onSubmit() {
     if (this.editMode) {
-      // console.log(this.id)
-      this.productService.updateProduct(String(this.id), this.productForm.value);
+      // this.productService.updateProduct(String(this.id), this.productForm.value);
+      // this.productService.updateProduct(this.productForm.get('title'))
     } else {
-      this.productService.addProduct(this.productForm.value);
+      const formValue = this.productForm.controls;
+      this.productService.addProduct(
+        this.productForm.controls['vinylFigureId'].value,
+        this.productForm.controls['name'].value,
+        this.productForm.controls['price'].value,
+        this.productForm.controls['description'].value,
+        this.productForm.controls['imagePath'].value,
+        );
     }
     this.onCancel();
   }
 
   get controls() { 
-    return (<FormArray>this.productForm.get('products')).controls;
+    return (<FormArray>this.productForm.get('name')).controls;
   }
 
   private initForm() {

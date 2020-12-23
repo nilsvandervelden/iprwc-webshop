@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 
 const Product = require("./models/product");
+const product = require("./models/product");
 
 const app = express();
 
@@ -66,7 +67,13 @@ app.get("/api/products", (req, res, next) => {
 });
 
 app.get("/api/products/:id"), (req, res, next) => {
-  Product.findById(req.params.id).then()
+  Product.findById(req.params.id).then(product => {
+    if (product) {
+      res.status(200).json({product})
+    } else {
+      res.status(404).json({message: 'Product not found!'});
+    }
+  })
 }
 
 app.delete("/api/products/:id", (req, res, next) => {

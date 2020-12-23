@@ -45,24 +45,30 @@ export class ProductService {
     return this.products[index];
   }
 
-  // addProductToShoppingList(product: Product) {
-  //   this.shoppingListService.addProduct(product);
+  // getPost(id: string) {
+  //   return this.httpClient.get<{ _id: string; title: string; content: string }>(
+  //     "http://localhost:3000/api/products/" + id
+  //   );
   // }
 
-  addProduct(product: Product) {
+  addProduct(vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
+    const product: Product = {id: null, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath}
     this.httpClient
-      .post<{message:string}>('http://localhost:3000/api/products', product)
-      .subscribe((responseData) => {
-        console.log(responseData.message);
+      .post<{message : string; productId: string}>(
+        'http://localhost:3000/api/products',
+        product
+      )
+      .subscribe(responseData => {
+        const id = responseData.productId;
+        product.id = id;
         this.products.push(product);
         this.productChanged.next(this.products.slice());
       });
   }
 
-  // updateProduct(productIndex: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
-    updateProduct(productIndex: string, newProduct: Product) {
+  updateProduct(productIndex: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
     const productId = this.getProduct(+productIndex).id;
-    const product: Product = {id: productId, vinylFigureId: newProduct.vinylFigureId, name: newProduct.name, price: newProduct.price, description: newProduct.description, imagePath: newProduct.imagePath};
+    const product: Product = {id: productId, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath};
     console.log(product.id);
     this.httpClient.put("http://localhost:3000/api/products/" + productId, product)
       .subscribe(response => {
