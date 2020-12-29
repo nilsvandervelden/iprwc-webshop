@@ -12,6 +12,7 @@ import { ProductService } from '../product.service';
 export class ProductListComponent implements OnInit, OnDestroy {
   products: Product[];
   subscription: Subscription;
+  term: string;
 
   constructor(private productService: ProductService,
               private router: Router,

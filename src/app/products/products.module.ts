@@ -9,7 +9,7 @@ import { ProductsComponent } from './products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
-import { FilterPipe } from '../pipes/filter.pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 
@@ -20,9 +20,9 @@ import { FilterPipe } from '../pipes/filter.pipe';
     ProductListComponent,
     ProductItemComponent,
     ProductsComponent,
-    FilterPipe
   ],
   imports: [
+    Ng2SearchPipeModule,
     RouterModule,
     CommonModule,
     ProductsRoutingModule,
