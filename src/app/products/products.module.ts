@@ -9,6 +9,7 @@ import { ProductsComponent } from './products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
+import { FilterPipe } from '../pipes/filter.pipe';
 
 
 
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     ProductListComponent,
     ProductItemComponent,
     ProductsComponent,
+    FilterPipe
   ],
   imports: [
     RouterModule,
