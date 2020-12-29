@@ -1,4 +1,11 @@
 <div class="container">
+ <div class="button-box">
+  <a
+    class="btn btn-primary"
+    [routerLink]="['/new']"
+    >New Product
+  </a>
+ </div> 
   <div class="row row-cols-4">
     <app-product-item
       *ngFor="let productElement of products; let i = index"

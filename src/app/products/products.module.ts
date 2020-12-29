@@ -8,6 +8,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductsComponent } from './products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { RouterModule } from '@angular/router';
 
 
 
@@ -20,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
     ProductsComponent,
   ],
   imports: [
+    RouterModule,
     CommonModule,
     ProductsRoutingModule,
     ReactiveFormsModule,
