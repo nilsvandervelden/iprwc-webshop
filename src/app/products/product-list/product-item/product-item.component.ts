@@ -20,7 +20,6 @@ export class ProductItemComponent implements OnInit {
   }
 
   onAddToCart() {
-    console.log(this.product.name);
     this.shoppingCartService.onAddItemToShoppingList(this.product)
   }
 }
