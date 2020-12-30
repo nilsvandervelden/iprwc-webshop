@@ -12,27 +12,20 @@ import { ProductService } from '../product.service';
 export class ProductDetailComponent implements OnInit {
   product: Product;
   productId: string;
+  isLoading = false;
 
   constructor(private productService: ProductService,
               private shoppingCartService: ShoppingCartService,
               private route: ActivatedRoute,
               private router: Router) { }
 
-  // ngOnInit(): void {
-  //   this.route.params
-  //   .subscribe(
-  //     (params: Params) => {
-  //       this.id = +params['id'];
-  //       this.product = this.productService.getProductByIndex(this.id);
-  //     }
-  //   );
-  // }
-
   ngOnInit() {
+    this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("productId")) {
         this.productId = paramMap.get("productId");
         this.productService.getProductById(this.productId).subscribe(productData => {
+          this.isLoading = false;
           this.product = {
                           id: productData._id,
                           vinylFigureId: productData.vinylFigureId,
@@ -43,7 +36,6 @@ export class ProductDetailComponent implements OnInit {
                         };
         });
       } else {
-        console.log('hier')
         this.productId = null;
       }
     });
