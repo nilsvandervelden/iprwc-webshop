@@ -9,13 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ProductsModule } from './products/products.module';
-import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

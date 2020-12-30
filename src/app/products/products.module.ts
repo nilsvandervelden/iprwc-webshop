@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 
 
@@ -20,6 +21,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ProductListComponent,
     ProductItemComponent,
     ProductsComponent,
+    SpinnerComponent
   ],
   imports: [
     Ng2SearchPipeModule,

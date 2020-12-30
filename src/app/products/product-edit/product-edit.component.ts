@@ -16,6 +16,8 @@ export class ProductEditComponent implements OnInit {
   productDescription = '';
   productImagePath = '';
 
+  isLoading = false;
+
   private productId: string;
   private editMode = false;
 
@@ -26,25 +28,14 @@ export class ProductEditComponent implements OnInit {
               private productService: ProductService,
               private router: Router) { }
 
-  // ngOnInit() {
-  //   this.route.paramMap.subscribe((paramMap: ParamMap) => {
-  //     if (paramMap.has("productId")) {
-  //       this.editMode = true
-  //       this.productId = paramMap.get("productId");
-  //       this.product = this.productService.getProductByIndex(this.index);
-  //     } else {
-  //       this.editMode = false;
-  //       this.productId = null;
-  //     }
-  //   });
-  // }
-
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("productId")) {
         this.editMode = true
         this.productId = paramMap.get("productId");
+        this.isLoading = true;
         this.productService.getProductById(this.productId).subscribe(productData => {
+          this.isLoading = false;
           this.product = 
                         {
                           id: productData._id,

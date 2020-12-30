@@ -1,6 +1,7 @@
 <div class="row">
+  <app-spinner *ngIf="isLoading"></app-spinner>
   <div class="col-xl">
-    <form (submit)="onSaveProduct(productForm)" #productForm="ngForm">
+    <form (submit)="onSaveProduct(productForm)" #productForm="ngForm" *ngIf="!isLoading">
       <div class="row">
         <div class="col-xl">
           <div class="form-group">
