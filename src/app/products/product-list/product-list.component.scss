@@ -4,9 +4,6 @@
 
 .form-group {
   width: 100%;
-  background-color: #0090e3 !important;
-  padding-top: 20px;
-  padding-bottom: 20px;
   margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -14,4 +11,13 @@
 input {
   width: 60%;
   margin: 0 auto;
+}
+
+.button-box {
+  margin-bottom: 20px;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
