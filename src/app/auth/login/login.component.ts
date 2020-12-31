@@ -1,34 +1,22 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
+import { AuthService } from "../auth.service";
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginForm: FormGroup;
-  errorMessage: string;
-  showError: boolean;
 
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      userData: new FormGroup({
-        email: new FormControl(null, [ Validators.required, Validators.email]),
-        password: new FormControl(null, Validators.required)
-      })
-    });
-  }
-
-  onSubmit(): void {
-    console.log('hallo');
-  }
-
-  changeLabelColor(formControlName: string): string {
-    const errorColor = 'color: #E74C3C;';
-    const defaultColor = 'color: #000000;';
-    return !this.loginForm.get(formControlName).valid && this.loginForm.get(formControlName).touched ? errorColor : defaultColor;
+  onLogin(form: NgForm): void {
+    if(form.invalid) {
+      return;
+    } else {
+      // this.authService.login(form.value.email, form.value.password);
+      console.log('login');
+    }
   }
 }
 
