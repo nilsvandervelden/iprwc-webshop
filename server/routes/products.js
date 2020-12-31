@@ -1,10 +1,14 @@
 const express = require("express");
 
 const Product = require("../models/product");
+const checkAuth = require("../middleware/check-auth")
 
 const router = express.Router();
 
-router.post("", (req, res, next ) => {
+router.post(
+  "",
+  checkAuth,
+  (req, res, next ) => {
   const product = new Product({
     vinylFigureId: req.body.vinylFigureId,
     name: req.body.name,
@@ -20,7 +24,10 @@ router.post("", (req, res, next ) => {
   });
 });
 
-router.put("/:id", (req, res, next) => {
+router.put(
+  "/:id",
+  checkAuth,
+  (req, res, next) => {
   const product = new Product({
     _id: req.body.id,
     vinylFigureId: req.body.vinylFigureId,
@@ -53,7 +60,10 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
-router.delete("/:id", (req, res, next) => {
+router.delete(
+  "/:id",
+  checkAuth,
+  (req, res, next) => {
   Product.deleteOne({_id: req.params.id}).then(result => {
     console.log(result);
     res.status(200).json({message: "Product deleted!" });
