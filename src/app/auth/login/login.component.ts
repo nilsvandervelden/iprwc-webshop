@@ -14,8 +14,7 @@ export class LoginComponent {
     if(form.invalid) {
       return;
     } else {
-      // this.authService.login(form.value.email, form.value.password);
-      console.log('login');
+      this.authService.login(form.value.email, form.value.password);
     }
   }
 }

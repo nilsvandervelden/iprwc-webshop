@@ -8,8 +8,10 @@
             <input
               type="email"
               name="email"
-              required
-              placeholder="Add email"
+              ngModel
+              required email
+              placeholder="E-Mail"
+              #email="ngModel"
               class="form-control"
             >
           </div>
@@ -22,8 +24,10 @@
             <input
               type="password"
               name="password"
+              ngModel
               required
-              placeholder="Add password"
+              placeholder="Password"
+              #password="ngModel"
               class="form-control"
             >
           </div>
