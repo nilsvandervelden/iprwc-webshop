@@ -10,12 +10,14 @@ import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ProductsModule } from './products/products.module';
 import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

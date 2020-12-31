@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class LoginComponent {
+export class SignupComponent {
   loginForm: FormGroup;
   errorMessage: string;
   showError: boolean;
