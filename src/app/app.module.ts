@@ -11,6 +11,8 @@ import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ProductsModule } from './products/products.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     ShoppingCartModule,
     ProductsModule,
   ],
-  providers: [ProductService, ShoppingCartService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
