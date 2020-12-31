@@ -1,0 +1,36 @@
+<div>
+  <div *ngIf="showError" class="alert alert-danger animate__animated animate__flash" role="alert">
+   {{ errorMessage }}
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="userData">
+      <div class="form-group">
+        <label for="email" [style]="changeLabelColor('userData.email')">E-mail</label>
+          <input
+            type="email"
+            placeholder="Vul je e-mail in..."
+            id="email"
+            formControlName="email"
+            class="form-control"
+          >
+      </div>
+      <div class="form-group">
+        <label for="password" [style]="changeLabelColor('userData.password')">Wachtwoord</label>
+          <input
+            type="password"
+            placeholder="Vul je wachtwoord in..."
+            id="password"
+            formControlName="password"
+            class="form-control"
+          >
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid">Log in
+      </button>
+    </div>
+  </form>
+</div>

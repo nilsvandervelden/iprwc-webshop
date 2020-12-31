@@ -9,11 +9,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ProductsModule } from './products/products.module';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,7 @@ import { ProductsModule } from './products/products.module';
     ReactiveFormsModule,
     AppRoutingModule,
     ShoppingCartModule,
-    ProductsModule
+    ProductsModule,
   ],
   providers: [ProductService, ShoppingCartService],
   bootstrap: [AppComponent]
