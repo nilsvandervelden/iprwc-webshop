@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -7,12 +8,15 @@ const userRoutes = require("./routes/user");
 
 const app = express();
 
-mongoose.connect("mongodb+srv://Nils:5yMFKYu5c14X6qJi@cluster0.q4xcf.mongodb.net/'node-angular'?retryWrites=true&w=majority")
-.then(client => {
-  console.log('Connected to database!');
+mongoose
+.connect(
+  "mongodb+srv://Nils:5yMFKYu5c14X6qJi@cluster0.q4xcf.mongodb.net/'node-angular"
+)
+.then(() => {
+  console.log("Connected to database!");
 })
-.catch(err => {
-  console.log('Connection failed!');
+.catch(() => {
+  console.log("Connection failed!");
 });
 
 app.use(bodyParser.json());
