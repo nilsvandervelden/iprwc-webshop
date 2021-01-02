@@ -10,11 +10,14 @@
       >New Product
     </a>
   </div> 
-  <div class="row row-cols-4">
-    <app-product-management-item
-      *ngFor="let productElement of products | filter:term; let i = index"
-      [product]="productElement"
-      [productId]="i">
-    </app-product-management-item>
+  <div class="row">
+    <div class="col-xl">
+      <app-product-management-item
+        *ngFor="let productElement of products | filter:term; let i = index"
+        [product]="productElement"
+        [productId]="i">
+      </app-product-management-item>
+    </div>
   </div>
 </div>
+
