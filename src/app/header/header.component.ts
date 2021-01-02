@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.amountOfProductsInCart += i.quantity;
       }
     });
+    this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener()
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
