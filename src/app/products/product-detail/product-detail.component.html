@@ -26,18 +26,6 @@
           class="btn btn-success"
           >In mijn winkelmandje
         </button>
-        <button 
-          (click)="onDeleteProduct( product.id )"
-          style="cursor: pointer;"
-          type="button" 
-          class="btn btn-danger"
-          >Delete
-        </button>
-        <a
-          class="btn btn-primary"
-          [routerLink]="['/edit', product.id]"
-          >Edit
-        </a>
       </div>
     </div>
   </div>
