@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from '../product-model';
 import { ProductService } from '../product.service';
 
@@ -13,7 +14,11 @@ export class ProductManagementPanelComponent implements OnInit {
   subscription: Subscription;
   term: string;
 
-  constructor(private productService: ProductService) {}
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
+
+  constructor(private productService: ProductService,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
     this.productService.getProducts();
@@ -22,14 +27,15 @@ export class ProductManagementPanelComponent implements OnInit {
       (products: Product[]) => {
         this.products = products;
       });
-  }
-
-  onNewProduct() {
-    // this.router.navigate(['new'], {relativeTo: this.route});
+    this.authListenerSubs = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    });
   }
   
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.authListenerSubs.unsubscribe();
   }
 }
 

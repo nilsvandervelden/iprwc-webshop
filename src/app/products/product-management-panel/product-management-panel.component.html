@@ -3,8 +3,8 @@
     <input type="text" class="form-control" placeholder="Waar ben je naar opzoek?" [(ngModel)]="term">
   </div>
   <hr>
-  <div class="button-box">
-    <a
+  <div class="button-box" *ngIf="userIsAuthenticated">
+    <a 
       class="btn btn-primary"
       [routerLink]="['/new']"
       >New Product
@@ -12,7 +12,7 @@
   </div> 
   <div class="row">
     <div class="col-xl">
-      <app-product-management-item
+      <app-product-management-item 
         *ngFor="let productElement of products | filter:term; let i = index"
         [product]="productElement"
         [productId]="i">
