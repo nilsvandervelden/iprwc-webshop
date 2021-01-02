@@ -3,7 +3,7 @@
     <input type="text" class="form-control" placeholder="Waar ben je naar opzoek?" [(ngModel)]="term">
   </div>
   <hr>
-  <div class="button-box" *ngIf="userIsAuthenticated">
+  <div class="button-box" *ngIf="!userIsAuthenticated">
     <a 
       class="btn btn-primary"
       [routerLink]="['/new']"

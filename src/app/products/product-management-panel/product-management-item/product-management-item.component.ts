@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from '../../product-model';
 import { ProductService } from '../../product.service';
 
@@ -8,13 +10,17 @@ import { ProductService } from '../../product.service';
   templateUrl: './product-management-item.component.html',
   styleUrls: ['./product-management-item.component.scss']
 })
-export class ProductManagementItemComponent implements OnInit {
+export class ProductManagementItemComponent implements OnInit, OnDestroy {
 
   @Input() product: Product;
   @Input() productId: string;
   isLoading = false;
 
+  userIsAuthenticated = false;;
+  private authListenerSubs: Subscription;
+
   constructor(private productService: ProductService,
+              private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -38,7 +44,15 @@ export class ProductManagementItemComponent implements OnInit {
                     this.productId = null;
                   }
                 });
+                this.authListenerSubs = this.authService.getAuthStatusListener()
+                .subscribe(isAuthenticated => {
+                  this.userIsAuthenticated = isAuthenticated;
+                });
               }
+
+  ngOnDestroy() {
+    this.authListenerSubs.unsubscribe();
+  }  
 
   onDeleteProduct(productId: string) {
     this.productService.deleteProduct(productId);
