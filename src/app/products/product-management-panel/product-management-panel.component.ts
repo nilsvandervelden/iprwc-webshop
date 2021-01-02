@@ -27,7 +27,8 @@ export class ProductManagementPanelComponent implements OnInit {
       (products: Product[]) => {
         this.products = products;
       });
-    this.authListenerSubs = this.authService.getAuthStatusListener()
+      this.userIsAuthenticated = this.authService.getIsAuth();
+      this.authListenerSubs = this.authService.getAuthStatusListener()
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });

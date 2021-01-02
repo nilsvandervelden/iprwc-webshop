@@ -1,12 +1,12 @@
 <div class="row cart-item-row align-items-center">
   <div class="col-sm-2">
-    <img src="{{product.imagePath}}" alt="">
+    <img src="{{product.imagePath}}" alt="{{product.name}}">
   </div>
   <div class="col-sm-7">
     <h3>{{product.name}}</h3>
     <h5> {{product.description}}</h5>
   </div>
-  <div class="col-sm-3" *ngIf="!userIsAuthenticated">
+  <div class="col-sm-3" *ngIf="userIsAuthenticated">
     <div class="button-box">
       <span class="delete-product">
         <button 

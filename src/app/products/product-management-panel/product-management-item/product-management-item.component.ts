@@ -44,6 +44,7 @@ export class ProductManagementItemComponent implements OnInit, OnDestroy {
                     this.productId = null;
                   }
                 });
+                this.userIsAuthenticated = this.authService.getIsAuth();
                 this.authListenerSubs = this.authService.getAuthStatusListener()
                 .subscribe(isAuthenticated => {
                   this.userIsAuthenticated = isAuthenticated;
