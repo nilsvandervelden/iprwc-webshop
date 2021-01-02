@@ -2,13 +2,13 @@
   <div class="col-sm-3">
     <img src="{{product.imagePath}}" alt="">
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <h3>{{product.name}}</h3>
     <h5> {{product.description}}</h5>
   </div>
-  <div class="col-sm-2">
-    <span class="delete-product">
-      <div>
+  <div class="col-sm-3">
+    <div class="button-box">
+      <span class="delete-product">
         <button 
           (click)="onDeleteProduct( product.id )"
           style="cursor: pointer;"
@@ -16,18 +16,14 @@
           class="btn btn-danger"
           >Delete
         </button>
-      </div>
-    </span>
-    <span class="edit-product">
-      <div>
-        <button 
-          (click)="onDeleteProduct( product.id )"
-          style="cursor: pointer;"
-          type="button" 
-          class="btn btn-danger"
-          >Delete
-        </button>
-      </div>
-    </span>
+      </span>
+      <span class="edit-product">
+        <a
+          class="btn btn-primary"
+          [routerLink]="['/edit', product.id]"
+          >Edit
+        </a>
+      </span>
+    </div>
   </div>
 </div>

@@ -41,9 +41,8 @@ export class ProductManagementItemComponent implements OnInit {
               }
 
   onDeleteProduct(productId: string) {
-    console.log(productId);
     this.productService.deleteProduct(productId);
-    this.router.navigate(['/products'])
+    this.router.navigate(['/manage'])
   }
 }
 
