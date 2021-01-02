@@ -1,0 +1,33 @@
+<div class="row cart-item-row align-items-center">
+  <div class="col-sm-3">
+    <img src="{{product.imagePath}}" alt="">
+  </div>
+  <div class="col-sm-4">
+    <h3>{{product.name}}</h3>
+    <h5> {{product.description}}</h5>
+  </div>
+  <div class="col-sm-2">
+    <span class="delete-product">
+      <div>
+        <button 
+          (click)="onDeleteProduct( product.id )"
+          style="cursor: pointer;"
+          type="button" 
+          class="btn btn-danger"
+          >Delete
+        </button>
+      </div>
+    </span>
+    <span class="edit-product">
+      <div>
+        <button 
+          (click)="onDeleteProduct( product.id )"
+          style="cursor: pointer;"
+          type="button" 
+          class="btn btn-danger"
+          >Delete
+        </button>
+      </div>
+    </span>
+  </div>
+</div>

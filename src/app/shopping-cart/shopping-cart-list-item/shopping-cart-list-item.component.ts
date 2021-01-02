@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from 'src/app/products/product-model';
 import { ShoppingCartItem } from '../shopping-cart-product.model';
 
 @Component({
@@ -32,5 +31,4 @@ export class ShoppingCartListItemComponent implements OnInit {
   public removeFromCart() {
     this.remove.emit(this.index);
   }
-  
 }
