@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { ShoppingCartItem } from '../shopping-cart/shopping-cart-product.model';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 
@@ -8,13 +9,17 @@ import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   public amountOfProductsInCart: number = 0;
   private subscription: Subscription;
 
+  userIsAuthenticated = false;;
+  private authListenerSubs: Subscription;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+
+  constructor(private shoppingCartService: ShoppingCartService,
+              private authService: AuthService) { }
 
 
   ngOnInit(): void {
@@ -25,6 +30,15 @@ export class HeaderComponent implements OnInit {
         this.amountOfProductsInCart += i.quantity;
       }
     });
+    this.authListenerSubs = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.authListenerSubs.unsubscribe();
   }
 }
 

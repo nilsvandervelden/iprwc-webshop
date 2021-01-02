@@ -11,6 +11,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SpinnerComponent } from '../spinner/spinner.component';
+import { ProductManagementPanelComponent } from './product-list/product-management-panel/product-management-panel.component';
 
 
 
@@ -21,6 +22,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
     ProductListComponent,
     ProductItemComponent,
     ProductsComponent,
+    ProductManagementPanelComponent,
     SpinnerComponent
   ],
   imports: [

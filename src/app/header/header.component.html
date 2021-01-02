@@ -10,7 +10,14 @@
     </div>
   </div>
   <div class="navbar-nav">
-    <a class="nav-link active" [routerLink]="['login']">Login </a>
-    <a class="nav-link active" [routerLink]="['signup']">Signup </a>
+    <div *ngIf="!userIsAuthenticated">
+      <a class="nav-link active" [routerLink]="['login']">Login </a>
+    </div>
+    <div *ngIf="!userIsAuthenticated">
+      <a class="nav-link active" [routerLink]="['signup']">Signup </a>
+    </div>
+    <div *ngIf="userIsAuthenticated">
+      <button class="btn btn-danger">Logout</button>
+    </div>
   </div>
 </nav>
