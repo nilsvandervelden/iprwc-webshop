@@ -20,6 +20,7 @@ export class ShoppingCartComponent implements OnInit {
 
   public onCartItemUpdated(item: ShoppingCartItem) {
     if(this.productsInCart) {
+      if(item.amount < 1) { return this.removeFromCart(item)}
       for (let i = 0; i < this.productsInCart.length; i++) {
         if (this.productsInCart[i] === item) {
           this.productsInCart[i] = item;
@@ -38,5 +39,18 @@ export class ShoppingCartComponent implements OnInit {
       }
       this.shoppingCartService.setCartItems(this.productsInCart)
     }
+  }
+
+  onClearCart() {
+    if (this.productsInCart) {
+      this.shoppingCartService.setCartItems([])
+      this.productsInCart = []
+    }
+  }
+
+  clearCart() {
+    this.shoppingCartService.clearCart()
+    this.productsInCart = this.shoppingCartService.getShoppingCartItems()
+    window.location.reload()
   }
 }
