@@ -1,0 +1,168 @@
+<div class="row">
+  <div class="col-xl">
+    <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              type="email"
+              name="email"
+              ngModel
+              required email
+              placeholder="E-Mail"
+              #email="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              ngModel
+              required
+              placeholder="Password"
+              #password="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              name="firstName"
+              ngModel
+              required
+              placeholder="First Name"
+              #firstName="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              name="lastName"
+              ngModel
+              required
+              placeholder="Last Name"
+              #lastName="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="phoneNumber">Phone number</label>
+            <input
+              type="text"
+              name="phoneNumber"
+              ngModel
+              required
+              placeholder="Phone Name"
+              #phoneNumber="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="street">Street</label>
+            <input
+              type="text"
+              name="street"
+              ngModel
+              required
+              placeholder="Street"
+              #street="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="streetNumber">Street number</label>
+            <input
+              type="text"
+              name="streetNumber"
+              ngModel
+              required
+              placeholder="Street Number"
+              #streetNumber="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input
+              type="text"
+              name="city"
+              ngModel
+              required
+              placeholder="City"
+              #city="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label> Country </label>
+            <app-country-picker (countrySelected)="onCountrySelected($event)"></app-country-picker>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl">
+          <div class="form-group">
+            <label for="postalCode">Postal Code</label>
+            <input
+              type="text"
+              name="postalCode"
+              minlength="6"
+              maxlength="7"
+              max=""
+              ngModel
+              required
+              placeholder="Postal Code"
+              #postalCode="ngModel"
+              class="form-control"
+            >
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!signupForm.valid">Log in
+      </button>
+    </form>
+  </div>
+</div>
+
+

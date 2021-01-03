@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { Customer } from "../customer/customer";
 import { AuthData } from "./auth-data.model";
 
 @Injectable({
@@ -28,9 +29,9 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
-  createUser(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password};
-    this.httpClient.post("http://localhost:3000/api/user/signup", authData)
+  createUser(customer: Customer) {
+    const customerToSend: any = customer;
+    this.httpClient.post("http://localhost:3000/api/user/signup", customerToSend)
       .subscribe(response => {
         console.log(response);
       });

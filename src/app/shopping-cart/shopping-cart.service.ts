@@ -35,8 +35,8 @@ export class ShoppingCartService {
       title: 'Product uit winkelwagen verwijderen?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#DC3545',
+      cancelButtonColor: '#007BFF',
       confirmButtonText: 'Verwijder'
     }).then((result) => {
       if (result.isConfirmed) {

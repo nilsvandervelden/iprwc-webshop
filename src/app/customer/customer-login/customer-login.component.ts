@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, NgForm, Validators } from "@angular/forms";
-import { AuthService } from "../auth.service";
+import { NgForm } from "@angular/forms";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './customer-login.component.html',
+  styleUrls: ['./customer-login.component.scss']
 })
-export class LoginComponent {
+export class CustomerLoginComponent {
 
   constructor(public authService: AuthService) {}
 
