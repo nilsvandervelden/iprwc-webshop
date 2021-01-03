@@ -1,33 +1,8 @@
-<div class="container">
-  <div class="row">
-    <span class="col-md-9">
-      Subtotaal bestelling
-    </span>
-    <span class="col-md-3">
-      {{orderPrice}}
-    </span>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Order details</h5>
+    <p>Total of orders: € {{ calculteCost() }}</p>
+    <p>Shipping cost: € 0</p>
+    <a routerLink="/order/place-order" class="btn btn-primary">Place order</a>
   </div>
-  <div class="row">
-    <span class="col-md-9">
-      Bezorging
-    </span>
-    <span class="col-md-3">
-      {{shippingCost}}
-    </span>
-  </div>
-  <div class="row">
-    <span class="col-md-9">
-      Totaal
-    </span>
-    <span class="col-md-3">
-      {{totalPrice}}
-    </span>
-  </div>
-  <button 
-    (click)="onOrder()"
-    style="cursor: pointer;"
-    type="button" 
-    class="btn btn-success"
-    >Bestellen
-  </button>
 </div>

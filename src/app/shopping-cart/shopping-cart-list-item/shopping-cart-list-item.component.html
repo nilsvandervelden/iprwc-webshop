@@ -1,10 +1,10 @@
 <div class="row cart-item-row align-items-center">
   <div class="col-sm-3">
-    <img src="{{shoppingCartItem.imagePath}}" alt="">
+    <img src="{{shoppingCartItem.product.imagePath}}" alt="">
   </div>
   <div class="col-sm-4">
-    <h3>{{shoppingCartItem.name}}</h3>
-    <h5> {{shoppingCartItem.description}}</h5>
+    <h3>{{shoppingCartItem.product.name}}</h3>
+    <h5> {{shoppingCartItem.product.description}}</h5>
   </div>
   <div class="col-sm-2">
     <span class="increment-product">
@@ -14,7 +14,7 @@
       </svg>
     </span>
     <span class="product-count">
-      {{ shoppingCartItem.quantity }}
+      {{ shoppingCartItem.amount }}
     </span>
     <span class="decrement-product">
       <svg (click)="decrementProductCount()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
@@ -24,7 +24,7 @@
     </span>
   </div>
   <div class="col-sm-2">
-    {{ shoppingCartItem.quantity * shoppingCartItem.price | currency: 'EUR'}}
+    {{ shoppingCartItem.amount * shoppingCartItem.price | currency: 'EUR'}}
   </div>
   <div class="col-sm-1">
     <svg (click)="removeFromCart()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

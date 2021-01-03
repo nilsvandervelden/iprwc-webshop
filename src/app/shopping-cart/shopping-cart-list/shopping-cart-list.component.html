@@ -10,7 +10,7 @@
       Winkelmandje
     </span>
     <span class="product-count">
-      ( {{amountOfProductsInCart}}
+      ( {{productsInCart.length}}
     </span>
     <span class="product-count">
       artikelen )
@@ -24,12 +24,11 @@
     </span>
   </div>
 </div>
-<div class="row" *ngIf="products.length > 0; else noProductsInCart">
+<div class="row" *ngIf="productsInCart.length > 0; else noProductsInCart">
   <div class="col-md">
-    <app-shopping-cart-list-item *ngFor="let product of products; let i = index"
+    <app-shopping-cart-list-item *ngFor="let product of productsInCart; let i = index"
                                   [shoppingCartItem]="product"
-                                  [index]="i"
-                                  (remove)="onRemoveitemFromList($event)"
+                                  (remove)="onRemoveitemFromCart($event)"
                                   (increment)="onIncrementProductCount($event)"
                                   (decrement)="decrementProductCount($event)"></app-shopping-cart-list-item>
   </div>

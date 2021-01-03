@@ -11,8 +11,7 @@ import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  public amountOfProductsInCart: number = 0;
-  private subscription: Subscription;
+  productsInCard: ShoppingCartItem[];
 
   userIsAuthenticated = false;;
   private authListenerSubs: Subscription;
@@ -22,13 +21,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    this.subscription = this.shoppingCartService.productsInCartChanged
-    .subscribe((productsInCart: ShoppingCartItem[]) => {
-      this.amountOfProductsInCart = 0;
-      for(let i of productsInCart) {
-        this.amountOfProductsInCart += i.quantity;
-      }
-    });
+    this.productsInCard = this.shoppingCartService.getShoppingCartItems();
+    this.shoppingCartService.cartSubject.subscribe((newShoppingCartItems) => {
+      this.productsInCard = newShoppingCartItems;
+    })
+
+
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener()
     .subscribe(isAuthenticated => {
@@ -41,7 +39,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
     this.authListenerSubs.unsubscribe();
   }
 }

@@ -8,8 +8,8 @@ import { ShoppingCartItem } from '../shopping-cart-product.model';
 })
 export class ShoppingCartListItemComponent implements OnInit {
 
-  @Input() public shoppingCartItem: ShoppingCartItem;
-  @Input() public index: number;
+  amount = 1;
+  @Input() public shoppingCartItem: ShoppingCartItem | any;
   @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
   @Output() public increment: EventEmitter<number> = new EventEmitter<number>();
   @Output() public decrement: EventEmitter<number> = new EventEmitter<number>();
@@ -18,17 +18,20 @@ export class ShoppingCartListItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if(this.shoppingCartItem) {
+      this.amount = this.shoppingCartItem.amount
+    }
   }
 
   public incrementProductCount() {
-    this.increment.emit(this.index);
+    this.increment.emit(this.shoppingCartItem);
   }
 
   public decrementProductCount() {
-    this.decrement.emit(this.index);
+    this.decrement.emit(this.shoppingCartItem);
   }
 
   public removeFromCart() {
-    this.remove.emit(this.index);
+    this.remove.emit(this.shoppingCartItem);
   }
 }

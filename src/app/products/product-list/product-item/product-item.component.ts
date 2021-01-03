@@ -20,6 +20,6 @@ export class ProductItemComponent implements OnInit {
   }
 
   onAddToCart() {
-    this.shoppingCartService.onAddItemToShoppingList(this.product)
+    this.shoppingCartService.onAddItemToShoppingList({product: this.product, amount: 1})
   }
 }

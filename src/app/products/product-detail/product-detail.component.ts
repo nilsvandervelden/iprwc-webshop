@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 import { Product } from '../product-model';
 import { ProductService } from '../product.service';
@@ -43,7 +43,7 @@ export class ProductDetailComponent implements OnInit {
 
 
   onAddToCart() {
-    this.shoppingCartService.onAddItemToShoppingList(this.product)
+    this.shoppingCartService.onAddItemToShoppingList({product: this.product, amount: 1})
   }
 
   onDeleteProduct(productId: string) {

@@ -10,31 +10,33 @@ import { ShoppingCartService } from './shopping-cart.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  public products: ShoppingCartItem[] = [];
-
-  private subscription: Subscription;
+  public productsInCart: ShoppingCartItem[];
   
-  constructor(private shoppingcardService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.products = this.shoppingcardService.getAll();
-    
-    this.subscription = this.shoppingcardService.productsInCartChanged
-    .subscribe((products: ShoppingCartItem[]) => {
-      this.products = products;
-    });
+    this.productsInCart = this.shoppingCartService.getShoppingCartItems()
   }
 
-  public removeProductFromCart(index: number) {
-    this.shoppingcardService.delete(index);
+  public removeProductFromCart(item: ShoppingCartItem) {
+    if(this.productsInCart) {
+      for (let i = 0; i < this.productsInCart.length; i++) {
+        if (this.productsInCart[i] === item) {
+          this.productsInCart[i] = item;
+        }
+      }
+      this.shoppingCartService.setCartItems(this.productsInCart)
+    }
   }
 
   public incrementProductCount(index: number) {
-    this.shoppingcardService.incrementProductCount(index);
+    console.log('-')
+    // this.shoppingCartService.incrementProductCount(index);
   }
 
   public decrementProductCount(index: number) {
-    this.shoppingcardService.decrementProductCount(index);
+    console.log('+')
+    // this.shoppingCartService.decrementProductCount(index);
   }
 }
 

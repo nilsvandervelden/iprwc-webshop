@@ -11,28 +11,28 @@ import { ShoppingCartService } from '../shopping-cart.service';
 })
 export class ShoppingCartListComponent implements OnInit {
 
-  @Input() public products: ShoppingCartItem[] = [];
+  @Input() public productsInCart: ShoppingCartItem[];
   @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
   @Output() public increment: EventEmitter<number> = new EventEmitter<number>();
   @Output() public decrement: EventEmitter<number> = new EventEmitter<number>();
   private subscription: Subscription;
-  public amountOfProductsInCart = 0;
   
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.subscription = this.shoppingCartService.productsInCartChanged
-    .subscribe((productsInCart: ShoppingCartItem[]) => {
-      this.amountOfProductsInCart = 0;
-      for(let i of productsInCart) {
-        this.amountOfProductsInCart += i.quantity;
-      }
-    });
+    this.productsInCart = this.shoppingCartService.getShoppingCartItems()
   }
 
-  public onRemoveitemFromList(index: number) {
-    this.remove.emit(index);
+  public onRemoveitemFromCart(item: ShoppingCartItem) {
+    if(this.productsInCart) {
+      for (let i = 0; i < this.productsInCart.length; i++) {
+        if (this.productsInCart[i] === item) {
+          this.productsInCart[i] = item;
+        }
+      }
+      this.shoppingCartService.setCartItems(this.productsInCart)
+    }
   }
 
   public onIncrementProductCount(index: number) {
