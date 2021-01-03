@@ -8,21 +8,13 @@ import { ShoppingCartItem } from '../shopping-cart-product.model';
 })
 export class ShoppingCartListItemComponent implements OnInit {
 
-  amount = 1;
-  @Input() public shoppingCartItem: ShoppingCartItem | any;
-  @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
+  @Input() shoppingCartItem: ShoppingCartItem | any;
   @Output() updated: EventEmitter<ShoppingCartItem> = new EventEmitter();
-
 
   constructor() { }
 
   ngOnInit(): void {
-    if(this.shoppingCartItem) {
-      this.amount = this.shoppingCartItem.amount
-    }
-  }
-  public removeFromCart() {
-    this.remove.emit(this.shoppingCartItem);
+
   }
 
   updateAmount(newAmount: number) {
@@ -30,3 +22,4 @@ export class ShoppingCartListItemComponent implements OnInit {
     this.updated.emit(this.shoppingCartItem)
   }
 }
+

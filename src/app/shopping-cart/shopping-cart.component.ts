@@ -1,16 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Product } from '../products/product-model';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ShoppingCartItem } from './shopping-cart-product.model';
 import { ShoppingCartService } from './shopping-cart.service';
 
 @Component({
-  selector: 'app-shopping-list',
+  selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
+
 export class ShoppingCartComponent implements OnInit {
-  public productsInCart: ShoppingCartItem[];
+
+  productsInCart: ShoppingCartItem[];
   
   constructor(private shoppingCartService: ShoppingCartService) { }
 
@@ -18,7 +18,7 @@ export class ShoppingCartComponent implements OnInit {
     this.productsInCart = this.shoppingCartService.getShoppingCartItems()
   }
 
-  public removeProductFromCart(item: ShoppingCartItem) {
+  public onCartItemUpdated(item: ShoppingCartItem) {
     if(this.productsInCart) {
       for (let i = 0; i < this.productsInCart.length; i++) {
         if (this.productsInCart[i] === item) {
@@ -29,16 +29,14 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  
-  onCartItemUpdated(item: ShoppingCartItem) {
+  removeFromCart(item: any): void {
     if(this.productsInCart) {
-      for (let i = 0; i < this.productsInCart.length; i++) {
+      for(let i = 0; i < this.productsInCart.length; i++){
         if (this.productsInCart[i] === item) {
-          this.productsInCart[i] = item;
+          this.productsInCart.splice(i, 1);
         }
       }
       this.shoppingCartService.setCartItems(this.productsInCart)
     }
   }
 }
-
