@@ -12,19 +12,14 @@ import { ShoppingCartService } from '../shopping-cart.service';
 export class ShoppingCartListComponent implements OnInit {
 
   @Input() public productsInCart: ShoppingCartItem[];
-  @Output() public remove: EventEmitter<number> = new EventEmitter<number>();
-  @Output() public increment: EventEmitter<number> = new EventEmitter<number>();
-  @Output() public decrement: EventEmitter<number> = new EventEmitter<number>();
-  private subscription: Subscription;
   
-
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.productsInCart = this.shoppingCartService.getShoppingCartItems()
   }
 
-  public onRemoveitemFromCart(item: ShoppingCartItem) {
+  public onCartItemUpdated(item: ShoppingCartItem) {
     if(this.productsInCart) {
       for (let i = 0; i < this.productsInCart.length; i++) {
         if (this.productsInCart[i] === item) {
@@ -32,14 +27,18 @@ export class ShoppingCartListComponent implements OnInit {
         }
       }
       this.shoppingCartService.setCartItems(this.productsInCart)
+      console.log('delete')
     }
   }
 
-  public onIncrementProductCount(index: number) {
-    this.increment.emit(index);
-  }
-
-  public decrementProductCount(index: number) {
-    this.decrement.emit(index);
+  removeFromCart(item: any): void {
+    if(this.productsInCart) {
+      for(let i = 0; i < this.productsInCart.length; i++){
+        if (this.productsInCart[i] === item) {
+          this.productsInCart.splice(i, 1);
+        }
+      }
+      this.shoppingCartService.setCartItems(this.productsInCart)
+    }
   }
 }

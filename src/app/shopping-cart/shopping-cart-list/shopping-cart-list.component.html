@@ -28,9 +28,9 @@
   <div class="col-md">
     <app-shopping-cart-list-item *ngFor="let product of productsInCart; let i = index"
                                   [shoppingCartItem]="product"
-                                  (remove)="onRemoveitemFromCart($event)"
-                                  (increment)="onIncrementProductCount($event)"
-                                  (decrement)="decrementProductCount($event)"></app-shopping-cart-list-item>
+                                  (updated)="onCartItemUpdated($event)">
+                                  (removed)="onCartItemRemoved($event)"></app-shopping-cart-list-item>
+
   </div>
 </div>
 

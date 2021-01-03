@@ -29,14 +29,16 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  public incrementProductCount(index: number) {
-    console.log('-')
-    // this.shoppingCartService.incrementProductCount(index);
-  }
-
-  public decrementProductCount(index: number) {
-    console.log('+')
-    // this.shoppingCartService.decrementProductCount(index);
+  
+  onCartItemUpdated(item: ShoppingCartItem) {
+    if(this.productsInCart) {
+      for (let i = 0; i < this.productsInCart.length; i++) {
+        if (this.productsInCart[i] === item) {
+          this.productsInCart[i] = item;
+        }
+      }
+      this.shoppingCartService.setCartItems(this.productsInCart)
+    }
   }
 }
 

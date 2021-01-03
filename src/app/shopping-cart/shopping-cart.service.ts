@@ -116,7 +116,7 @@ export class ShoppingCartService {
     localStorage.setItem('shoppingCartItems', JSON.stringify(items));
     this.cartSubject.next(items)
   }
-
+  
   clearShoppingCart() {
     localStorage.removeItem('shoppingCartItems')
     this.cartSubject.next([])
