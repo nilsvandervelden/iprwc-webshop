@@ -15,6 +15,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { CountryPickerComponent } from './country-picker/country-picker.component';
 import { CustomerComponent } from './customer/customer.component';
+import { OrderModule } from './order/order.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { CustomerComponent } from './customer/customer.component';
     ReactiveFormsModule,
     AppRoutingModule,
     ShoppingCartModule,
+    OrderModule,
     ProductsModule,
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, ProductService, ShoppingCartService],

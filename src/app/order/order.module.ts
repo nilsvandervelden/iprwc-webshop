@@ -3,22 +3,26 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { AllOrdersAdminComponent } from "./all-orders-admin/all-orders-admin.component";
 import { OrderDetailComponent } from "./order-detail/order-detail.component";
 import { OrderItemComponent } from "./order-item/order-item.component";
 import { OrderRoutingModule } from "./order-routing.module";
-import { OrdersFromCustomerComponent } from "./orders-from-customer/orders-from-customer.component";
-import { PlaceOrderComponent } from "./place-order/place-order.component";
-import { UpdateOrderStatusAdminComponent } from "./update-order-status-admin/update-order-status-admin.component";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MakeOrderComponent } from "./make-order/make-order.component";
+import { OrderSummaryComponent } from "./order-summary/order-summary.component";
+import { OrderListItemComponent } from "./order-list-item/order-list-item.component";
+import { OrdersComponent } from "./orders/orders.component";
+import { OrderComponent } from "./order/order.component";
 
 @NgModule({
   declarations: [
-    OrderItemComponent,
+    DashboardComponent,
+    MakeOrderComponent,
     OrderDetailComponent,
-    AllOrdersAdminComponent,
-    OrdersFromCustomerComponent,
-    PlaceOrderComponent,
-    UpdateOrderStatusAdminComponent,
+    OrderItemComponent,
+    OrderListItemComponent,
+    OrderSummaryComponent,
+    OrdersComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,

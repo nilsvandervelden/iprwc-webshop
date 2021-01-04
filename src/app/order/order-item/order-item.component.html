@@ -1,1 +1,14 @@
-<p>order-item works!</p>
+<div class="row cart-item-row align-items-center">
+  <div class="col-sm-6">
+    <img src="{{orderItem.product.imagePath}}" alt="">
+  </div>
+  <div class="col-sm-3">
+    <span class="product-count">
+      {{ orderItem.amount }}
+    </span>
+  </div>
+  <div class="col-sm-3">
+    {{ orderItem.amount * orderItem.product.price | currency: 'EUR'}}
+  </div>
+</div>
+<hr>

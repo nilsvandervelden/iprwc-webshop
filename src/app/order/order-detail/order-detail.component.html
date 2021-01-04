@@ -1,1 +1,17 @@
-<p>order-detail works!</p>
+<div class="row cart-item-row align-items-center">
+  <div class="col-sm-3">
+    <img src="{{orderItem.product.imagePath}}" alt="">
+  </div>
+  <div class="col-sm-5">
+    <h3>{{orderItem.product.name}}</h3>
+    <h5> {{orderItem.product.description}}</h5>
+  </div>
+  <div class="col-sm-2">
+    <span class="product-count">
+      {{ orderItem.amount }}
+    </span>
+  </div>
+  <div class="col-sm-2">
+    {{ orderItem.amount * orderItem.product.price | currency: 'EUR'}}
+  </div>
+</div>

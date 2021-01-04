@@ -4,7 +4,7 @@
     <p>Total of orders: € {{ calculteCost() }}</p>
     <p>Shipping cost: € 0</p>
     <div class="button-box">
-      <a routerLink="/order/place-order" class="btn btn-primary">Place order</a>
+      <button type="button" class="btn btn-primary" (click)="makeOrder()">Make order</button> &nbsp;
       <button type="button" class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
     </div>
   </div>

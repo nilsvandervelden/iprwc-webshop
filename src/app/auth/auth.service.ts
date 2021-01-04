@@ -29,6 +29,11 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  me() {
+    return this.httpClient.get('user/me')
+  }
+
+
   createUser(customer: Customer) {
     const customerToSend: any = customer;
     this.httpClient.post("http://localhost:3000/api/user/signup", customerToSend)

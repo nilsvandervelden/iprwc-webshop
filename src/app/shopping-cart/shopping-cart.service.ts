@@ -2,11 +2,14 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Product } from '../products/product-model';
 import { ShoppingCartItem } from './shopping-cart-product.model';
 import Swal from 'sweetalert2'
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-
+@Injectable()
 export class ShoppingCartService {
   public cartSubject = new BehaviorSubject(this.getShoppingCartItems());
-  constructor() {}
+
+  constructor(private httpClient: HttpClient) {}
 
   public getShoppingCartItems(): any[] {
     try {
@@ -55,7 +58,9 @@ export class ShoppingCartService {
     localStorage.setItem('shoppingCartItems', JSON.stringify([]))
   }
 
-  clearShoppingCart() {
-    localStorage.removeItem('shoppingCartItems')
+  createOrder(order: any) {
+    return this.httpClient.post('order/create', {
+      products: order
+    })
   }
 }
