@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderItem } from '../../shared/model/orderItem';
-import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 import Swal from 'sweetalert2';
+import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class MakeOrderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.shoppingCartData = this.shoppingCartService.getShoppingCartItems()
+    this.shoppingCartData = this.shoppingCartService.getShoppingCartItems();
   }
 
   makeOrderFromCart() {
@@ -38,6 +38,7 @@ export class MakeOrderComponent implements OnInit {
     this.shoppingCartService.createOrder(orderData).subscribe(res =>{
       this.shoppingCartService.setCartItems([])
       window.location.href="/account/orders"
+      // this.router.navigate(['/account/orders'])
     }, err => {
       Swal.fire('Error', 'Couldn\'t create the order. Try again (maybe clear your cart/your cart is empty)', 'error')
       console.log(err)

@@ -16,7 +16,7 @@ export class ShoppingCartService {
       const cartItems = localStorage.getItem('shoppingCartItems')
       const items = JSON.parse(<string>cartItems) as ShoppingCartItem[];
 
-      if(items === null) {
+      if(!items) {
         return []
       }
       return items
