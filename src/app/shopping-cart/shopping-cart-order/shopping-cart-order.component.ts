@@ -10,10 +10,7 @@ import { ShoppingCartUtil } from '../../shared/shopping-cart-util';
   styleUrls: ['./shopping-cart-order.component.scss']
 })
 export class ShoppingCartOrderComponent implements OnInit {
-  @Input() public productsInShoppingCart: ShoppingCartItem[];
-  public totalPrice: number = 0;
-  public orderPrice: number = 0;
-  public shippingCost: number = 0;
+  @Input() public shoppingCartItems: ShoppingCartItem[];
 
   constructor(private shoppingCartService: ShoppingCartService) { }
 

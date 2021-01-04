@@ -25,11 +25,14 @@
   </div>
 </div>
 <div class="row" *ngIf="productsInCart.length > 0; else noProductsInCart">
-  <div class="col-md">
+  <div class="col-sm-12 col-md-9 col-lg-9">
     <app-shopping-cart-list-item *ngFor="let product of productsInCart;"
                                   [shoppingCartItem]="product"
                                   (updated)="onCartItemUpdated($event)"></app-shopping-cart-list-item>
 
+  </div>
+  <div class="col-sm-12 col-md-3 col-lg-3">
+    <app-shopping-cart-order [shoppingCartItems]="productsInCart"></app-shopping-cart-order>
   </div>
 </div>
 
