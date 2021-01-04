@@ -1,7 +1,9 @@
 const express = require("express");
 
+const Product = require("../models/product");
 const ProductOrder = require("../models/productOrder");
-const checkAuth = require("../middleware/check-auth")
+const Order = require("../models/order");
+const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 
@@ -24,7 +26,7 @@ router.get("/:id", async (req, res, next) => {
   });
 });
 
-router.post("", async (req, res, next ) => {
+router.post("", (req, res, next ) => {
   const { products } = req.body
   if(products.length === 0) {
     return res.status(400).json({
@@ -40,36 +42,36 @@ router.post("", async (req, res, next ) => {
   }
   try {
     const productDocuments = []
+    console.log(products)
     for (let i = 0; i < products.length; i++ ) {
-      const product = await global.models('Product').findOne({
-        vinylFigureId: products[i].vinylFigureId
-      })
+      const product = Product.findById(products[i].id);
+      // console.log(product);
 
-      const productOrder = await new global.models('ProductOrder')({
-        vinylFigureId: product.vinylFigureId,
-        name: product.name,
-        price: product.price,
-        description: product.description,
-        imagePath: product.imagePath,
-        amount: products[i].amount
-      });
-      productDocuments.push(await productOrder)
-    }
+        const productOrder = new ProductOrder({
+          vinylFigureId: product.vinylFigureId,
+          name: product.name,
+          price: product.price,
+          description: product.description,
+          imagePath: product.imagePath,
+          amount: products[i].amount
+        });
+        productDocuments.push(productOrder)
+      }
 
-    const order = await new global.models('Order')({
-      products: productDocuments,
-      userId: req.user.id,
-      createdAt: Date.now()
-    })
-      
-    await order.save().catch(e =>{
-      console.log(e)
-      return res.send({
-        success: false,
-        message: 'couldnt create order' 
+      const order = new Order({
+        products: productDocuments,
+        userId: req.user.id,
+        createdAt: Date.now()
       })
-    })
-    res.json(await order)
+        
+      order.save().catch(e =>{
+        console.log(e)
+        return res.send({
+          success: false,
+          message: 'couldnt create order' 
+        })
+      })
+      res.json(order)
   } catch (e) {
   console.log(e)
   return res.send({ success: false, message: 'couldnt create order' })

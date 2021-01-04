@@ -17,7 +17,6 @@ export class MakeOrderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    console.log('hier werkt het ')
     this.shoppingCartData = this.shoppingCartService.getShoppingCartItems();
   }
 

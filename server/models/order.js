@@ -4,18 +4,18 @@ const Schema = mongoose.Schema;
 
 const orderSchema = new Schema({
   products: {
-    type: [productOrderSchema]
+    type: [productOrderSchema],
     required: true,
     unique: false
   },
-  userId {
+  userId: {
     type: String,
     required: true
-  }
+  },
   createdAt: {
     type: Date,
     required: true
-  }
+  },
   paid: {
     type: Boolean,
     default: false
@@ -23,7 +23,7 @@ const orderSchema = new Schema({
   delivered: {
     type: Boolean,
     default: false
-  }
+  },
 })
 
 module.exports = mongoose.model('Order', orderSchema);
