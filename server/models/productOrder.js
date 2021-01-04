@@ -8,5 +8,5 @@ const productOrderSchema = new Schema({
   description: {type: String, required: true},
   imagePath: {type: String, required: true},
   amount: {type: Number, required: true}
-
+})
 module.exports = mongoose.model('Order', productOrderSchema);
