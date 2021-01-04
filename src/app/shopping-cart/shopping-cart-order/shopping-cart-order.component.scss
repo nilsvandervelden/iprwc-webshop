@@ -1,31 +1,24 @@
-button {
-  width: 100%;
-  margin-top: 35px;
+.row.cart-item-row.align-items-center {
+  background-color: white;
+  margin-left: 10px;
 }
 
-.col-md-9 {
-  padding-right: 0px;
-  padding-left: 0px;
-  
-}
-
-.col-md-3 {
-  padding-right: 0px;
-  padding-left: 0px;
-  text-align: right;
-  float: right;
-}
-
-.container {
-  padding-right: 0px;
-  padding-left: 0px;
+.cart-item-row {
+  padding: 10px;
+  min-height: 50px;
   margin-top: 10px;
 }
 
-.row {
-  border-bottom: 1px solid gray;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+h5 {
+  font-size: 20px;
+}
+
+a.btn.btn-primary {
+  margin-right: 5px;
+}
+
+.button-box {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
 }

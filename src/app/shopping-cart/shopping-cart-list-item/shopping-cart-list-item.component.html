@@ -24,6 +24,6 @@
     </span>
   </div>
   <div class="col-sm-2">
-    {{ shoppingCartItem.amount * shoppingCartItem.price | currency: 'EUR'}}
+    {{ shoppingCartItem.amount * shoppingCartItem.product.price | currency: 'EUR'}}
   </div>
 </div>

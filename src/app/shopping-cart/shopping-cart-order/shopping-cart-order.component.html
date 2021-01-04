@@ -1,8 +1,11 @@
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Order details</h5>
+<div class="row cart-item-row align-items-center">
+  <div class="body">
+    <h5 class="title">Order details:</h5>
     <p>Total of orders: € {{ calculteCost() }}</p>
     <p>Shipping cost: € 0</p>
-    <a routerLink="/order/place-order" class="btn btn-primary">Place order</a>
+    <div class="button-box">
+      <a routerLink="/order/place-order" class="btn btn-primary">Place order</a>
+      <button type="button" class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
+    </div>
   </div>
 </div>
