@@ -24,7 +24,7 @@ router.get("/:id", async (req, res, next) => {
   });
 });
 
-router.post("", checkAuth, async (req, res, next ) => {
+router.post("", async (req, res, next ) => {
   const { products } = req.body
   if(products.length === 0) {
     return res.status(400).json({

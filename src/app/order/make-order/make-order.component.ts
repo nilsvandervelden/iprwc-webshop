@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderItem } from '../../shared/model/orderItem';
+import { OrderItem } from '../orderItem';
 import Swal from 'sweetalert2';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 
@@ -17,12 +17,12 @@ export class MakeOrderComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    console.log('hier werkt het ')
     this.shoppingCartData = this.shoppingCartService.getShoppingCartItems();
   }
 
   makeOrderFromCart() {
-    const localCartData = this.shoppingCartService.getShoppingCartItems()
-    
+    const localCartData = this.shoppingCartService.getShoppingCartItems();
     const orderData = []
     for (let i = 0; i < localCartData.length; i++) {
       const element = localCartData[i];

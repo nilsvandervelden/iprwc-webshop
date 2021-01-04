@@ -1,17 +1,17 @@
 import { BehaviorSubject, Subject } from 'rxjs';
-import { Product } from '../products/product-model';
 import { ShoppingCartItem } from './shopping-cart-product.model';
-import Swal from 'sweetalert2'
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ShoppingCartService {
   public cartSubject = new BehaviorSubject(this.getShoppingCartItems());
 
   constructor(private httpClient: HttpClient) {}
 
-  public getShoppingCartItems(): any[] {
+  public getShoppingCartItems(): ShoppingCartItem[] {
     try {
       const cartItems = localStorage.getItem('shoppingCartItems')
       const items = JSON.parse(<string>cartItems) as ShoppingCartItem[];
@@ -26,6 +26,7 @@ export class ShoppingCartService {
       return []
     }
   }
+  
 
   public onAddItemToShoppingList(item: ShoppingCartItem): boolean {
     try {
@@ -59,7 +60,7 @@ export class ShoppingCartService {
   }
 
   createOrder(order: any) {
-    return this.httpClient.post('order/create', {
+    return this.httpClient.post('http://localhost:3000/api/order', {
       products: order
     })
   }

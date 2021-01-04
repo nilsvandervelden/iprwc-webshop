@@ -16,6 +16,6 @@ import { ShoppingCartComponent } from './shopping-cart.component';
   imports: [
     CommonModule,
     ShoppingCartRoutingModule
-  ]
+  ],
 })
 export class ShoppingCartModule { }

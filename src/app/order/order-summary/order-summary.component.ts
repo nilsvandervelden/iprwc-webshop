@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ShoppingCartItem } from 'src/app/shopping-cart/shopping-cart-product.model';
+import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-order-summary',
@@ -11,7 +12,7 @@ export class OrderSummaryComponent implements OnInit {
   @Input() makeOrderFromCart: Function | any;
 
 
-  constructor() { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
   }
