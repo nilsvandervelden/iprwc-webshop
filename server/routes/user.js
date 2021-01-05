@@ -34,7 +34,7 @@ router.post("/signup", async (req, res, next) => {
       }
     }
 
-    jwt.sign(payload, process.env.JWT_KEY, {expiresIn: 3600}, (err, token) => {
+    jwt.sign(payload, process.env.JWT_KEY, {expiresIn: 25000}, (err, token) => {
       if (err) throw err
       res.status(200).json({
         succes: true,
@@ -79,11 +79,11 @@ router.post("/login", async (req, res, next) => {
 
       console.log(payload);
 
-      jwt.sign(payload, process.env.JWT_KEY, {expiresIn: 3600}, (err, token) => {
+      jwt.sign(payload, process.env.JWT_KEY, {expiresIn: 25000}, (err, token) => {
         if(err) throw err
         res.status(200).json({
           token,
-          expiresIn: 3600
+          expiresIn: 25000
         })
       }
     )

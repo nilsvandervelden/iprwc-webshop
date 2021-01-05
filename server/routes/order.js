@@ -63,7 +63,7 @@ router.post("", checkAuth, (req, res, next ) => {
 
       const order = new Order({
         products: productDocuments,
-        userId: token,
+        userId: req.user.id,
         createdAt: Date.now()
       })
 
