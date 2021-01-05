@@ -6,69 +6,94 @@ const User = require("../models/user");
 
 const router = express.Router();
 
-router.post("/signup", (req, res, next) => {
-  bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-      const user = new User({
-        email: req.body.email,
-        password: hash,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        phoneNumber: req.body.phoneNumber,
-        street: req.body.street,
-        streetNumber: req.body.streetNumber,
-        postalCode: req.body.postalCode,
-        city: req.body.city,
-        country: req.body.country
-      });
-      user.save()
-        .then(result => {
-          res.status(201).json({
-            message: "User created!",
-            result: result
-          });
-        })
-        .catch(err => {
-          res.status(500).json({
-            error: err
-          });
-        });
-    });
-});
+router.post("/signup", async (req, res, next) => {
+  const {email, password, firstName, lastName, phoneNumber, street, streetNumber, city, postalCode, country } = req.body
 
-router.post("/login", (req, res, next) => {
+  try {
+
+    user = new User({
+      email,
+      firstName,
+      lastName,
+      phoneNumber,
+      street,
+      streetNumber,
+      postalCode,
+      city,
+      country
+    });
+
+    const salt = await bcrypt.genSalt(10)
+    user.password = await bcrypt.hash(password, salt)
+
+    await user.save();
+
+    const payload = {
+      user: {
+        id: user.id
+      }
+    }
+
+    jwt.sign(payload, process.env.JWT_KEY, {expiresIn: 21600}, (err, token) => {
+      if (err) throw err
+      res.status(200).json({
+        succes: true,
+        message: 'created account',
+        token
+      })
+    })
+  } catch (err) {
+    console.log(err.message)
+    res.status(500).json({
+      success: false,
+      message: 'couldn\'t create account',
+    })
+  }
+})
+
+
+
+router.post("/login", async (req, res, next) => {
   let fetchedUser;
-  User.findOne({ email: req.body.email })
-    .then(user => {
+  try {
+    const user = await User.findOne({ email: req.body.email })
       if (!user) {
         return res.status(401).json({
           message: "Auth failed"
         });
       }
-      fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.password);
-    })
-    .then(result => {
-      if (!result) {
-        return res.status(401).json({
-          message: "Auth failed"
-        });
+
+      const passwordMatches = await bcrypt.compare(req.body.password, user.password)
+      if(!passwordMatches) {
+        return res.status(400).json({
+          success: false,
+          message: 'Incorrect Password!'
+        })
       }
-      const token = jwt.sign(
-        { email: fetchedUser.email, userId: fetchedUser._id },
-        "secret_this_should_be_longer",
-        { expiresIn: "1h" }
-      );
-      res.status(200).json({
-        token: token,
-        expiresIn: 3600
-      });
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+      }
+
+      console.log(payload);
+
+      jwt.sign(payload, process.env.JWT_KEY, {expiresIn: 21600}, (err, token) => {
+        if(err) throw err
+        res.status(200).json({
+          token
+        })
+      }
+    )
+  } catch (e) {
+    console.error(e)
+    res.status(500).json({
+      success: false,
+      message: 'something went wrong logging ing'
     })
-    .catch(err => {
-      return res.status(401).json({
-        message: "Auth failed"
-      });
-    });
-});
+  }
+})
+
 
 module.exports = router;

@@ -26,7 +26,8 @@ router.get("/:id", async (req, res, next) => {
   });
 });
 
-router.post("", (req, res, next ) => {
+router.post("", checkAuth, (req, res, next ) => {
+  console.log(req.user.id);
   // console.log(req.body);
   const token = req.headers.authorization.substr(req.headers.authorization.indexOf(" ") + 1);
   const { orderProducts } = req.body
@@ -46,7 +47,7 @@ router.post("", (req, res, next ) => {
   try {
     const productDocuments = []
     for (let i = 0; i < orderProducts.length; i++ ) {
-      
+
       const product = orderProducts[i];
         const productOrder = new ProductOrder({
           productId: product.productId,
@@ -66,7 +67,7 @@ router.post("", (req, res, next ) => {
         createdAt: Date.now()
       })
 
-      console.log(order);
+      // console.log(order);
         
   //     order.save().catch(e =>{
   //       console.log(e)
