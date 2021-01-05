@@ -62,18 +62,20 @@ router.post("", (req, res, next ) => {
         userId: token,
         createdAt: Date.now()
       })
+
+      console.log(order)
         
-      order.save().catch(e =>{
-        console.log(e)
-        return res.send({
-          success: false,
-          message: 'couldnt create order' 
-        })
-      })
-      res.json(order)
+  //     order.save().catch(e =>{
+  //       console.log(e)
+  //       return res.send({
+  //         success: false,
+  //         message: 'couldnt create order' 
+  //       })
+  //     })
+  //     res.json(order)
   } catch (e) {
-  console.log(e)
-  return res.send({ success: false, message: 'couldnt create order' })
+  // console.log(e)
+  // return res.send({ success: false, message: 'couldnt create order' })
   }
 })
 
