@@ -16,7 +16,7 @@ router.get("", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", (req, res, next) => {
   ProductOrder.findById(req.params.id).then(order => {
     if (order) {
       res.status(200).json(order)
@@ -26,10 +26,7 @@ router.get("/:id", async (req, res, next) => {
   });
 });
 
-router.post("", checkAuth, (req, res, next ) => {
-  console.log(req.user.id);
-  // console.log(req.body);
-  const token = req.headers.authorization.substr(req.headers.authorization.indexOf(" ") + 1);
+router.post("", checkAuth, async (req, res, next ) => {
   const { orderProducts } = req.body
   if(orderProducts.length === 0) {
     return res.status(400).json({
@@ -48,8 +45,8 @@ router.post("", checkAuth, (req, res, next ) => {
     const productDocuments = []
     for (let i = 0; i < orderProducts.length; i++ ) {
 
-      const product = orderProducts[i];
-        const productOrder = new ProductOrder({
+      const product = await orderProducts[i];
+        const productOrder = await new ProductOrder({
           productId: product.productId,
           vinylFigureId: product.vinylFigureId,
           name: product.name,
@@ -58,30 +55,28 @@ router.post("", checkAuth, (req, res, next ) => {
           imagePath: product.imagePath,
           amount: product.amount
         });
-        productDocuments.push(productOrder)
+        productDocuments.push(await productOrder)
       }
 
-      const order = new Order({
+      const order = await new Order({
         products: productDocuments,
         userId: req.user.id,
         createdAt: Date.now()
       })
 
-      // console.log(order);
+      console.log(order);
         
-  //     order.save().catch(e =>{
-  //       console.log(e)
-  //       return res.send({
-  //         success: false,
-  //         message: 'couldnt create order' 
-  //       })
-  //     })
-  //     res.json(order)
-  } catch (e) {
-  // console.log(e)
-  // return res.send({ success: false, message: 'couldnt create order' })
-  }
-})
+      await order.save().catch(e =>{
+        console.log(e)
+        return res.send({ success: false, message: 'couldnt create order' })
+      })
+      res.json(await order)
+    } catch (e) {
+      console.log(e)
+      return res.send({ success: false, message: 'couldnt create order' })
+    }
+  })
+
 
 router.delete("/:id", checkAuth, async (req, res, next) => {
   try {
