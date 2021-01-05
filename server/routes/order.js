@@ -27,7 +27,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("", (req, res, next ) => {
-  console.log(req.body);
+  // console.log(req.body);
   const token = req.headers.authorization.substr(req.headers.authorization.indexOf(" ") + 1);
   const { orderProducts } = req.body
   if(orderProducts.length === 0) {
@@ -42,28 +42,31 @@ router.post("", (req, res, next ) => {
     message: 'your forgot to give an array of orderProducts with id/amount' 
     }) 
   }
+
   try {
     const productDocuments = []
     for (let i = 0; i < orderProducts.length; i++ ) {
-      const product = Product.findById(orderProducts[i].productId);
+      
+      const product = orderProducts[i];
         const productOrder = new ProductOrder({
+          productId: product.productId,
           vinylFigureId: product.vinylFigureId,
           name: product.name,
           price: product.price,
           description: product.description,
           imagePath: product.imagePath,
-          amount: orderProducts[i].amount
+          amount: product.amount
         });
         productDocuments.push(productOrder)
       }
 
       const order = new Order({
-        orderProducts: productDocuments,
+        products: productDocuments,
         userId: token,
         createdAt: Date.now()
       })
 
-      console.log(order)
+      console.log(order);
         
   //     order.save().catch(e =>{
   //       console.log(e)

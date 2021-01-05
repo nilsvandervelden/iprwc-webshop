@@ -29,6 +29,10 @@ export class MakeOrderComponent implements OnInit {
       const product = productsInCart[i];
       let orderProduct = {
         productId: product.product.id,
+        name: product.product.name,
+        price: product.product.price,
+        description: product.product.description,
+        imagePath: product.product.imagePath,
         amount: product.amount,
       } as OrderItem
       orderData.push(orderProduct)
