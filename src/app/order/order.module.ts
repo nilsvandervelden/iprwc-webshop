@@ -12,11 +12,12 @@ import { OrderSummaryComponent } from "./order-summary/order-summary.component";
 import { OrderListItemComponent } from "./order-list-item/order-list-item.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { OrderComponent } from "./order/order.component";
-import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
 import { ShoppingCartModule } from "../shopping-cart/shopping-cart.module";
+import { CustomerModule } from "../customer/customer.module";
 
 @NgModule({
   imports: [
+    CustomerModule,
     ShoppingCartModule,
     CommonModule,
     FormsModule,

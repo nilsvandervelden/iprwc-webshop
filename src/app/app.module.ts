@@ -9,21 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { ShoppingCartService } from './shopping-cart/shopping-cart.service';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ProductsModule } from './products/products.module';
-import { CustomerLoginComponent } from './customer/customer-login/customer-login.component';
-import { CustomerSignupComponent } from './customer/customer-signup/customer-signup.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { CountryPickerComponent } from './country-picker/country-picker.component';
-import { CustomerComponent } from './customer/customer.component';
 import { OrderModule } from './order/order.module';
+import { CustomerModule } from './customer/customer.module';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    CustomerLoginComponent,
-    CustomerSignupComponent,
-    CountryPickerComponent,
-    CustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +26,7 @@ import { OrderModule } from './order/order.module';
     ShoppingCartModule,
     OrderModule,
     ProductsModule,
+    CustomerModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, ProductService, ShoppingCartService],
   bootstrap: [AppComponent]

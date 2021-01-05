@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { OrderItem } from '../orderItem';
 import Swal from 'sweetalert2';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Component({
@@ -21,13 +22,14 @@ export class MakeOrderComponent implements OnInit {
   }
 
   makeOrderFromCart() {
-    const localCartData = this.shoppingCartService.getShoppingCartItems();
+    const productsInCart = this.shoppingCartService.getShoppingCartItems();
+
     const orderData = []
-    for (let i = 0; i < localCartData.length; i++) {
-      const element = localCartData[i];
+    for (let i = 0; i < productsInCart.length; i++) {
+      const product = productsInCart[i];
       let orderProduct = {
-        productId: element.product.id,
-        amount: element.amount,
+        productId: product.product.id,
+        amount: product.amount,
       } as OrderItem
       orderData.push(orderProduct)
     }
@@ -35,9 +37,8 @@ export class MakeOrderComponent implements OnInit {
     console.log(orderData)
 
     this.shoppingCartService.createOrder(orderData).subscribe(res =>{
-      this.shoppingCartService.setCartItems([])
+      this.shoppingCartService.clearCart();
       window.location.href="/account/orders"
-      // this.router.navigate(['/account/orders'])
     }, err => {
       Swal.fire('Error', 'Couldn\'t create the order. Try again (maybe clear your cart/your cart is empty)', 'error')
       console.log(err)

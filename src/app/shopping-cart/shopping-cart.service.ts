@@ -60,8 +60,6 @@ export class ShoppingCartService {
   }
 
   createOrder(order: any) {
-    return this.httpClient.post('http://localhost:3000/api/order', {
-      products: order
-    })
+    return this.httpClient.post('http://localhost:3000/api/order', {orderProducts: order})
   }
 }

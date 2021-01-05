@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const productsRoutes = require("./routes/products");
 const userRoutes = require("./routes/user");
-const orderRoutes = require("./routes/order")
+const orderRoutes = require("./routes/order");
 
 const app = express();
 
