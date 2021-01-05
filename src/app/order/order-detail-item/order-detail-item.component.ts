@@ -3,10 +3,10 @@ import { Product } from 'src/app/products/product-model';
 
 @Component({
   selector: 'app-order-detail',
-  templateUrl: './order-detail.component.html',
-  styleUrls: ['./order-detail.component.scss']
+  templateUrl: './order-detail-item.component.html',
+  styleUrls: ['./order-detail-item.component.scss']
 })
-export class OrderDetailComponent implements OnInit {
+export class OrderDetailItemComponent implements OnInit {
   @Input() item: Product
 
   constructor() { }

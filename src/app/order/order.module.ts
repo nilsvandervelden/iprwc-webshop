@@ -3,7 +3,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { OrderDetailComponent } from "./order-detail/order-detail.component";
 import { OrderItemComponent } from "./order-item/order-item.component";
 import { OrderRoutingModule } from "./order-routing.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -14,6 +13,9 @@ import { OrdersComponent } from "./orders/orders.component";
 import { OrderComponent } from "./order/order.component";
 import { ShoppingCartModule } from "../shopping-cart/shopping-cart.module";
 import { CustomerModule } from "../customer/customer.module";
+import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.component";
+
+
 
 @NgModule({
   imports: [
@@ -28,12 +30,11 @@ import { CustomerModule } from "../customer/customer.module";
   declarations: [
     DashboardComponent,
     MakeOrderComponent,
-    OrderDetailComponent,
     OrderItemComponent,
     OrderListItemComponent,
     OrderSummaryComponent,
     OrdersComponent,
-    OrderComponent
+    OrderDetailItemComponent
   ],
 })
 export class OrderModule { }
