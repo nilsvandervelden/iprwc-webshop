@@ -6,9 +6,9 @@ import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'orders', component: OrdersComponent},
-  {path: 'order/:orderId', component: OrderComponent},
+  {path: 'account/dashboard', component: DashboardComponent},
+  {path: 'account/orders', component: OrdersComponent},
+  {path: 'account/order/:orderId', component: OrderComponent},
   {path: 'account/make-order', component: MakeOrderComponent}
 ]
 

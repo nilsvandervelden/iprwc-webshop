@@ -3,6 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
+const order = require("../models/order");
+
+const checkAuth = require("../middleware/check-auth")
 
 const router = express.Router();
 
@@ -93,6 +96,25 @@ router.post("/login", async (req, res, next) => {
       success: false,
       message: 'something went wrong logging ing'
     })
+  }
+})
+
+router.get("/me", checkAuth, async (req, res, next) => {
+  try {
+    console.log(Order.find(req.user.id));
+    const orders = await Order.find(req.user.id)
+    // .sort([['createdAt', -1]])
+    console.log(orders);
+    const user = await User.findById(req.user.id)
+    console.log(user);
+    res.json({
+      succes: true,
+      message: 'fetched user data',
+      user, 
+      orders
+    })
+  } catch (e) {
+    res.send({success: false, message: 'couldnt fetch user'})
   }
 })
 

@@ -2,7 +2,7 @@
 <p>Check out your orders here!</p>
 
 <hr>
-<div  *ngIf="orders">
+<div *ngIf="orders">
     <app-order-list-item *ngFor="let order of orders"
     [order]="order">
     </app-order-list-item>

@@ -8,6 +8,8 @@ const checkAuth = require("../middleware/check-auth");
 const router = express.Router();
 
 router.get("/:id", checkAuth, async (req, res, next) => {
+  console.log(req.body)
+  console.log(req.user.id)
   try {
     const order = await Order.findById(req.params.id)
     if (req.user.id !== order.userId) return res.status(401).json({success: false, message: 'Thats not your order'})
@@ -20,15 +22,25 @@ router.get("/:id", checkAuth, async (req, res, next) => {
   }
 })
 
-router.get("/:id", (req, res, next) => {
-  Product.findById(req.params.id).then(product => {
-    if (product) {
-      res.status(200).json(product)
-    } else {
-      res.status(404).json({message: 'Product not found!'});
-    }
+router.get("", (req, res, next) => {
+  Order.find().then(documents => {
+    console.log(documents)
+    res.status(200).json({
+      message: 'Orders fetched successfully!',
+      products: documents
+    });
   });
 });
+
+// router.get("/:id", (req, res, next) => {
+//   Product.findById(req.params.id).then(product => {
+//     if (product) {
+//       res.status(200).json(product)
+//     } else {
+//       res.status(404).json({message: 'Product not found!'});
+//     }
+//   });
+// });
 
 router.post("", checkAuth, async (req, res, next ) => {
   const { orderProducts } = req.body
@@ -67,8 +79,6 @@ router.post("", checkAuth, async (req, res, next ) => {
         userId: req.user.id,
         createdAt: Date.now()
       })
-
-      console.log(order);
         
       await order.save().catch(e =>{
         console.log(e)

@@ -42,6 +42,7 @@ export class MakeOrderComponent implements OnInit {
 
     this.shoppingCartService.createOrder(orderData).subscribe(res =>{
       this.shoppingCartService.clearCart();
+      window.location.href="/account/orders"
     }, err => {
       Swal.fire('Error', 'Couldn\'t create the order. Try again (maybe clear your cart/your cart is empty)', 'error')
       console.log(err)

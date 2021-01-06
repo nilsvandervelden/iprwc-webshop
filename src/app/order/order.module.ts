@@ -10,7 +10,6 @@ import { MakeOrderComponent } from "./make-order/make-order.component";
 import { OrderSummaryComponent } from "./order-summary/order-summary.component";
 import { OrderListItemComponent } from "./order-list-item/order-list-item.component";
 import { OrdersComponent } from "./orders/orders.component";
-import { OrderComponent } from "./order/order.component";
 import { ShoppingCartModule } from "../shopping-cart/shopping-cart.module";
 import { CustomerModule } from "../customer/customer.module";
 import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.component";
@@ -18,15 +17,6 @@ import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.
 
 
 @NgModule({
-  imports: [
-    CustomerModule,
-    ShoppingCartModule,
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    OrderRoutingModule,
-    RouterModule,
-  ],
   declarations: [
     DashboardComponent,
     MakeOrderComponent,
@@ -35,6 +25,15 @@ import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.
     OrderSummaryComponent,
     OrdersComponent,
     OrderDetailItemComponent
+  ],
+  imports: [
+    CustomerModule,
+    RouterModule,
+    CommonModule,
+    OrderRoutingModule,
+    ShoppingCartModule,
+    FormsModule,
+    HttpClientModule,
   ],
 })
 export class OrderModule { }
