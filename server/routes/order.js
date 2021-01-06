@@ -13,7 +13,6 @@ router.get("/:id", checkAuth, async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id)
     if (req.user.id !== order.userId) return res.status(401).json({success: false, message: 'Thats not your order'})
-    console.log(order.userId);
     const user = await User.findById(order.userId)
     res.json({
       order
@@ -48,7 +47,6 @@ router.post("", checkAuth, async (req, res, next ) => {
     }) 
   }
 
-  // console.log(orderProducts);
   try {
     const productDocuments = []
     for (let i = 0; i < orderProducts.length; i++ ) {
@@ -67,16 +65,12 @@ router.post("", checkAuth, async (req, res, next ) => {
         productDocuments.push(await productOrder)
       }
 
-      // console.log(productDocuments);
-
       const order = await new Order({
         products: productDocuments,
         userId: req.user.id,
         createdAt: Date.now()
       })
 
-      // console.log(order);
-        
       await order.save().catch(e =>{
         console.log(e)
         return res.send({ success: false, message: 'couldnt create order' })

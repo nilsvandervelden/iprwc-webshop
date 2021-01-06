@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from '../auth/admin.guard';
 import { AuthGuard } from '../auth/auth.guard';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
@@ -9,10 +10,10 @@ import { ProductManagementPanelComponent } from './product-management-panel/prod
 const routes: Routes = [
   // {path: 'products', component: ProductsComponent, children: [
     {path: '', component: ProductListComponent},
-    {path: 'manage', component: ProductManagementPanelComponent, canActivate: [AuthGuard]},
-    {path: 'new', component: ProductEditComponent , canActivate: [AuthGuard]},
+    {path: 'manage', component: ProductManagementPanelComponent, canActivate: [AdminGuard]},
+    {path: 'new', component: ProductEditComponent , canActivate: [AdminGuard]},
     {path: ':productId', component: ProductDetailComponent},
-    {path: 'edit/:productId', component: ProductEditComponent , canActivate: [AuthGuard]},
+    {path: 'edit/:productId', component: ProductEditComponent , canActivate: [AdminGuard]},
   // ]},
 ];
 

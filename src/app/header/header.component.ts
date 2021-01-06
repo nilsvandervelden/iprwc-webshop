@@ -13,8 +13,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   productsInCard: ShoppingCartItem[];
 
-  userIsAuthenticated = false;;
+  userIsAuthenticated = false;
+  userIsAdmin = false;
   private authListenerSubs: Subscription;
+  private adminListenerSubs: Subscription;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private authService: AuthService) { }
@@ -28,7 +30,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
 
     this.userIsAuthenticated = this.authService.getIsAuth();
-    this.authListenerSubs = this.authService.getAuthStatusListener()
+    console.log(this.authService.checkIfAdmin());
+    // this.userIsAdmin = this.authService.checkIfAdmin();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(r
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
