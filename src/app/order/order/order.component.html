@@ -10,13 +10,13 @@
 
 <div class="row">
     <div class="col-md-12 col-lg-6" > 
-        <div class="card" *ngIf="user">
+        <div class="card" *ngIf="customer">
         <div class="card-body">
-            <h5 class="card-title">User Information</h5>
+            <h5 class="card-title">customer Information</h5>
             <p class="card-text">Some info about who made the order</p>
-    <b><i class="fas fa-user-shield"></i> {{user.firstName}} {{user.lastName}}</b><br>
-       <i class="fas fa-thumbtack"></i> {{user.street}} {{user.streetNumber}}, {{user.postalCode}}, {{user.city}}, {{user.country}}<br>
-       <i class="fas fa-envelope-square"></i> <a href="mailto:{{user.email}}"> {{user.email}}</a>
+    <b><i class="fas fa-customer-shield"></i> {{customer.firstName}} {{customer.lastName}}</b><br>
+       <i class="fas fa-thumbtack"></i> {{customer.street}} {{customer.streetNumber}}, {{customer.postalCode}}, {{customer.city}}, {{customer.country}}<br>
+       <i class="fas fa-envelope-square"></i> <a href="mailto:{{customer.email}}"> {{customer.email}}</a>
         </div>
         </div>
     </div>

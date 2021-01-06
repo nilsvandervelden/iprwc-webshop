@@ -5,10 +5,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { CountryPickerComponent } from "../country-picker/country-picker.component";
 import { OrderRoutingModule } from "../order/order-routing.module";
-import { ShoppingCartModule } from "../shopping-cart/shopping-cart.module";
 import { CustomerLoginComponent } from "./customer-login/customer-login.component";
 import { CustomerSignupComponent } from "./customer-signup/customer-signup.component";
 import { CustomerComponent } from "./customer.component";
+import { UpgradeToAdminComponent } from './upgrade-to-admin/upgrade-to-admin.component';
 
 @NgModule({
   imports: [
@@ -25,6 +25,7 @@ import { CustomerComponent } from "./customer.component";
     CustomerSignupComponent,
     CountryPickerComponent,
     CustomerComponent,
+    UpgradeToAdminComponent,
   ],
 })
 export class CustomerModule { }

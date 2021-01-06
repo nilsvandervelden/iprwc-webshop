@@ -17,7 +17,7 @@ router.get("/:id", checkAuth, async (req, res, next) => {
     const user = await User.findById(order.userId)
     res.json({
       order
-      // ,user
+      ,user
     })
   } catch (e) {
     res.status(400).json({succes: false, message: 'couldnt fetch order' })

@@ -27,10 +27,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.products = products;
       });
   }
-
-  onNewProduct() {
-    // this.router.navigate(['new'], {relativeTo: this.route});
-  }
   
   ngOnDestroy() {
     this.subscription.unsubscribe();

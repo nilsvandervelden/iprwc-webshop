@@ -34,6 +34,22 @@ export class OrderComponent implements OnInit {
             userId: orderData.order.userId,
             products: orderData.order.products
           };
+          this.customer = {
+            city: orderData.user.city,
+            country: orderData.user.country,
+            email: orderData.user.email,
+            firstName: orderData.user.firstName,
+            lastName: orderData.user.lastName,
+            password: orderData.user.password,
+            phoneNumber: orderData.user.phoneNumber,
+            postalCode: orderData.user.postalCode,
+            street: orderData.user.street,
+            streetNumber: orderData.user.streetNumber,
+            id: orderData.user._id,
+          }
+          console.log(orderData)
+          this.customer = orderData['user'] as Customer;
+          console.log(this.customer)
         });
       } else {
         this.orderId = null;
