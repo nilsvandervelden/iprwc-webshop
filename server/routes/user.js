@@ -99,21 +99,20 @@ router.post("/login", async (req, res, next) => {
   }
 })
 
-module.exports = (app, endpoint) => {
-  router.post("upgrade-to-admin", checkAuth, async (req, res, next) => {
-    const { key } = req.body
-    if(!key || key !== process.env.UPGRADE_KEY) return res.status(401).json({ success: false, message: 'The given key is not equal to the upgrade key'})
-    try {
-      const user = await User.findById(req.user.id)
-      await user.set({ admin: true })
-      await user.save()
-      res.json(user)
-    } catch (e) {
-      console.error(e)
-      res.send({ success: false, message: 'couldnt fetch user' })
-    }
-  })
-}
+router.post("/upgrade-to-admin", checkAuth, async (req, res, next) => {
+  const { key } = req.body
+  if(!key || key !== process.env.UPGRADE_KEY) return res.status(401).json({ success: false, message: 'The given key is not equal to the upgrade key'})
+  try {
+    const user = await User.findById(req.user.id)
+    await user.set({ admin: true })
+    await user.save()
+    res.json(user)
+  } catch (e) {
+    console.error(e)
+    res.send({ success: false, message: 'couldnt fetch user' })
+  }
+})
+
 
 
 // router.get("/me", checkAuth, async (req, res, next) => {

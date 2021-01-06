@@ -30,6 +30,7 @@ export class UpgradeToAdminComponent implements OnInit {
       return 
     }
     this.authService.upgradeToAdmin(this.upgradeForm.value['data']['upgradeToken']).subscribe(result => {
+      console.log(result)
       this.error = ''
       this.router.navigate(['/account/dashboard'])
     }, err => {
