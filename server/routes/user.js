@@ -113,6 +113,21 @@ router.post("/upgrade-to-admin", checkAuth, async (req, res, next) => {
   }
 })
 
+router.get("/check-admin", checkAuth, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id)
+    res.json({
+      success: true,
+      message: 'fetched user data',
+      admin: user.admin,
+      
+    })
+  } catch (e) {
+    res.status(401).send({ success: false, message: 'not an admin' })
+  }
+})
+
+
 
 
 // router.get("/me", checkAuth, async (req, res, next) => {
