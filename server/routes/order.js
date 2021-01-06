@@ -3,45 +3,35 @@ const express = require("express");
 const Product = require("../models/product");
 const ProductOrder = require("../models/productOrder");
 const Order = require("../models/order");
+const User = require("../models/user");
 const checkAuth = require("../middleware/check-auth");
 const product = require("../models/product");
 
 const router = express.Router();
 
-// router.get("/:id", checkAuth, async (req, res, next) => {
-//   console.log(req.body)
-//   console.log(req.user.id)
-//   try {
-//     const order = await Order.findById(req.params.id)
-//     if (req.user.id !== order.userId) return res.status(401).json({success: false, message: 'Thats not your order'})
-//     const user = await User.findById(order.userId)
-//     res.json({
-//       user, order
-//     })
-//   } catch (e) {
-//     res.status(400).json({succes: false, message: 'couldnt fetch order' })
-//   }
-// })
+router.get("/:id", checkAuth, async (req, res, next) => {
+  try {
+    const order = await Order.findById(req.params.id)
+    if (req.user.id !== order.userId) return res.status(401).json({success: false, message: 'Thats not your order'})
+    console.log(order.userId);
+    const user = await User.findById(order.userId)
+    res.json({
+      order
+      // ,user
+    })
+  } catch (e) {
+    res.status(400).json({succes: false, message: 'couldnt fetch order' })
+  }
+})
 
 router.get("", (req, res, next) => {
   Order.find().populate("ProductOrder").lean().then(documents => {
-    console.log(documents)
     res.status(200).json({
       message: 'Orders fetched successfully!',
       orders: documents
     });
   });
 });
-
-// router.get("/:id", (req, res, next) => {
-//   Product.findById(req.params.id).then(product => {
-//     if (product) {
-//       res.status(200).json(product)
-//     } else {
-//       res.status(404).json({message: 'Product not found!'});
-//     }
-//   });
-// });
 
 router.post("", checkAuth, async (req, res, next ) => {
   const { orderProducts } = req.body

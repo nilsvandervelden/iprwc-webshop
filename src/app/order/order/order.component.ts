@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Customer } from 'src/app/customer/customer';
 import { Order } from '../order';
@@ -11,6 +11,7 @@ import { OrderService } from '../order.service';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
+  orderId: string;
   order: Order | undefined
   customer: Customer | undefined
   error: string = ''
@@ -21,15 +22,22 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getAdmin()
-    this.route.params.subscribe((params: any) => {
-      this.orderService.fetchOrder(params['orderId']).subscribe((res: any) => {
-        this.order = res['Order'] as Order
-        this.customer = res['Customer'] as Customer
-        console.log(this.order)
-      }, err => {
-        this.error = 'Couldn\'t find an order with that id'
-        console.log(err)
-      })
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if(paramMap.has("orderId")) {
+        this.orderId = paramMap.get("orderId");
+        this.orderService.getOrderById(this.orderId).subscribe(orderData => {
+          this.order = {
+            _id: orderData.order._id,
+            createdAt: orderData.order.createdAt,
+            delivered: orderData.order.delivered,
+            paid: orderData.order.paid,
+            userId: orderData.order.userId,
+            products: orderData.order.products
+          };
+        });
+      } else {
+        this.orderId = null;
+      }
     })
   }
 

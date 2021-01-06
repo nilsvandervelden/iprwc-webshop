@@ -13,6 +13,8 @@ import { OrdersComponent } from "./orders/orders.component";
 import { ShoppingCartModule } from "../shopping-cart/shopping-cart.module";
 import { CustomerModule } from "../customer/customer.module";
 import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { OrderComponent } from "./order/order.component";
 
 
 
@@ -24,12 +26,14 @@ import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.
     OrderListItemComponent,
     OrderSummaryComponent,
     OrdersComponent,
+    OrderComponent,
     OrderDetailItemComponent
   ],
   imports: [
     CustomerModule,
     RouterModule,
     CommonModule,
+    BrowserModule,
     OrderRoutingModule,
     ShoppingCartModule,
     FormsModule,
