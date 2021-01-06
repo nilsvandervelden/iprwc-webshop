@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const orderSchema = mongoose.Schema({
   products: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "ProductOrder",
+    type: Object,
     required: true,
     unique: false
   }],

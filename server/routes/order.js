@@ -4,30 +4,31 @@ const Product = require("../models/product");
 const ProductOrder = require("../models/productOrder");
 const Order = require("../models/order");
 const checkAuth = require("../middleware/check-auth");
+const product = require("../models/product");
 
 const router = express.Router();
 
-router.get("/:id", checkAuth, async (req, res, next) => {
-  console.log(req.body)
-  console.log(req.user.id)
-  try {
-    const order = await Order.findById(req.params.id)
-    if (req.user.id !== order.userId) return res.status(401).json({success: false, message: 'Thats not your order'})
-    const user = await User.findById(order.userId)
-    res.json({
-      user, order
-    })
-  } catch (e) {
-    res.status(400).json({succes: false, message: 'couldnt fetch order' })
-  }
-})
+// router.get("/:id", checkAuth, async (req, res, next) => {
+//   console.log(req.body)
+//   console.log(req.user.id)
+//   try {
+//     const order = await Order.findById(req.params.id)
+//     if (req.user.id !== order.userId) return res.status(401).json({success: false, message: 'Thats not your order'})
+//     const user = await User.findById(order.userId)
+//     res.json({
+//       user, order
+//     })
+//   } catch (e) {
+//     res.status(400).json({succes: false, message: 'couldnt fetch order' })
+//   }
+// })
 
 router.get("", (req, res, next) => {
-  Order.find().then(documents => {
+  Order.find().populate("ProductOrder").lean().then(documents => {
     console.log(documents)
     res.status(200).json({
       message: 'Orders fetched successfully!',
-      products: documents
+      orders: documents
     });
   });
 });
@@ -57,6 +58,7 @@ router.post("", checkAuth, async (req, res, next ) => {
     }) 
   }
 
+  // console.log(orderProducts);
   try {
     const productDocuments = []
     for (let i = 0; i < orderProducts.length; i++ ) {
@@ -71,14 +73,19 @@ router.post("", checkAuth, async (req, res, next ) => {
           imagePath: product.imagePath,
           amount: product.amount
         });
+        productOrder.save()
         productDocuments.push(await productOrder)
       }
+
+      // console.log(productDocuments);
 
       const order = await new Order({
         products: productDocuments,
         userId: req.user.id,
         createdAt: Date.now()
       })
+
+      // console.log(order);
         
       await order.save().catch(e =>{
         console.log(e)

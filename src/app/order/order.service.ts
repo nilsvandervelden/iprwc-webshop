@@ -23,13 +23,12 @@ export class OrderService {
         'http://localhost:3000/api/order' 
       )
       .pipe(map((orderData) => {
-        console.log(orderData)
         return orderData.orders.map(order => {
           return {
-            id: order._id,
+            _id: order._id,
             createdAt: order.createdAt,
-            deliverd: order.delivered,
-            paid: order.paid,
+            delivered: order.deliverd,
+            paid: order.deliverd,
             userId: order.userId,
             products: order.products
           }
@@ -37,8 +36,13 @@ export class OrderService {
       }))
       .subscribe((transformedOrder) => {
         this.orders = transformedOrder;
-        this.orderChanged.next([...this.orders])
+        console.log(this.orders);
+        this.orderChanged.next([...this.orders]);
       });
+  }
+
+  getOrderUpdateListener() {
+    return this.orderChanged.asObservable();
   }
 
   deleteOrder(order: string) {

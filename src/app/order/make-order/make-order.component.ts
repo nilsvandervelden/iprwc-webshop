@@ -30,6 +30,7 @@ export class MakeOrderComponent implements OnInit {
       let orderProduct = {
         productId: product.product.id,
         name: product.product.name,
+        vinylFigureId: product.product.vinylFigureId,
         price: product.product.price,
         description: product.product.description,
         imagePath: product.product.imagePath,
