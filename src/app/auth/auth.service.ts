@@ -120,6 +120,12 @@ export class AuthService {
       'http://localhost:3000/api/user/upgrade-to-admin', {key})
   }
 
+  checkIfAdmin() {
+    return this.httpClient.get<any>(
+      'http://localhost:3000/api/user/check-admin'
+    )
+  }
+
   getOrderById(orderId: string) {
     return this.httpClient.get<any>(
       'http://localhost:3000/api/order/' + orderId)
