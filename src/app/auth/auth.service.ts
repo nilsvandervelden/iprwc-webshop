@@ -114,4 +114,14 @@ export class AuthService {
       expirationDate: new Date(expirationDate)
     }
   }
+
+  upgradeToAdmin(key: string) {
+    return this.httpClient.post<any>(
+      'http://localhost:3000/api/user/upgrade-to-admin', {key})
+  }
+
+  getOrderById(orderId: string) {
+    return this.httpClient.get<any>(
+      'http://localhost:3000/api/order/' + orderId)
+  }
 }

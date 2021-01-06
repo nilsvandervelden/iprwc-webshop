@@ -99,24 +99,41 @@ router.post("/login", async (req, res, next) => {
   }
 })
 
-router.get("/me", checkAuth, async (req, res, next) => {
-  try {
-    console.log(Order.find(req.user.id));
-    const orders = await Order.find(req.user.id)
-    // .sort([['createdAt', -1]])
-    console.log(orders);
-    const user = await User.findById(req.user.id)
-    console.log(user);
-    res.json({
-      succes: true,
-      message: 'fetched user data',
-      user, 
-      orders
-    })
-  } catch (e) {
-    res.send({success: false, message: 'couldnt fetch user'})
-  }
-})
+module.exports = (app, endpoint) => {
+  router.post("upgrade-to-admin", checkAuth, async (req, res, next) => {
+    const { key } = req.body
+    if(!key || key !== process.env.UPGRADE_KEY) return res.status(401).json({ success: false, message: 'The given key is not equal to the upgrade key'})
+    try {
+      const user = await User.findById(req.user.id)
+      await user.set({ admin: true })
+      await user.save()
+      res.json(user)
+    } catch (e) {
+      console.error(e)
+      res.send({ success: false, message: 'couldnt fetch user' })
+    }
+  })
+}
+
+
+// router.get("/me", checkAuth, async (req, res, next) => {
+//   try {
+//     console.log(Order.find(req.user.id));
+//     const orders = await Order.find(req.user.id)
+//     // .sort([['createdAt', -1]])
+//     console.log(orders);
+//     const user = await User.findById(req.user.id)
+//     console.log(user);
+//     res.json({
+//       succes: true,
+//       message: 'fetched user data',
+//       user, 
+//       orders
+//     })
+//   } catch (e) {
+//     res.send({success: false, message: 'couldnt fetch user'})
+//   }
+// })
 
 
 module.exports = router;
