@@ -21,33 +21,17 @@ export class OrdersComponent implements OnInit {
 
 
 ngOnInit() {
-  this.orderService.getOrders();
-  this.subscription = this.orderService.orderChanged
-  .subscribe(
-    (orders: Order[]) => {
-      this.orders = orders;
-    }
-  );
+  this.getData()
 }
 
-  // ngOnInit(): void {
-  //   this.orderService.getOrders();
-  //   this.subscription = this.productService.productChanged
-  //   .subscribe(
-  //     (products: Product[]) => {
-  //       this.products = products;
-  //     });
-  // }
-  //   this.getData()
-  // }
-
-  // getData() {
-  //   this.authService.me().subscribe((res: any) => {
-  //     let orderData = res['orders'] as Order[]
-  //     this.orders = orderData
-  //     console.log(res);
-  //   }, err => {
-  //     console.log(err)
-  //   })
-  // }
+  getData() {
+    this.authService.me().subscribe((res: any) => {
+      console.log(res)
+      let orderData = res['orders'] as Order[]
+      this.orders = orderData
+      console.log(res);
+    }, err => {
+      console.log(err)
+    })
+  }
 }

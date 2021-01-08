@@ -94,4 +94,61 @@ router.post("", checkAuth, async (req, res, next ) => {
     }
   })
 
+router.patch("/toggle-delivery/:id", checkAuth, async (req, res, next ) => {
+  const orderId = req.params.orderId
+  if (!req.user.admin) { 
+    return res.status(401).json({ 
+      success: false, 
+      message: 'You are not allowed to change delivery status'
+    })
+  }
+  if (!orderId) { 
+    return res.status(400).json({
+      success: false,
+      message: 'your forgot to give the order id' 
+    }) 
+  }
+  try {
+    const order = await Order.findById(orderId)
+    await order.updateOne({
+      delivered: !order.delivered
+    })
+
+    await order.save()
+    res.json(await order)
+  } catch (e) {
+    console.log(e)
+    res.send({ success: false, message: 'couldnt update order' })
+  }
+})
+
+router.patch("/toggle-paid/:id", checkAuth, async (req, res, next ) => {
+  const orderId = req.params.orderId
+  if (!req.user.admin) { 
+    return res.status(401).json({ 
+      success: false, 
+      message: 'You are not allowed to change delivery status'
+    })
+  }
+  if (!orderId) { 
+    return res.status(400).json({
+      success: false,
+      message: 'your forgot to give the order id' 
+    }) 
+  }
+  try {
+    const order = await Order.findById(orderId)
+    await order.updateOne({
+      paid: !order.paid
+    })
+
+    await order.save()
+    res.json(await order)
+  } catch (e) {
+    console.log(e)
+    res.send({ success: false, message: 'couldnt update order' })
+  }
+})
+
+
 module.exports = router;

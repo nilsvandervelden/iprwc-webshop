@@ -3,7 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
-const order = require("../models/order");
+const Order = require("../models/order");
+const Product = require("../models/product")
 
 const checkAuth = require("../middleware/check-auth")
 
@@ -130,24 +131,20 @@ router.get("/check-admin", checkAuth, async (req, res, next) => {
 
 
 
-// router.get("/me", checkAuth, async (req, res, next) => {
-//   try {
-//     console.log(Order.find(req.user.id));
-//     const orders = await Order.find(req.user.id)
-//     // .sort([['createdAt', -1]])
-//     console.log(orders);
-//     const user = await User.findById(req.user.id)
-//     console.log(user);
-//     res.json({
-//       succes: true,
-//       message: 'fetched user data',
-//       user, 
-//       orders
-//     })
-//   } catch (e) {
-//     res.send({success: false, message: 'couldnt fetch user'})
-//   }
-// })
+router.get("/me", checkAuth, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id)
+    const orders = await Order.find({userId: req.user.id}).exec();
+    res.json({
+      succes: true,
+      message: 'fetched user data',
+      user, 
+      orders
+    })
+  } catch (e) {
+    res.send({success: false, message: 'couldnt fetch user'})
+  }
+})
 
 
 module.exports = router;
