@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { ShoppingCartUtil } from '../shared/shopping-cart-util';
 import { ShoppingCartItem } from './shopping-cart-product.model';
 import { ShoppingCartService } from './shopping-cart.service';
 
@@ -28,6 +29,13 @@ export class ShoppingCartComponent implements OnInit {
       }
       this.shoppingCartService.setCartItems(this.productsInCart)
     }
+  }
+
+  calculateItemCount() {
+    if (this.productsInCart != undefined) {
+      return ShoppingCartUtil.calculateTotalItemsInCart(this.productsInCart);
+    }
+    return 0;
   }
 
   removeFromCart(item: any): void {

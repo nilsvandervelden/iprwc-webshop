@@ -2,6 +2,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { ShoppingCartItem } from './shopping-cart-product.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -42,9 +43,15 @@ export class ShoppingCartService {
         } else {
           currentShoppingCartItems.push(item)
         }
-        console.log(item);
         localStorage.setItem('shoppingCartItems', JSON.stringify(currentShoppingCartItems));
         this.cartSubject.next(currentShoppingCartItems)
+
+        Swal.fire({
+          icon: 'success',
+          title: 'You did it!',
+          text: 'Product Added To Cart',
+        })
+        
         return true
       } catch(error) {
         return false

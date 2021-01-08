@@ -10,4 +10,12 @@ export class ShoppingCartUtil {
 
     return totalAmount
   }
+
+  static calculateTotalItemsInCart(items: ShoppingCartItem[]) {
+    let itemCount = 0;
+    for(let i = 0; i < items.length; i++) {
+      itemCount += items[i].amount;
+    }
+    return itemCount;
+  }
 }
