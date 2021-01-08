@@ -94,7 +94,7 @@ router.post("", checkAuth, async (req, res, next ) => {
     }
   })
 
-router.patch("/toggle-delivery/:id", checkAuth, async (req, res, next ) => {
+router.patch("/toggledelivery/:id", checkAuth, async (req, res, next ) => {
   const orderId = req.params.orderId
   if (!req.user.admin) { 
     return res.status(401).json({ 
@@ -122,7 +122,7 @@ router.patch("/toggle-delivery/:id", checkAuth, async (req, res, next ) => {
   }
 })
 
-router.patch("/toggle-paid/:id", checkAuth, async (req, res, next ) => {
+router.patch("/togglepaid/:id", checkAuth, async (req, res, next ) => {
   const orderId = req.params.orderId
   if (!req.user.admin) { 
     return res.status(401).json({ 

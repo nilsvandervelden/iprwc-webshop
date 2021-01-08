@@ -53,15 +53,15 @@ export class OrderService {
     return this.orderChanged.asObservable();
   }
 
-  deleteOrder(order: string) {
-    return this.httpClient.delete('order/delete/' + order)
+  deleteOrder(orderId: string) {
+    return this.httpClient.delete('http://localhost:3000/api/orderr/delete/' + orderId)
   }
   
-  togglePaid(order: string) {
-    return this.httpClient.patch('order/togglepaid/' + order, {})
+  togglePaid(orderId: string) {
+    return this.httpClient.patch('http://localhost:3000/api/order/togglepaid/' + orderId, {})
   }
 
-  toggleDelivered(order: string) {
-    return this.httpClient.patch('order/toggledelivery/' + order, {})
+  toggleDelivered(orderId: string) {
+    return this.httpClient.patch('http://localhost:3000/api/order/toggledelivery/' + orderId, {})
   }
 }

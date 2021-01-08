@@ -15,13 +15,15 @@ export class OrderComponent implements OnInit {
   order: Order | undefined
   customer: Customer | undefined
   error: string = ''
+  admin: boolean = false
+
   constructor(private orderService: OrderService,
               private router: Router,
               private route: ActivatedRoute,
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    // this.getAdmin()
+    this.getAdmin()
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if(paramMap.has("orderId")) {
         this.orderId = paramMap.get("orderId");
@@ -57,12 +59,11 @@ export class OrderComponent implements OnInit {
     })
   }
 
-
-  // getAdmin() {
-  //   this.authService.check().subscribe((res: any) => {
-  //     this.admin = res.admin
-  //   })
-  // }
+  getAdmin() {
+    this.authService.checkIfAdmin().subscribe((res: any) => {
+      this.admin = res.admin
+    })
+  }
 
   getTotalPrice(): number {
     if(this.order) {
@@ -78,7 +79,7 @@ export class OrderComponent implements OnInit {
 
   deleteOrder() {
     if(this.order) { 
-      this.orderService.deleteOrder(this.order._id).subscribe((res: any) => {
+      this.orderService.deleteOrder(this.orderId).subscribe((res: any) => {
         this.order = undefined
         this.error = 'Order got deleted, can\'t find an order with this ID anymore.'
       }, (err: any) => {
@@ -89,7 +90,7 @@ export class OrderComponent implements OnInit {
 
   togglePaid() {
     if(this.order) { 
-      this.orderService.togglePaid(this.order._id).subscribe((res: any) => {
+      this.orderService.togglePaid(this.orderId).subscribe((res: any) => {
         if(this.order) 
           this.order.paid = !this.order.paid
       }, (err: any) => {
@@ -100,7 +101,7 @@ export class OrderComponent implements OnInit {
 
   toggleDelivered() {
     if(this.order) {
-      this.orderService.toggleDelivered(this.order._id).subscribe((res: any) => {
+      this.orderService.toggleDelivered(this.orderId).subscribe((res: any) => {
         if(this.order) 
           this.order.delivered = !this.order.delivered
       }, (err: any) => {

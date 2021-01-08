@@ -4,36 +4,35 @@
     {{error}}
 </div>
 <div *ngIf="order">
-<div *ngIf="!order.paid" class="alert alert-primary" role="alert">
+<div *ngIf="!order.paid && !admin" class="alert alert-primary" role="alert">
     You haven't paid yet! Please make a SEPA transaction to <b>NL25RABO0123456789</b>. A website administrator will put your order on paid whenever they've received the money
 </div>
 
 <div class="row">
     <div class="col-md-12 col-lg-6" > 
         <div class="card" *ngIf="customer">
-        <div class="card-body">
-            <h5 class="card-title">customer Information</h5>
-            <p class="card-text">Some info about who made the order</p>
-    <b><i class="fas fa-customer-shield"></i> {{customer.firstName}} {{customer.lastName}}</b><br>
-       <i class="fas fa-thumbtack"></i> {{customer.street}} {{customer.streetNumber}}, {{customer.postalCode}}, {{customer.city}}, {{customer.country}}<br>
-       <i class="fas fa-envelope-square"></i> <a href="mailto:{{customer.email}}"> {{customer.email}}</a>
-        </div>
+            <div class="card-body">
+                <h5 class="card-title">customer Information</h5>
+                <p class="card-text">Some info about who made the order</p>
+                <b><i class="fas fa-customer-shield"></i> {{customer.firstName}} {{customer.lastName}}</b><br>
+                <i class="fas fa-thumbtack"></i> {{customer.street}} {{customer.streetNumber}}, {{customer.postalCode}}, {{customer.city}}, {{customer.country}}<br>
+                <i class="fas fa-envelope-square"></i> <a href="mailto:{{customer.email}}"> {{customer.email}}</a>
+            </div>
         </div>
     </div>
     <div class="col-md-12 col-lg-6">
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Admin Panel</h5>
-        <p class="card-text">Simply change things about this order, real speed.</p>
-        <div class="btn-group" role="group">
-        <button class="btn btn-primary" (click)="togglePaid()">Toggle paid</button>
-        <button class="btn btn-primary" (click)="toggleDelivered()">Toggle delivered</button>
-        <button class="btn btn-danger" (click)="deleteOrder()">Delete order</button>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Admin Panel</h5>
+                <p class="card-text">Simply change things about this order, real speed.</p>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary" (click)="togglePaid()">Toggle paid</button>
+                    <button class="btn btn-primary" (click)="toggleDelivered()">Toggle delivered</button>
+                    <button class="btn btn-danger" (click)="deleteOrder()">Delete order</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-    </div>
-
 </div>
 <br>
 
