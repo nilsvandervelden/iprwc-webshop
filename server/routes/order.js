@@ -23,13 +23,25 @@ router.get("/:id", checkAuth, async (req, res, next) => {
   }
 })
 
-router.get("", (req, res, next) => {
-  Order.find().populate("ProductOrder").lean().then(documents => {
-    res.status(200).json({
-      message: 'Orders fetched successfully!',
-      orders: documents
+router.get("", checkAuth, async (req, res, next) => {
+  try {
+    if (!req.user.admin) { 
+      return  res.status(401).json({
+        success: false,
+        message: 'You are not registered as an admin'
+      })}
+    Order.find().populate("ProductOrder").lean().then(documents => {
+      res.status(200).json({
+        message: 'Orders fetched successfully!',
+        orders: documents
+      });
     });
-  });
+  } catch (err) {
+    res.send ({
+      success: false,
+      message: 'Couldnt fetch orders'
+    })
+  }
 });
 
 router.post("", checkAuth, async (req, res, next ) => {
