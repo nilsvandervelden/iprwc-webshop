@@ -25,6 +25,9 @@
         <a class="nav-link active" [routerLink]="['signup']">Signup </a>
       </li>
       <li *ngIf="userIsAuthenticated">
+        <button class="btn btn-primary" [routerLink]="['account/orders']">Orders</button>
+      </li>
+      <li *ngIf="userIsAdmin">
         <button class="btn btn-primary" [routerLink]="['manage']">Admin Panel</button>
       </li>
       <li *ngIf="userIsAuthenticated">

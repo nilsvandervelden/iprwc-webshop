@@ -29,15 +29,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.productsInCard = newShoppingCartItems;
     })
 
+    this.authService.checkIfAdmin().subscribe(res => {
+      this.userIsAdmin = res.admin;
+    });
+    this.adminListenerSubs = this.authService.getAdminStatusListener().subscribe((
+      isAdmin => {
+        this.userIsAdmin = isAdmin;
+      }
+    ))
 
     this.userIsAuthenticated = this.authService.getIsAuth();
-    console.log(this.authService.checkIfAdmin());
-    // this.userIsAdmin = this.authService.checkIfAdmin();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(
     (isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     }))
   }
+
 
   onLogout() {
     this.authService.logout();

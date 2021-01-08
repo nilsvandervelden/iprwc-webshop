@@ -13,6 +13,8 @@ export class AuthService {
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
   private isAuthenticated = false;
+  private isAdmin = false;
+  private adminStatusListener = new Subject<boolean>();
 
   constructor(private httpClient: HttpClient,
               private router: Router) {}
@@ -22,6 +24,10 @@ export class AuthService {
   }
 
   getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+
+  getAdminStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
