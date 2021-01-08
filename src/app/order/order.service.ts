@@ -54,7 +54,7 @@ export class OrderService {
   }
 
   deleteOrder(orderId: string) {
-    return this.httpClient.delete('http://localhost:3000/api/orderr/delete/' + orderId)
+    return this.httpClient.delete('http://localhost:3000/api/order/' + orderId)
   }
   
   togglePaid(orderId: string) {

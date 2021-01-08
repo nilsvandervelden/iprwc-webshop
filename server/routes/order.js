@@ -6,6 +6,7 @@ const Order = require("../models/order");
 const User = require("../models/user");
 const checkAuth = require("../middleware/check-auth");
 const product = require("../models/product");
+const { route } = require("./user");
 
 const router = express.Router();
 
@@ -95,7 +96,9 @@ router.post("", checkAuth, async (req, res, next ) => {
   })
 
 router.patch("/toggledelivery/:id", checkAuth, async (req, res, next ) => {
-  const orderId = req.params.orderId
+  // console.log(req)
+  const orderId = req.params.id
+  console.log(orderId)
   if (!req.user.admin) { 
     return res.status(401).json({ 
       success: false, 
@@ -123,7 +126,7 @@ router.patch("/toggledelivery/:id", checkAuth, async (req, res, next ) => {
 })
 
 router.patch("/togglepaid/:id", checkAuth, async (req, res, next ) => {
-  const orderId = req.params.orderId
+  const orderId = req.params.id
   if (!req.user.admin) { 
     return res.status(401).json({ 
       success: false, 
@@ -150,5 +153,20 @@ router.patch("/togglepaid/:id", checkAuth, async (req, res, next ) => {
   }
 })
 
+router.delete("/:id", checkAuth, async (req, res, next) => {
+  try {
+    if(!req.user.admin) {
+      return res.status(401).json({
+        success: false,
+        message: 'You are not autherized to delete a order?'
+      })
+    }
+    const order = await Order.findById(orderId)
+    order.deleteOne()
+    res.json(await order)
+  } catch (e) {
+    res.send({ success: false, message: 'couldnt fetch order' })
+  }
+})
 
 module.exports = router;
