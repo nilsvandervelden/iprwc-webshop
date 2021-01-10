@@ -13,11 +13,13 @@ const router = express.Router();
 router.get("/:id", checkAuth, async (req, res, next) => {
   try {
     const order = await Order.findById(req.params.id)
-    if (req.user.id !== order.userId && !req.user.admin) return res.status(401).json({success: false, message: 'Thats not your order'})
+    if (req.user.id !== order.userId && !req.user.admin) 
+    return res.status(401).json({
+      success: false,
+      message: 'Not your order'})
     const user = await User.findById(order.userId)
     res.json({
-      order
-      ,user
+      order, user
     })
   } catch (e) {
     res.status(400).json({succes: false, message: 'couldnt fetch order' })
