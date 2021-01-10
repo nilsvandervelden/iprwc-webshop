@@ -14,6 +14,7 @@ export class OrderListComponent implements OnInit {
 
   orders: Order[] | undefined
   subscription: Subscription;
+  isAdmin: boolean
 
   constructor(private shoppingCartService: ShoppingCartService, 
               private authService: AuthService,
@@ -21,17 +22,29 @@ export class OrderListComponent implements OnInit {
 
 
 ngOnInit() {
+  this.isAdmin = this.authService.getIsAdmin();
+  console.log(this.isAdmin);
   this.getData()
 }
 
   getData() {
-    this.authService.me().subscribe((res: any) => {
-      console.log(res)
-      let orderData = res['orders'] as Order[]
-      this.orders = orderData
-      console.log(res);
-    }, err => {
-      console.log(err)
-    })
+    if(!this.isAdmin) {
+      this.authService.me().subscribe((res: any) => {
+        console.log(res)
+        let orderData = res['orders'] as Order[]
+        this.orders = orderData
+        console.log(res);
+      }, err => {
+        console.log(err)
+      })
+    } 
+
+    if(this.isAdmin) {
+      this.orderService.getOrders()
+      this.subscription = this.orderService.orderChanged
+      .subscribe((orders: Order[]) => {
+        this.orders = orders;
+      })
+    } 
   }
 }

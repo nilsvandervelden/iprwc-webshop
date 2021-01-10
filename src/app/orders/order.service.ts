@@ -1,12 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Order } from "./order";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class OrderService {
   private orders: Order[] = [];

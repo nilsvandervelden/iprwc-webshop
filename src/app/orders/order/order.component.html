@@ -4,7 +4,7 @@
     {{error}}
 </div>
 <div *ngIf="order">
-<div *ngIf="!order.paid && !admin" class="alert alert-primary" role="alert">
+<div *ngIf="!order.paid && !isAdmin" class="alert alert-primary" role="alert">
     You haven't paid yet! Please make a SEPA transaction to <b>NL25RABO0123456789</b>. A website administrator will put your order on paid whenever they've received the money
 </div>
 
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 col-lg-6">
+    <div *ngIf="isAdmin" class="col-md-12 col-lg-6">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Admin Panel</h5>

@@ -15,7 +15,7 @@ export class OrderComponent implements OnInit {
   order: Order | undefined
   customer: Customer | undefined
   error: string = ''
-  admin: boolean = false
+  isAdmin: boolean = false
 
   constructor(private orderService: OrderService,
               private router: Router,
@@ -60,7 +60,7 @@ export class OrderComponent implements OnInit {
   }
 
   getAdmin() {
-    this.admin = this.authService.getIsAdmin();
+    this.isAdmin = this.authService.getIsAdmin();
   }
 
   getTotalPrice(): number {
@@ -80,7 +80,7 @@ export class OrderComponent implements OnInit {
       this.orderService.deleteOrder(this.orderId).subscribe((res: any) => {
         this.order = undefined
         this.error = 'Order got deleted, can\'t find an order with this ID anymore.'
-        // this.router.navigate(["../orders"]);
+        this.router.navigate(["../orders"]);
       }, (err: any) => {
         console.log(err)
       })

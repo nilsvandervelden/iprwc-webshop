@@ -14,7 +14,7 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient,
               private router: Router) {}
-
+  
   getProducts() {
     this.httpClient
       .get<{message: string, products: any }>(

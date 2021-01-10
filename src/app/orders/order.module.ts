@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { OrderItemComponent } from "./order-item/order-item.component";
 import { OrderRoutingModule } from "./order-routing.module";
@@ -16,6 +16,7 @@ import { OrderComponent } from "./order/order.component";
 import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.component";
 import { OrdersComponent } from "./orders.component";
 import { OrderListComponent } from './order-list/order-list.component';
+import { OrderService } from "./order.service";
 
 
 
@@ -34,12 +35,13 @@ import { OrderListComponent } from './order-list/order-list.component';
   ],
   imports: [
     CustomerModule,
+    ShoppingCartModule,
     RouterModule,
     CommonModule,
     BrowserModule,
     OrderRoutingModule,
-    ShoppingCartModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
 })
