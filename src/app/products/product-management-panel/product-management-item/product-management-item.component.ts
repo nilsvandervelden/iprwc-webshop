@@ -57,7 +57,7 @@ export class ProductManagementItemComponent implements OnInit, OnDestroy {
 
   onDeleteProduct(productId: string) {
     this.productService.deleteProduct(productId);
-    this.router.navigate(['/manage'])
+    this.router.navigate(['/products/manage'])
   }
 }
 

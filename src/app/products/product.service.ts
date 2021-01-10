@@ -60,7 +60,7 @@ export class ProductService {
         product.id = id;
         this.products.push(product);
         this.productChanged.next([...this.products]);
-        this.router.navigate(["/manage"]);
+        this.router.navigate(["../products/manage"]);
       });
   }
 
@@ -74,7 +74,7 @@ export class ProductService {
         updatedProducts[oldProductIndex] = product;
         this.products = updatedProducts;
         this.productChanged.next([...this.products]);
-        this.router.navigate(["/manage"]);
+        this.router.navigate(["../products/manage"]);
       }); 
   }
   

@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MakeOrderComponent } from './make-order/make-order.component';
 import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
-  {path: 'account/dashboard', component: DashboardComponent},
-  {path: 'account/orders', component: OrdersComponent},
-  {path: 'account/order/:orderId', component: OrderComponent},
-  {path: 'account/make-order', component: MakeOrderComponent}
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]},
+  {path: 'orders/:orderId', component: OrderComponent, canActivate: [AuthGuard]},
+  {path: 'make-order', component: MakeOrderComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

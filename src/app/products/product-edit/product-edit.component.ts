@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormControl, Validators, NgForm } from '@angular/forms';
-import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Product } from '../product-model';
 import { ProductService } from '../product.service';
 
@@ -55,7 +55,11 @@ export class ProductEditComponent implements OnInit {
 
 
   onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route})
+    if(this.editMode) {
+      this.router.navigate(['../../manage'], {relativeTo: this.route})
+    } else {
+      this.router.navigate(['../manage'], {relativeTo: this.route})
+    }
   }
   
   onSaveProduct(form: NgForm) {

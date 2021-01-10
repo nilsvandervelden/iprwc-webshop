@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, Subject } from "rxjs";
+import Swal from "sweetalert2";
 import { Customer } from "../customer/customer";
 import { AuthData } from "./auth-data.model";
 
@@ -50,8 +51,15 @@ export class AuthService {
     const customerToSend: any = customer;
     this.httpClient.post("http://localhost:3000/api/user/signup", customerToSend)
       .subscribe(response => {
-        console.log(response);
+        if(response['success'] == true) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Account Created',
+            text: 'Your account has been created successfully',
+          })
+        } 
       });
+      this.router.navigate(['/login']);
   }
 
   checkIfAdmin() {

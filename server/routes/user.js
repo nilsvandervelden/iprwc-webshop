@@ -41,7 +41,7 @@ router.post("/signup", async (req, res, next) => {
     jwt.sign(payload, process.env.JWT_KEY, {expiresIn: 25000}, (err, token) => {
       if (err) throw err
       res.status(200).json({
-        succes: true,
+        success: true,
         message: 'created account',
         token
       })
@@ -136,7 +136,7 @@ router.get("/me", checkAuth, async (req, res, next) => {
     const user = await User.findById(req.user.id)
     const orders = await Order.find({userId: req.user.id}).exec();
     res.json({
-      succes: true,
+      success: true,
       message: 'fetched user data',
       user, 
       orders
