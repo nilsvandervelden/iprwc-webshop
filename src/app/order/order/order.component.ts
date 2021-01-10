@@ -60,9 +60,7 @@ export class OrderComponent implements OnInit {
   }
 
   getAdmin() {
-    this.authService.checkIfAdmin().subscribe((res: any) => {
-      this.admin = res.admin
-    })
+    this.admin = this.authService.getIsAdmin();
   }
 
   getTotalPrice(): number {

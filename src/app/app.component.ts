@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.authService.autoAuthUser();
+    this.authService.autoAdminUser();
   }
   
   title = 'webshop';

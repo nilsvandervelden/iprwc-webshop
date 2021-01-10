@@ -8,20 +8,17 @@ import { AuthService } from "./auth.service";
 })
 export class AdminGuard implements CanActivate {
 
-  constructor(private authService: AuthService,
+  constructor(private authService: AuthService, 
               private router: Router) {}
-  
-  
-  canActivate(route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const response = this.authService.checkIfAdmin().toPromise().then (r => {
-        let result = r as any
-        return result.admin
-      }).catch(error => {
-        this.authService.logout()
-        this.router.navigate(['/login'])
-        return false
-      })
-      return response;
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+    ): boolean | Observable<boolean> | Promise<boolean> {
+    const isAdmin = this.authService.getIsAdmin();
+    if (!isAdmin) {
+    this.router.navigate(['/login']);
     }
+    return isAdmin;
+  }
 }

@@ -1,3 +1,4 @@
+
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
@@ -28,11 +29,15 @@ export class AuthService {
   }
 
   getAdminStatusListener() {
-    return this.authStatusListener.asObservable();
+    return this.adminStatusListener.asObservable();
   }
 
   getIsAuth() {
     return this.isAuthenticated;
+  }
+
+  getIsAdmin() {
+    return this.isAdmin;
   }
 
   me() {
@@ -49,6 +54,28 @@ export class AuthService {
       });
   }
 
+  checkIfAdmin() {
+    return this.httpClient.get<any>(
+      'http://localhost:3000/api/user/check-admin'
+    ).subscribe(response => {
+      const isAdmin = response.admin;
+      this.isAdmin = isAdmin;
+      console.log(this.isAdmin);
+      if (isAdmin) {
+        const expiresInDuration = 25000;
+        this.setAuthTimer(expiresInDuration)
+        this.isAdmin = true;
+        this.adminStatusListener.next(true);
+        const now = new Date();
+        const expirationData = new Date(now.getTime() + expiresInDuration * 1000);
+        this.saveAdminData(isAdmin, expirationData)
+      } else {
+        this.isAdmin = false;
+        this.adminStatusListener.next(false);
+      }
+    })
+  }
+
   login(email: string, password: string) {
     const authData: AuthData = {email: email, password: password};
     this.httpClient.post<{token: string, expiresIn: number}>("http://localhost:3000/api/user/login", authData)
@@ -56,6 +83,8 @@ export class AuthService {
       const token = response.token;
       this.token = token;
       if (token) {
+        this.checkIfAdmin();
+        console.log(this.isAdmin);
         const expiresInDuration = response.expiresIn;
         this.setAuthTimer(expiresInDuration);
         this.isAuthenticated = true;
@@ -83,10 +112,26 @@ export class AuthService {
     }
   }
 
+  autoAdminUser() {
+    const adminInformation = this.getAdminData();
+    if(!adminInformation) {
+      return
+    }
+    const now = new Date();
+    const expiresIn = adminInformation.expirationData.getTime() - now.getTime();
+    if(expiresIn > 0) {
+      this.isAdmin = true;
+      this.setAuthTimer(expiresIn / 1000);
+      this.adminStatusListener.next(true);
+  }
+}
+
   logout() {
     this.token = null;
     this.isAuthenticated = false;
+    this.isAdmin = false;
     this.authStatusListener.next(false);
+    this.adminStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     this.router.navigate(['/']);
@@ -104,9 +149,16 @@ export class AuthService {
     localStorage.setItem('expiration', expirationDate.toISOString());
   }
 
+  private saveAdminData(isAdmin: string, expirationDate: Date) {
+    localStorage.setItem('isAdmin', isAdmin);
+    localStorage.setItem('adminExpiration', expirationDate.toISOString());
+  }
+
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('adminExpiration')
   }
 
   private getAuthData() {
@@ -121,15 +173,21 @@ export class AuthService {
     }
   }
 
+  private getAdminData() {
+    const isAdmin = localStorage.getItem("isAdmin");
+    const adminExpirationData = localStorage.getItem("adminExpiration")
+    if(!isAdmin || !adminExpirationData) {
+      return
+    }
+    return {
+      isAdmin: isAdmin,
+      expirationData: new Date(adminExpirationData)
+    }
+  }
+
   upgradeToAdmin(key: string) {
     return this.httpClient.post<any>(
       'http://localhost:3000/api/user/upgrade-to-admin', {key})
-  }
-
-  checkIfAdmin() {
-    return this.httpClient.get<any>(
-      'http://localhost:3000/api/user/check-admin'
-    )
   }
 
   getOrderById(orderId: string) {
@@ -137,3 +195,16 @@ export class AuthService {
       'http://localhost:3000/api/order/' + orderId)
   }
 }
+
+
+
+
+
+
+
+
+
+
+  
+
+  

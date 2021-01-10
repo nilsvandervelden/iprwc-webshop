@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -28,15 +29,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.shoppingCartService.cartSubject.subscribe((newShoppingCartItems) => {
       this.productsInCard = newShoppingCartItems;
     })
-
-    this.authService.checkIfAdmin().subscribe(res => {
-      this.userIsAdmin = res.admin;
-    });
-    this.adminListenerSubs = this.authService.getAdminStatusListener().subscribe((
-      isAdmin => {
-        this.userIsAdmin = isAdmin;
-      }
-    ))
+    this.userIsAdmin  = this.authService.getIsAdmin();
+    this.adminListenerSubs = this.authService.getAdminStatusListener().subscribe(
+    (isAdmin => {
+      this.userIsAdmin = isAdmin
+      console.log(isAdmin);
+    }))
 
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(
@@ -52,6 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
+    this.adminListenerSubs.unsubscribe();
   }
 }
 
