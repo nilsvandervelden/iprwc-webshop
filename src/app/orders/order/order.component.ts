@@ -49,9 +49,8 @@ export class OrderComponent implements OnInit {
             streetNumber: orderData.user.streetNumber,
             id: orderData.user._id,
           }
-          console.log(orderData)
+
           this.customer = orderData['user'] as Customer;
-          console.log(this.customer)
         });
       } else {
         this.orderId = null;

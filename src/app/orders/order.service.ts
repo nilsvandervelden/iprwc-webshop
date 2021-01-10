@@ -19,27 +19,27 @@ export class OrderService {
   }
 
   getOrders() {
-    this.httpClient
-      .get<{message: string, orders: any}>(
-        'http://localhost:3000/api/order' 
-      )
-      .pipe(map((orderData) => {
-        return orderData.orders.map(order => {
-          return {
-            _id: order._id,
-            createdAt: order.createdAt,
-            delivered: order.deliverd,
-            paid: order.deliverd,
-            userId: order.userId,
-            products: order.products
-          }
-        });
-      }))
-      .subscribe((transformedOrder) => {
-        this.orders = transformedOrder;
-        console.log(this.orders);
-        this.orderChanged.next([...this.orders]);
-      });
+    return this.httpClient.get('http://localhost:3000/api/order')
+    // this.httpClient
+    //   .get<{message: string, orders: any}>(
+    //     'http://localhost:3000/api/order' 
+    //   )
+    //   .pipe(map((orderData) => {
+    //     return orderData.orders.map(order => {
+    //       return {
+    //         _id: order._id,
+    //         createdAt: order.createdAt,
+    //         delivered: order.deliverd,
+    //         paid: order.deliverd,
+    //         userId: order.userId,
+    //         products: order.products
+    //       }
+    //     });
+    //   }))
+    //   .subscribe((transformedOrder) => {
+    //     this.orders = transformedOrder;
+    //     this.orderChanged.next([...this.orders]);
+    //   });
   }
 
   getOrderUpdateListener() {

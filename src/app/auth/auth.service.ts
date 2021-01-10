@@ -42,7 +42,6 @@ export class AuthService {
   }
 
   me() {
-    console.log('test')
     return this.httpClient.get('http://localhost:3000/api/user/me')
   }
 

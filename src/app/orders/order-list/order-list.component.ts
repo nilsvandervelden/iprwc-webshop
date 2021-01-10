@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 import { Subscription } from 'rxjs';
 import { Order } from '../order';
 import { OrderService } from '../order.service';
@@ -16,21 +15,18 @@ export class OrderListComponent implements OnInit {
   subscription: Subscription;
   isAdmin: boolean
 
-  constructor(private shoppingCartService: ShoppingCartService, 
-              private authService: AuthService,
+  constructor(private authService: AuthService,
               private orderService: OrderService) { }
 
 
 ngOnInit() {
   this.isAdmin = this.authService.getIsAdmin();
-  console.log(this.isAdmin);
   this.getData()
 }
 
   getData() {
     if(!this.isAdmin) {
       this.authService.me().subscribe((res: any) => {
-        console.log(res)
         let orderData = res['orders'] as Order[]
         this.orders = orderData
         console.log(res);
@@ -40,10 +36,12 @@ ngOnInit() {
     } 
 
     if(this.isAdmin) {
-      this.orderService.getOrders()
-      this.subscription = this.orderService.orderChanged
-      .subscribe((orders: Order[]) => {
-        this.orders = orders;
+      this.orderService.getOrders().subscribe((res: any) => {
+        let orderData = res['orders'] as Order []
+        this.orders = orderData
+        console.log(res);
+      }, err => {
+        console.log(err)
       })
     } 
   }
