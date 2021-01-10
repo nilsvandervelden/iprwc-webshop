@@ -18,12 +18,12 @@
       </li>
     </ul>
     <ul class="navbar-nav mr-right">
-      <li *ngIf="!userIsAuthenticated">
+      <!-- <li *ngIf="!userIsAuthenticated">
         <a class="nav-link active" [routerLink]="['login']">Login </a>
       </li>
       <li *ngIf="!userIsAuthenticated">
         <a class="nav-link active" [routerLink]="['signup']">Signup </a>
-      </li>
+      </li> -->
       <li *ngIf="userIsAuthenticated">
         <button class="btn btn-primary" [routerLink]="['account/orders']">Orders</button>
       </li>
