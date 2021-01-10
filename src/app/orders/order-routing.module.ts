@@ -3,16 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MakeOrderComponent } from './make-order/make-order.component';
+import { OrderListComponent } from './order-list/order-list.component';
 import { OrderComponent } from './order/order.component';
-import { OrdersComponent } from './orders/orders.component';
+import { OrdersComponent } from './orders.component';
 
 const routes: Routes = [
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]},
-  {path: 'orders/:orderId', component: OrderComponent, canActivate: [AuthGuard]},
-  {path: 'make-order', component: MakeOrderComponent, canActivate: [AuthGuard]}
+  {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], children: [
+    {path: '', component: OrderListComponent, canActivate: [AuthGuard]},
+    {path: 'new', component: MakeOrderComponent, canActivate: [AuthGuard]},
+    {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+    {path: ':orderId', component: OrderComponent, canActivate: [AuthGuard]},
+  ]},
 ]
+
 
 @NgModule({
   declarations: [],

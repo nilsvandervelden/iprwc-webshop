@@ -9,12 +9,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MakeOrderComponent } from "./make-order/make-order.component";
 import { OrderSummaryComponent } from "./order-summary/order-summary.component";
 import { OrderListItemComponent } from "./order-list-item/order-list-item.component";
-import { OrdersComponent } from "./orders/orders.component";
 import { ShoppingCartModule } from "../shopping-cart/shopping-cart.module";
 import { CustomerModule } from "../customer/customer.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { OrderComponent } from "./order/order.component";
 import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.component";
+import { OrdersComponent } from "./orders.component";
+import { OrderListComponent } from './order-list/order-list.component';
 
 
 
@@ -28,6 +29,7 @@ import { OrderDetailItemComponent } from "./order-detail-item/order-detail-item.
     OrderSummaryComponent,
     OrdersComponent,
     OrderComponent,
+    OrderListComponent,
     
   ],
   imports: [

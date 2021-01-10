@@ -11,8 +11,8 @@ import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { ProductsModule } from './products/products.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { OrderModule } from './order/order.module';
 import { CustomerModule } from './customer/customer.module';
+import { OrderModule } from './orders/order.module';
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Order } from '../order';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
-import { OrderService } from '../order.service';
 import { Subscription } from 'rxjs';
+import { Order } from '../order';
+import { OrderService } from '../order.service';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.scss']
+  selector: 'app-order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ['./order-list.component.scss']
 })
-export class OrdersComponent implements OnInit {
+export class OrderListComponent implements OnInit {
 
   orders: Order[] | undefined
   subscription: Subscription;

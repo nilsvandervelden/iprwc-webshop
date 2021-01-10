@@ -33,6 +33,6 @@ export class ShoppingCartOrderComponent implements OnInit {
 
   
   makeOrder() {
-    this.router.navigate(['/account/make-order'])
+    this.router.navigate(['../orders/new'])
   }
 }
