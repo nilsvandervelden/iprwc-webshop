@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
-import { Product } from "../products/product-model";
 import { Order } from "./order";
 
 @Injectable({
@@ -18,12 +18,6 @@ export class OrderService {
     return this.httpClient.get<any>(
       'http://localhost:3000/api/order/' + orderId)
   }
-
-  // getProductById(id: string) {
-  //   return this.httpClient.get<{ _id: string; vinylFigureId: number, name: string, price: number, description: string, imagePath: string }>(
-  //     "http://localhost:3000/api/products/" + id
-  //   );
-  // }
 
   getOrders() {
     this.httpClient

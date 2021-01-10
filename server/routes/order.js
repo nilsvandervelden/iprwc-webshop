@@ -154,6 +154,7 @@ router.patch("/togglepaid/:id", checkAuth, async (req, res, next ) => {
 })
 
 router.delete("/:id", checkAuth, async (req, res, next) => {
+  const orderId = req.params.id;
   try {
     if(!req.user.admin) {
       return res.status(401).json({
@@ -161,7 +162,9 @@ router.delete("/:id", checkAuth, async (req, res, next) => {
         message: 'You are not autherized to delete a order?'
       })
     }
+    console.log('hallo')
     const order = await Order.findById(orderId)
+    console.log(order);
     order.deleteOne()
     res.json(await order)
   } catch (e) {

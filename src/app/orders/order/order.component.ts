@@ -80,6 +80,7 @@ export class OrderComponent implements OnInit {
       this.orderService.deleteOrder(this.orderId).subscribe((res: any) => {
         this.order = undefined
         this.error = 'Order got deleted, can\'t find an order with this ID anymore.'
+        // this.router.navigate(["../orders"]);
       }, (err: any) => {
         console.log(err)
       })
