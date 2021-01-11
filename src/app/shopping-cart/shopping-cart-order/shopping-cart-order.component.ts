@@ -22,7 +22,7 @@ export class ShoppingCartOrderComponent implements OnInit {
 
   calculteCost() {
     if(this.shoppingCartItems != undefined) {
-      return ShoppingCartUtil.calculateTotal(this.shoppingCartItems);
+      return ShoppingCartUtil.calculateTotal(this.shoppingCartItems).toFixed(2);
     }
     return 0;
   }

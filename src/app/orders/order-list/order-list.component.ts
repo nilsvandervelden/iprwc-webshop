@@ -39,7 +39,7 @@ ngOnInit() {
       this.orderService.getOrders().subscribe((res: any) => {
         let orderData = res['orders'] as Order []
         this.orders = orderData
-        console.log(res);
+        // console.log(res);
       }, err => {
         console.log(err)
       })

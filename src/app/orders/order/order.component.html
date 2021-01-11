@@ -4,76 +4,73 @@
     {{error}}
 </div>
 <div *ngIf="order">
-<div *ngIf="!order.paid && !isAdmin" class="alert alert-primary" role="alert">
-    You haven't paid yet! Please make a SEPA transaction to <b>NL25RABO0123456789</b>. A website administrator will put your order on paid whenever they've received the money
-</div>
+    <div *ngIf="!order.paid && !isAdmin" class="alert alert-primary" role="alert">
+        You haven't paid yet! Please make a SEPA transaction to <b>NL25RABO0123456789</b>. A website administrator will put your order on paid whenever they've received the money
+    </div>
 
-<div class="row">
-    <div class="col-md-12 col-lg-6" > 
-        <div class="card" *ngIf="customer">
-            <div class="card-body">
-                <h3 class="card-title">Customer Information</h3>
-                <b><i class="fas fa-customer-shield"></i> {{customer.firstName}} {{customer.lastName}}</b><br>
-                <i class="fas fa-thumbtack"></i> {{customer.street}} {{customer.streetNumber}}, {{customer.postalCode}}, {{customer.city}}, {{customer.country}}<br>
-                <i class="fas fa-envelope-square"></i> <a href="mailto:{{customer.email}}"> {{customer.email}}</a>
+    <div class="row">
+        <div class="col-md-12 col-lg-6" > 
+            <div class="card" *ngIf="customer">
+                <div class="card-body">
+                    <h3 class="card-title">Customer Information</h3>
+                    <b><i class="fas fa-customer-shield"></i> {{customer.firstName}} {{customer.lastName}}</b><br>
+                    <i class="fas fa-thumbtack"></i> {{customer.street}} {{customer.streetNumber}}, {{customer.postalCode}}, {{customer.city}}, {{customer.country}}<br>
+                    <i class="fas fa-envelope-square"></i> <a href="mailto:{{customer.email}}"> {{customer.email}}</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div *ngIf="isAdmin" class="col-md-12 col-lg-6">
-        <div id="admin-panel" class="card">
-            <div class="card-body">
-                <b><h3 class="card-title">Admin Panel</h3></b>
-                <p class="card-text">Manage order</p>
-                <div class="button-group">
-                    <button class="btn btn-primary" (click)="togglePaid()">Toggle paid</button>
-                    <button class="btn btn-primary" (click)="toggleDelivered()">Toggle delivered</button>
-                    <button class="btn btn-danger" (click)="deleteOrder()">Delete order</button>
+        <div *ngIf="isAdmin" class="col-md-12 col-lg-6">
+            <div id="admin-panel" class="card">
+                <div class="card-body">
+                    <b><h3 class="card-title">Admin Panel</h3></b>
+                    <p class="card-text">Manage order</p>
+                    <div class="button-group">
+                        <button class="btn btn-primary" (click)="togglePaid()">Toggle paid</button>
+                        <button class="btn btn-primary" (click)="toggleDelivered()">Toggle delivered</button>
+                        <button class="btn btn-danger" (click)="deleteOrder()">Delete order</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<br>
+    <br>
 
-<div class="extra">
-    <div *ngIf="order.paid">
-        <span class="badge badge-success">PAID</span>
+    <div class="extra">
+        <div *ngIf="order.paid">
+            <span class="badge badge-success">PAID</span>
+        </div>
+        <div *ngIf="!order.paid">
+            <span class="badge badge-danger">UNPAID</span>
+        </div>
+        <div *ngIf="order.delivered">
+            <span class="badge badge-success">DELIVERED</span>
+        </div>
+        <div *ngIf="!order.delivered">
+            <span class="badge badge-danger">NOT DELIVERED</span>
+        </div>
     </div>
-    <div *ngIf="!order.paid">
-        <span class="badge badge-danger">UNPAID</span>
-    </div>
-    <div *ngIf="order.delivered">
-        <span class="badge badge-success">DELIVERED</span>
-    </div>
-    <div *ngIf="!order.delivered">
-        <span class="badge badge-danger">NOT DELIVERED</span>
-    </div>
-</div>
-    
-<p *ngIf="!error">Below you will find info containing the order with id:  <span class="badge badge-primary">{{order._id}}</span></p>
+        
+    <p *ngIf="!error">Below you will find info containing the order with id:  <span class="badge badge-primary">{{order._id}}</span></p>
 
-<br>
-<div class="row font-weight-bold">
-    <div class="col-3">
-        Image
-      </div>
-      <div class="col-5">
-        Product Name
-      </div>
-      <div class="col-2">
-        Price per item
-      </div>
-      <div class="col-2">
-        Total price
-      </div>
-</div>
-<hr>
-<app-order-detail-item *ngFor="let item of order.products"
-[item]="item">
-</app-order-detail-item>
+    <br>
+    <div class="row font-weight-bold">
+        <div class="col-3">
+            Image
+        </div>
+        <div class="col-5">
+            Product Name
+        </div>
+        <div class="col-2">
+            Price per item
+        </div>
+        <div class="col-2">
+            Total price
+        </div>
+    </div>
+    <hr>
+    <app-order-detail-item *ngFor="let item of order.products"
+    [item]="item">
+    </app-order-detail-item>
 
-<p>The total price of this order is <b>&euro;{{getTotalPrice().toFixed(2)}}</b>.</p>
-<p>
-    <i>If you clicked a product and it doesn't show an item, that might be cause the item got removed from the shop or got edited.</i>
-</p>
+    <p class="footer-text">The total price of this order is <b>&euro;{{getTotalPrice().toFixed(2)}}</b>.</p>
 </div>

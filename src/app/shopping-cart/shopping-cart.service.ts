@@ -49,7 +49,7 @@ export class ShoppingCartService {
         Swal.fire({
           icon: 'success',
           title: 'You did it!',
-          text: 'Product Added To Cart',
+          text: 'Product was added to your cart',
         })
         
         return true
