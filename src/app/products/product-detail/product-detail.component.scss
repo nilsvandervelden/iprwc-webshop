@@ -61,3 +61,14 @@ img.img-responsive {
 button.btn.btn-success {
   width: 100%;
 }
+@media(max-width: 991px) {
+  img.img-responsive {
+    max-height: 300px;
+  }
+}
+
+@media(max-width: 767px) {
+  .col-md-4 {
+    margin-left: 0px;
+  }
+}
