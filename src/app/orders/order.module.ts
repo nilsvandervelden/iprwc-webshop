@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { OrderItemComponent } from "./order-item/order-item.component";
 import { OrderRoutingModule } from "./order-routing.module";
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { MakeOrderComponent } from "./make-order/make-order.component";
 import { OrderSummaryComponent } from "./order-summary/order-summary.component";
 import { OrderListItemComponent } from "./order-list-item/order-list-item.component";
@@ -23,7 +22,6 @@ import { OrderService } from "./order.service";
 @NgModule({
   declarations: [
     OrderDetailItemComponent,
-    DashboardComponent,
     MakeOrderComponent,
     OrderItemComponent,
     OrderListItemComponent,

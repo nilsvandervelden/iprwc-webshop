@@ -3,6 +3,9 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { Order } from "./order";
+import { environment } from 'src/environments/environment';
+
+const BACKEND_URL = environment.apiUrl + "/order/";
 
 @Injectable({
   providedIn: "root"
@@ -15,31 +18,11 @@ export class OrderService {
 
   getOrderById(orderId: string) {
     return this.httpClient.get<any>(
-      'http://localhost:3000/api/order/' + orderId)
+      BACKEND_URL + orderId)
   }
 
   getOrders() {
-    return this.httpClient.get('http://localhost:3000/api/order')
-    // this.httpClient
-    //   .get<{message: string, orders: any}>(
-    //     'http://localhost:3000/api/order' 
-    //   )
-    //   .pipe(map((orderData) => {
-    //     return orderData.orders.map(order => {
-    //       return {
-    //         _id: order._id,
-    //         createdAt: order.createdAt,
-    //         delivered: order.deliverd,
-    //         paid: order.deliverd,
-    //         userId: order.userId,
-    //         products: order.products
-    //       }
-    //     });
-    //   }))
-    //   .subscribe((transformedOrder) => {
-    //     this.orders = transformedOrder;
-    //     this.orderChanged.next([...this.orders]);
-    //   });
+    return this.httpClient.get(BACKEND_URL)
   }
 
   getOrderUpdateListener() {
@@ -47,14 +30,14 @@ export class OrderService {
   }
 
   deleteOrder(orderId: string) {
-    return this.httpClient.delete('http://localhost:3000/api/order/' + orderId)
+    return this.httpClient.delete(BACKEND_URL + orderId)
   }
   
   togglePaid(orderId: string) {
-    return this.httpClient.patch('http://localhost:3000/api/order/togglepaid/' + orderId, {})
+    return this.httpClient.patch(BACKEND_URL + 'togglepaid/' + orderId, {})
   }
 
   toggleDelivered(orderId: string) {
-    return this.httpClient.patch('http://localhost:3000/api/order/toggledelivery/' + orderId, {})
+    return this.httpClient.patch(BACKEND_URL + 'toggledelivery/' + orderId, {})
   }
 }

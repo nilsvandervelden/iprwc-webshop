@@ -6,6 +6,9 @@ import { Observable, Subject } from "rxjs";
 import Swal from "sweetalert2";
 import { Customer } from "../customer/customer";
 import { AuthData } from "./auth-data.model";
+import { environment } from 'src/environments/environment';
+
+const BACKEND_URL = environment.apiUrl + "/user/";
 
 @Injectable({
   providedIn: "root"
@@ -42,13 +45,13 @@ export class AuthService {
   }
 
   me() {
-    return this.httpClient.get('http://localhost:3000/api/user/me')
+    return this.httpClient.get(BACKEND_URL +'me')
   }
 
 
   createUser(customer: Customer) {
     const customerToSend: any = customer;
-    this.httpClient.post("http://localhost:3000/api/user/signup", customerToSend)
+    this.httpClient.post(BACKEND_URL + 'signup', customerToSend)
       .subscribe(response => {
         if(response['success'] == true) {
           Swal.fire({
@@ -63,7 +66,7 @@ export class AuthService {
 
   checkIfAdmin() {
     return this.httpClient.get<any>(
-      'http://localhost:3000/api/user/check-admin'
+      BACKEND_URL + 'check-admin'
     ).subscribe(response => {
       const isAdmin = response.admin;
       this.isAdmin = isAdmin;
@@ -85,7 +88,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData: AuthData = {email: email, password: password};
-    this.httpClient.post<{token: string, expiresIn: number}>("http://localhost:3000/api/user/login", authData)
+    this.httpClient.post<{token: string, expiresIn: number}>(BACKEND_URL+ 'login', authData)
     .subscribe(response => {
       const token = response.token;
       this.token = token;
@@ -194,12 +197,7 @@ export class AuthService {
 
   upgradeToAdmin(key: string) {
     return this.httpClient.post<any>(
-      'http://localhost:3000/api/user/upgrade-to-admin', {key})
-  }
-
-  getOrderById(orderId: string) {
-    return this.httpClient.get<any>(
-      'http://localhost:3000/api/order/' + orderId)
+      BACKEND_URL + 'upgrade-to-admin', {key})
   }
 }
 
