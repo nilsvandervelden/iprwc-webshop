@@ -14,6 +14,9 @@
               #email="ngModel"
               class="form-control"
             >
+            <span class="help-block" *ngIf="!email.valid && email.touched">
+              Please enter a valid email {{email.value}} is not a valid email
+            </span>
           </div>
         </div>
       </div>
@@ -30,6 +33,9 @@
               #password="ngModel"
               class="form-control"
             >
+            <span class="help-block" *ngIf="!password.valid && password.touched">
+              Please enter a valid password
+            </span>
           </div>
         </div>
       </div>
