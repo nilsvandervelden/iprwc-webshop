@@ -21,3 +21,15 @@ span {
   padding-bottom: 10px;
   border-radius: 10px;
 }
+
+// @media (max-width: 997px) {
+//   .col-sm-2 {
+//     margin-right: 10px;
+//   }
+// }
+
+@media (max-width: 800px) {
+  .col-sm-2 {
+    display: none;
+  }
+}

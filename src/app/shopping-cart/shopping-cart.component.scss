@@ -30,3 +30,9 @@ span {
   font-size: 16px;
   color: green;
 }
+@media (max-width: 800px) {
+  #order-detail {
+    background-color: white;
+    margin-top: 10px;
+  }
+}

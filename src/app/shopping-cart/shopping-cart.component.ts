@@ -10,12 +10,15 @@ import { ShoppingCartService } from './shopping-cart.service';
 })
 
 export class ShoppingCartComponent implements OnInit {
-
+  deliveryStart: Date
+  deliveryEnd: Date
   productsInCart: ShoppingCartItem[];
   
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
+    this.deliveryStart = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
+    this.deliveryEnd = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)
     this.productsInCart = this.shoppingCartService.getShoppingCartItems()
   }
 

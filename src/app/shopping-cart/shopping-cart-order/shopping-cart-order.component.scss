@@ -26,3 +26,12 @@ a.btn.btn-primary {
 button {
   width: 100%;
 }
+
+@media (max-width: 800px) {
+  .row.cart-item-row.align-items-center {
+    margin-left: 0;
+  }
+  .row {
+    margin-left: 0;
+  }
+}

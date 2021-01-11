@@ -17,7 +17,7 @@
         <span class="dot"></span>
         <p class="inline">Uit voorraad leverbaar</p>
         <div class="time-frame">
-          <p>Bezorging pakket circa 12 december 2020 - 14 december 2020</p>
+          <p>Bezorging pakket circa {{deliveryStart | date: 'dd/MM/yyyy'}} - {{deliveryEnd | date: 'dd/MM/yyyy'}}</p>
         </div>
         <button 
           (click)="onAddToCart()"

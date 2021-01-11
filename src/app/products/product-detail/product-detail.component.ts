@@ -13,6 +13,8 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   productId: string;
   isLoading = false;
+  deliveryStart: Date
+  deliveryEnd: Date
 
   constructor(private productService: ProductService,
               private shoppingCartService: ShoppingCartService,
@@ -20,6 +22,8 @@ export class ProductDetailComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.deliveryStart = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
+    this.deliveryEnd = new Date(Date.now() + 3 * 24 * 60 * 60 * 1000)
     this.isLoading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has("productId")) {

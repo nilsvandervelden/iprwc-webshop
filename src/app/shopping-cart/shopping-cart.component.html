@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-md">
     <span class="green-text">
-      Bezorging pakket circa 17 december 2020 - 18 december 2020
+      Bezorging pakket circa {{deliveryStart | date: 'dd/MM/yyyy'}} - {{deliveryEnd | date: 'dd/MM/yyyy'}}
     </span>
   </div>
 </div>
@@ -31,7 +31,7 @@
                                   (updated)="onCartItemUpdated($event)"></app-shopping-cart-list-item>
 
   </div>
-  <div class="col-sm-12 col-md-3 col-lg-3">
+  <div id="order-detail" class="col-sm-12 col-md-3 col-lg-3">
     <app-shopping-cart-order  [shoppingCartItems]="productsInCart"
                               [clearCart]="clearCart"></app-shopping-cart-order>
   </div>

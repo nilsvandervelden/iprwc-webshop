@@ -3,7 +3,7 @@
     <input type="text" class="form-control" placeholder="Waar ben je naar opzoek?" [(ngModel)]="term">
   </div>
   <hr>
-  <div class="row row-cols-4">
+  <div class="row justify-content-md-center">
     <app-product-item
       *ngFor="let productElement of products | filter:term; let i = index"
       [product]="productElement"
