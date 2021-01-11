@@ -2,25 +2,21 @@
 <div class="row" *ngIf="order">
     <div class="col-md-12 col-lg-4">
         <a href="/orders/{{order._id}}">{{order._id}}</a>
-        
     </div>
+
     <div class="col-md-12 col-lg-4">
         <i class="fas fa-clock"></i> {{toDisplayabledate()}}
     </div>
-    <div class="col-md-12 col-lg-4">
-        <div *ngIf="order.paid; else unpaid">
-            <span class="badge badge-success">PAID</span>
 
-        </div>
+    <div class="col-md-12 col-lg-4">
+        <span *ngIf="order.paid; else unpaid" class="badge badge-success">PAID</span>
         <ng-template #unpaid>
             <span class="badge badge-danger">UNPAID</span>
         </ng-template>
-        &nbsp;
-        <div *ngIf="order.delivered; else notDelivered">
-            <span class="badge badge-success">DELIVERED</span>
 
-        </div>
-        
+        &nbsp;
+
+        <span *ngIf="order.delivered; else notDelivered" class="badge badge-success">DELIVERED</span>
         <ng-template #notDelivered>
             <span class="badge badge-danger">NOT DELIVERED</span>
         </ng-template>
