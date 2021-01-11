@@ -41,3 +41,21 @@ svg:hover {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+@media (max-width: 576px) {
+  img {
+    max-height: 100px;
+  }
+  .col-sm-5 {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+  .col-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-sm-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+}

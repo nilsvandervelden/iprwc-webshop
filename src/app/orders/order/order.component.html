@@ -12,8 +12,7 @@
     <div class="col-md-12 col-lg-6" > 
         <div class="card" *ngIf="customer">
             <div class="card-body">
-                <h5 class="card-title">customer Information</h5>
-                <p class="card-text">Some info about who made the order</p>
+                <h3 class="card-title">Customer Information</h3>
                 <b><i class="fas fa-customer-shield"></i> {{customer.firstName}} {{customer.lastName}}</b><br>
                 <i class="fas fa-thumbtack"></i> {{customer.street}} {{customer.streetNumber}}, {{customer.postalCode}}, {{customer.city}}, {{customer.country}}<br>
                 <i class="fas fa-envelope-square"></i> <a href="mailto:{{customer.email}}"> {{customer.email}}</a>
@@ -21,11 +20,11 @@
         </div>
     </div>
     <div *ngIf="isAdmin" class="col-md-12 col-lg-6">
-        <div class="card">
+        <div id="admin-panel" class="card">
             <div class="card-body">
-                <h5 class="card-title">Admin Panel</h5>
-                <p class="card-text">Simply change things about this order, real speed.</p>
-                <div class="btn-group" role="group">
+                <b><h3 class="card-title">Admin Panel</h3></b>
+                <p class="card-text">Manage order</p>
+                <div class="button-group">
                     <button class="btn btn-primary" (click)="togglePaid()">Toggle paid</button>
                     <button class="btn btn-primary" (click)="toggleDelivered()">Toggle delivered</button>
                     <button class="btn btn-danger" (click)="deleteOrder()">Delete order</button>
@@ -51,7 +50,7 @@
     </div>
 </div>
     
-<p *ngIf="!error">Awesome, this is information about order <span class="badge badge-primary">{{order._id}}</span></p>
+<p *ngIf="!error">Below you will find info containing the order with id:  <span class="badge badge-primary">{{order._id}}</span></p>
 
 <br>
 <div class="row font-weight-bold">
