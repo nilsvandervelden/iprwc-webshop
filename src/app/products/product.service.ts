@@ -5,10 +5,13 @@ import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
 
 import { Product } from './product-model';
+import { environment } from 'src/environments/environment';
 
+const BACKEND_URL = environment.apiUrl + "/products/";
 
 @Injectable()
 export class ProductService {
+  
   private products: Product[] = [];
   productChanged = new Subject<Product[]>();
 
@@ -18,7 +21,7 @@ export class ProductService {
   getProducts() {
     this.httpClient
       .get<{message: string, products: any }>(
-        'http://localhost:3000/api/products'
+        BACKEND_URL
       )
       .pipe(map((productData) => {
         return productData.products.map(product => {
@@ -44,7 +47,7 @@ export class ProductService {
 
   getProductById(id: string) {
     return this.httpClient.get<{ _id: string; vinylFigureId: number, name: string, price: number, description: string, imagePath: string }>(
-      "http://localhost:3000/api/products/" + id
+      BACKEND_URL + id
     );
   }
 
@@ -52,7 +55,7 @@ export class ProductService {
     const product: Product = {id: null, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath}
     this.httpClient
       .post<{message : string; productId: string}>(
-        'http://localhost:3000/api/products',
+        BACKEND_URL,
         product
       )
       .subscribe(responseData => {
@@ -67,7 +70,7 @@ export class ProductService {
   updateProduct(id: string, vinylFigureId: number, name: string, price: number, description: string, imagePath: string) {
     const product: Product = {id: id, vinylFigureId: vinylFigureId, name: name, price: price, description: description, imagePath: imagePath};
     this.httpClient
-      .put("http://localhost:3000/api/products/" + id, product)
+      .put(BACKEND_URL + id, product)
       .subscribe(response => {
         const updatedProducts = [...this.products];
         const oldProductIndex = updatedProducts.findIndex(p => p.id === product.id);
@@ -79,7 +82,7 @@ export class ProductService {
   }
   
   deleteProduct(productId: string) {
-    this.httpClient.delete("http://localhost:3000/api/products/" + productId)
+    this.httpClient.delete(BACKEND_URL+ productId)
       .subscribe(() => {
         const updatedProducts = this.products.filter(product => product.id != productId);
         this.products = updatedProducts;

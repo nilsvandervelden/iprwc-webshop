@@ -3,10 +3,14 @@ import { ShoppingCartItem } from './shopping-cart-product.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+
+const BACKEND_URL = environment.apiUrl + "/order/";
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ShoppingCartService {
   public cartSubject = new BehaviorSubject(this.getShoppingCartItems());
 
@@ -67,6 +71,6 @@ export class ShoppingCartService {
   }
 
   createOrder(order: any) {
-    return this.httpClient.post('http://localhost:3000/api/order', {orderProducts: order})
+    return this.httpClient.post(BACKEND_URL, {orderProducts: order})
   }
 }
