@@ -15,6 +15,8 @@ import { CustomerModule } from './customer/customer.module';
 import { OrderModule } from './orders/order.module';
 import { OrderService } from './orders/order.service';
 import { AuthService } from './auth/auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { AuthService } from './auth/auth.service';
     ShoppingCartModule,
     OrderModule,
     ProductsModule,
-    CustomerModule
+    CustomerModule,
+    NgbModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, ProductService, ShoppingCartService, OrderService, AuthService],
   bootstrap: [AppComponent]

@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-xl">
+    <div class="title">
+      <h1>Signup</h1>
+    </div>
     <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
       <div class="row">
         <div class="col-xl">
@@ -186,7 +189,7 @@
       <button
         type="submit"
         class="btn btn-primary"
-        [disabled]="!signupForm.valid">Log in
+        [disabled]="!signupForm.valid">Signup
       </button>
     </form>
   </div>

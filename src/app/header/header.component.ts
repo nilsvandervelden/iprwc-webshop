@@ -1,6 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { timeoutWith } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { ShoppingCartUtil } from '../shared/shopping-cart-util';
 import { ShoppingCartItem } from '../shopping-cart/shopping-cart-product.model';
@@ -12,6 +13,8 @@ import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+
+  public isCollapsed = true;
 
   productsInCard: ShoppingCartItem[];
 
@@ -43,6 +46,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }))
   }
 
+  collapsed() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 
   onLogout() {
     this.authService.logout();
