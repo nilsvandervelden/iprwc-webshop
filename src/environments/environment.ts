@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://api.superlegitiem.nl/api"
+  apiUrl: "http://174.138.13.89/api"
 };
 
 /*
