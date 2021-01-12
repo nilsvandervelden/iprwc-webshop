@@ -13,7 +13,7 @@ const app = express();
 
 mongoose
 .connect(
-  "mongodb+srv://Nils:5yMFKYu5c14X6qJi@cluster0.q4xcf.mongodb.net/'node-angular"
+  process.env.DATABASE
 )
 .then(() => {
   console.log("Connected to database!");
