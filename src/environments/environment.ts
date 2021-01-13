@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://174.138.13.89/api"
+  apiUrl: "https://api.superlegitiem.nl/api"
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file
